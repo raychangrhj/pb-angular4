@@ -4,7 +4,7 @@
 }
 .dialog-page {
     position: relative;
-    padding: 20px 20px 5px 20px;
+    padding: 20px 15px 5px 15px;
     text-align: center;
     user-select: none;
 }
@@ -61,7 +61,7 @@
 }
 .shift-table-header {
     position: relative;
-    padding: 15px 20px;
+    padding: 15px 10px;
     line-height: 20px;
     font-family: SFUIDisplay;
     font-size: 15px;
@@ -70,13 +70,13 @@
     border-bottom: 1px solid #E1E1E3;
 }
 .shift-table-header.padding-left {
-    padding-left: 60px;
+    padding-left: 45px;
 }
 .shift-table-header img,
 .shift-table-header .day {
     position: absolute;
     top: 10px;
-    left: 20px;
+    left: 10px;
     width: 30px;
     height: 30px;
 }
@@ -89,7 +89,7 @@
     text-align: center;
 }
 .shift-table-body {
-    padding-left: 20px;
+    padding-left: 10px;
     background-color: #F9F9F9;
 }
 .shift {
@@ -106,10 +106,10 @@
     border-bottom: 1px solid #E1E1E3;
 }
 .shift.padding-left {
-    padding-left: 40px;
+    padding-left: 35px;
 }
 .shift.padding-right {
-    padding-right: 60px;
+    padding-right: 40px;
 }
 .shift img,
 .shift .day {
@@ -130,7 +130,7 @@
 .shift .select {
     position: absolute;
     top: 50%;
-    right: 35px;
+    right: 15px;
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
@@ -188,4 +188,36 @@
     font-family: SFUIText;
     font-size: 13px;
     color: #B7B6BC;
+}
+@media (min-width: 512px) {
+    .dialog-page {
+        padding: 20px 20px 5px 20px;
+    }
+    .shift-table-header {
+        padding: 15px 20px;
+    }
+    .shift-table-header.padding-left {
+        padding-left: 60px;
+    }
+    .shift-table-header img,
+    .shift-table-header .day {
+        left: 20px;
+    }
+    .shift-table-body {
+        padding-left: 20px;
+    }
+    .shift.padding-left {
+        padding-left: 40px;
+    }
+    .shift.padding-right {
+        padding-right: 60px;
+    }
+    .shift .select {
+        right: 35px;
+    }
+}
+@media (min-width: 768px) {
+    .dialog-page {
+        min-width: 500px;
+    }
 }

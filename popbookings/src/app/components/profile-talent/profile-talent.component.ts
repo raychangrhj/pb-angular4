@@ -1,5 +1,5 @@
 // npm install ngx-carousel --save
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'app/services/data.service';
 import { NgxCarousel } from 'ngx-carousel';

@@ -38,8 +38,6 @@ export class JobDetailsComponent implements OnInit {
 
   openShiftSeletionDialog() {
     let dialogRef = this.dialog.open(ShiftSelectionDialogComponent, {
-      width: "500px",
-      height: "585px",
       data: { shifts: this.dataService.getShiftData() }
     });
     dialogRef.afterClosed().subscribe(result => {
