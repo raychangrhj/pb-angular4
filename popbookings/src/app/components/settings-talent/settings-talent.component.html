@@ -1,0 +1,47 @@
+<app-navbar [loggedIn]=true [hasAccount]=true></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper" [ngClass]="changesCount ? 'changed' : ''">
+    <div class="settings">
+      <div class="panel-left">
+        <div class="panel-setting-menu">
+          <div class="panel-header">Settings</div>
+          <div class="panel-body">
+            <button md-button class="btn-setting-menu" *ngFor="let menu of settingMenuList" [ngClass]="menu.id == selectedMenu ? 'selected' : ''" (click)="menuSelected(menu.id)">{{menu.label}}</button>
+          </div>
+          <div class="panel-footer">SIGN OUT</div>
+        </div>
+      </div>
+      <div class="panel-right">
+        <div class="panel-notification-channels">
+          <div class="panel-header">Notification Channels</div>
+          <div class="panel-body">
+            <div class="setting-item" *ngFor="let item of notificationChannelItems; let i = index">
+              <div class="item-title">{{item.title}}</div>
+              <div class="item-description" [innerHTML]="item.description"></div>
+              <md-slide-toggle [checked]="item.selected" (change)="notificationChannelItemChanged(i)"></md-slide-toggle>
+            </div>
+          </div>
+        </div>
+        <div class="panel-notify-me-about">
+          <div class="panel-header">Notify Me About</div>
+          <div class="panel-body">
+            <div class="setting-item" *ngFor="let item of notifyMeAboutItems; let i = index">
+              <div class="item-title">{{item.title}}</div>
+              <div class="item-description">{{item.description}}</div>
+              <div class="item-checked" [ngClass]="item.checked ? 'checked' : ''" (click)="notifyMeAboutItemChanged(i)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="save-changes-bar" *ngIf="changesCount">
+  <div class="bar-container">
+    <span class="changes-message">{{changesCount}} <span class="responsive-512">total settings</span> changes</span>
+    <div class="button-wrapper">
+      <button md-button class="btn-undo" (click)="resumeSettings()">UNDO</button>
+      <button md-button class="btn-light-blue btn-save-changes" (click)="backupSettings()">SAVE CHANGES</button>
+    </div>
+  </div>
+</div>

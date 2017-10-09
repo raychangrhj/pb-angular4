@@ -1,0 +1,229 @@
+.page-wrapper {
+    overflow: auto;
+}
+.jobdetails {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1100px;
+    user-select: none;
+}
+.panel-left,
+.panel-right {
+    float: left;
+    padding: 20px 10px;
+    width: 100%;
+}
+.panel-jobdetails {
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.panel-header {
+    padding: 0 20px;
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #9B9B9B;
+    background-color: #F0F0F0;
+    border-bottom: 1px solid #E1E1E3;
+    text-transform: uppercase;
+}
+.panel-body {
+    padding: 0 20px;
+    background-color: white;
+}
+.jobdetail-item {
+    position: relative;
+    padding: 20px 0;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+}
+.jobdetail-item:not(:last-child) {
+    border-bottom: 1px solid #E1E1E3;
+}
+.jobdetail-item > img {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+}
+.jobdetail-item .padding-left {
+    padding-left: 40px;
+}
+.jobdetail-title {
+    line-height: 21px;
+    font-size: 21px;
+    font-weight: bold;
+}
+.jobdetail-description {
+    padding-top: 10px;
+    line-height: 24px;
+    max-height: 80px;
+    letter-spacing: -0.3px;
+    overflow: hidden;
+}
+.jobdetail-description.all {
+    max-height: unset;
+}
+.btn-read-more {
+    display: inline-block;
+    margin: 10px 0;
+    color: #FC5A93;
+    transition: all 0.3s;
+}
+.btn-read-more:hover {
+    cursor: pointer;
+    color: red;
+}
+.panel-right > div:not(:first-child) {
+    margin-top: 20px;
+}
+.panel-client {
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.client-info {
+    position: relative;
+    padding: 20px 32px 20px 35px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 600;
+    color: #484848;
+}
+.client-info:not(:last-child) {
+    border-bottom: 1px solid #E1E1E3;
+}
+.client-info img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.client-info img.icon-left {
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background-color: #EEE;
+    border-radius: 2px;
+}
+.client-info .star-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 12px;
+    color: #E0E0E0;
+    unicode-bidi: bidi-override;
+}
+.client-info .star-rating-top {
+    position: absolute;
+    color: #FFC057;
+    overflow: hidden;
+    z-index: 1;
+}
+.client-info .star-rating-botton {
+    z-index: 0;
+}
+.client-info.company::after {
+    content: "keyboard_arrow_right";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 16px;
+    font-family: Material Icons;
+    font-size: 24px;
+    font-weight: normal;
+    color: #979797;
+}
+.client-info img.icon-message {
+    right: 0;
+    width: 31px;
+    height: 25px;
+}
+.panel-invited {
+    padding: 15px 20px;
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+}
+.panel-invited .description {
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: 600;
+    color: #484848;
+}
+.panel-invited .btn-book,
+.panel-invited .btn-select-shift {
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 17px;
+    letter-spacing: 3px;
+}
+.panel-invited .btn-no {
+    margin-top: 15px;
+    line-height: 24px;
+    font-family: SFUIText;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #979797;
+}
+.panel-share {
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+}
+.panel-share .panel-title {
+    line-height: 50px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: 600;
+    color: #484848;
+    border-bottom: 1px solid #E1E1E3;
+}
+.panel-share .panel-container {
+    padding: 10px 0;
+}
+.btn-share {
+    padding: 0;
+    min-width: 0;
+    width: 30%;
+    line-height: 30px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #979797;
+}
+.btn-share:not(:last-child) {
+    border-right: 1px solid #E1E1E3;
+}
+.btn-share .material-icon {
+    font-family: Material Icons;
+    font-size: 20px;
+}
+.panel-report {
+    text-align: center;
+}
+.btn-report {
+    line-height: 30px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #979797;
+}
+.btn-report img {
+    margin-right: 5px;
+    width: 18px;
+    height: 17px;
+}
+@media (min-width: 768px) {
+    .panel-left {
+        width: 66.66%;
+    }
+    .panel-right {
+        width: 33.33%;
+    }
+}

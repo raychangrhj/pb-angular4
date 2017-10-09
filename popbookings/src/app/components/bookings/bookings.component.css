@@ -1,0 +1,330 @@
+/deep/.navbar {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1) !important;
+}
+.bookings {
+    position: relative;
+    margin: 1px auto 0;
+    max-width: 1100px;
+    height: calc(100% - 51px);
+    user-select: none;
+    overflow: auto;
+}
+.panel-left,
+.panel-right {
+    float: left;
+    padding: 20px 10px;
+    width: 100%;
+}
+.panel-bookings {
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.panel-header {
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #979797;
+    background-color: #F0F0F0;
+    overflow: hidden;
+}
+.panel-header .sort-wrapper {
+    float: right;
+    position: relative;
+    padding-right: 75px;
+    line-height: 50px;
+}
+.panel-header .mat-select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    width: 70px;
+}
+.panel-header .mat-select::after {
+    content: "keyboard_arrow_down";
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: Material Icons;
+    font-size: 24px;
+    color: #979797;
+}
+/deep/.panel-header .mat-select-trigger {
+    height: 50px;
+}
+/deep/.panel-header .mat-select-value {
+    font-family: SFUIText;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #979797;
+}
+/deep/.panel-header .mat-select-arrow {
+    border: none !important;
+}
+/deep/.panel-header .mat-select-underline {
+    display: none !important;
+}
+.panel-body {
+    padding: 0;
+    border-top: 1px solid #E1E1E3;
+}
+.joblist-no-empty {
+    background-color: white;
+}
+.job-item {
+    padding: 0 15px;
+}
+.job-item:hover {
+    background-color: #ECF8FE;
+}
+.job-item-container {
+    padding: 15px 0;
+}
+.job-item:not(:last-child) .job-item-container {
+    border-bottom: 1px solid #E1E1E3;
+}
+.job-item-wrapper {
+    position: relative;
+}
+.job-item .job-item-left {
+    margin-right: 100px;
+    padding: 0;
+}
+.job-item .title {
+    line-height: 17px;
+    font-family: CircularStd;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
+.job-item .title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.job-item .client {
+    position: relative;
+    margin: 15px 0 10px;
+    padding-left: 20px;
+    line-height: 15px;
+    font-family: SFUIDisplay;
+    font-size: 13px;
+    font-weight: bold;
+    color: #484848;
+}
+.job-item .client.agency::before {
+    content: "\F0A3";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: FontAwesome;
+    font-size: 15px;
+    color: #48B8F7;
+}
+.job-item .client.agency::after {
+    content: "A";
+    position: absolute;
+    top: 0;
+    left: 3px;
+    font-size: 10px;
+    font-weight: normal;
+    color: white;
+}
+.job-item .client.business::before {
+    content: "account_balance";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: Material Icons;
+    font-size: 15px;
+}
+.job-item .other {
+    display: inline-block;
+    position: relative;
+    padding: 0 10px 0 20px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 13px;
+    color: #484848;
+}
+.job-item .other::before {
+    position: absolute;
+    left: 0;
+    font-family: Material Icons;
+    font-size: 15px;
+}
+.job-item .date,
+.job-item .time {
+    margin-right: 10px;
+    border-right: 1px solid #E1E1E3;
+}
+.job-item .date::before {
+    content: "event";
+}
+.job-item .time::before {
+    content: "watch_later";
+    transform: rotate(-60deg);
+}
+.job-item .location::before {
+    content: "location_on";
+}
+.job-item .job-type {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 15px;
+    height: 24px;
+    line-height: 24px;
+    font-family: SFUIText;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+.job-item .job-type.pending {
+    color: #A2A6AD;
+    background-color: #EBEBEB;
+}
+.job-item .job-type.booked {
+    color: white;
+    background-color: #FC5A93;
+}
+.job-item .job-type.booked::after {
+    content: "!";
+}
+.job-item .message {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 31px;
+    height: 25px;
+    background: url(../../../assets/images/messages-icon.png);
+}
+.job-item .notification {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: #FC5A93;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.job-item .rate {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-family: SFUIDisplay;
+    color: #484848;
+}
+.job-item .rate-value {
+    font-size: 17px;
+    font-weight: bold;
+}
+.job-item .rate-unit {
+    font-size: 13px;
+}
+.joblist-empty {
+    margin: 80px auto;
+    padding: 0 8px;
+    max-width: 330px;
+    text-align: center;
+}
+.joblist-empty .empty-icon {
+    width: 23px;
+    height: 41px;
+}
+.joblist-empty .description-large {
+    padding-top: 30px;
+    font-family: CircularStd;
+    font-size: 24px;
+    font-weight: bold;
+    color: #B7B6BC;
+}
+.joblist-empty .description-small {
+    padding: 15px 0 40px;
+    line-height: 21px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #B7B6BC;
+}
+.joblist-empty button {
+    margin-top: 20px;
+    padding-left: 10px;
+    width: 100%;
+    height: 50px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 600;
+    color: #484848;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+.joblist-empty button img {
+    margin-right: 10px;
+    width: 28px;
+    height: 28px;
+}
+.joblist-empty button::after {
+    content: "keyboard_arrow_right";
+    position: absolute;
+    right: 5px;
+    font-family: Material Icons;
+    font-size: 24px;
+    font-weight: normal;
+    color: #B7B6BC;
+}
+.panel-right .panel-settings {
+    padding: 5px 0;
+    border-bottom: 1px solid #E1E1E3;
+}
+.panel-settings .btn-edit-calendar {
+    position: relative;
+    width: 100%;
+    line-height: 50px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: bold;
+    color: #484848;
+    text-align: left;
+}
+.btn-edit-calendar::after {
+    content: "keyboard_arrow_right";
+    position: absolute;
+    right: 10px;
+    font-family: Material Icons;
+    font-size: 24px;
+    font-weight: normal;
+    color: #979797;
+}
+.btn-edit-calendar img {
+    margin-right: 15px;
+    width: 24px;
+    height: 24px;
+}
+@media (min-width: 375px) {
+    .job-item .job-item-left {
+        margin-right: 130px;
+    }
+    .job-item .job-type {
+        right: 40px;
+    }
+    .job-item .message {
+        top: 0;
+        transform: none;
+    }
+}
+@media (min-width: 768px) {
+    .panel-left {
+        width: 66.66%;
+    }
+    .panel-right {
+        width: 33.33%;
+    }
+}

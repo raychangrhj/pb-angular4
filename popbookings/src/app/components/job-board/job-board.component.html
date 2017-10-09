@@ -1,0 +1,96 @@
+<app-navbar [loggedIn]=true [hasAccount]=true [activeNavItem]="'job_board'"></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <div class="page-header-panel" *ngIf="pageHeaderVisible">
+      <img src="../../assets/images/hero-image.png">
+      <div class="description-large">Let's get to work, Jessica!</div>
+      <div class="description-small">There are 1,000+ job bookings available in your area.</div>
+      <button md-button class="btn-learn">Learn more about the Job Board</button>
+    </div>
+    <div class="filter-bar">
+      <div>
+        <button md-icon-button class="btn-collapse-filter" (click)="filterContainerVisible = !filterContainerVisible">
+          <md-icon>more_vert</md-icon>
+        </button>
+      </div>
+      <div class="filter-container" [ngClass]="filterContainerVisible ? 'collapsed' : ''">
+        <md-select [(ngModel)]="filterCity" (change)="update()">
+          <md-option *ngFor="let city of filterCityList" [value]="city.key">{{city.value}}</md-option>
+        </md-select>
+        <md-select [(ngModel)]="filterRadius" (change)="update()">
+          <md-option *ngFor="let radius of filterRadiusList" [value]="radius">Within {{radius}} miles</md-option>
+        </md-select>
+        <md-select [(ngModel)]="filterOther" (change)="update()">
+          <md-option *ngFor="let other of filterOtherList" [value]="other">{{other}}</md-option>
+        </md-select>
+      </div>
+      <div class="button-container">
+        <button md-button class="btn-clear-filter" (click)="reset()">Clear Filters</button>
+      </div>
+      <div class="search-container">
+        <input class="search" placeholder="Search Job Listings..." [(ngModel)]="searchString" (keyup)="search($event)">
+      </div>
+    </div>
+    <div class="jobboard" [ngClass]="pageHeaderVisible">
+      <div class="joblist-container">
+        <div class="joblist-wrapper">
+          <div class="joblist-header">
+            <span>{{jobList.length}} LISTING RESULTS</span>
+            <div class="sort-wrapper">
+              <span>SORT BY - </span>
+              <md-select [(ngModel)]="sortField" (change)="sort()">
+                <md-option *ngFor="let item of sortFieldList" [value]="item.key">{{item.value}}</md-option>
+              </md-select>
+            </div>
+          </div>
+          <div class="joblist-body">
+            <div class="joblist-no-empty" *ngIf="jobList.length > 0; else emptyBlock">
+              <div class="job-item" *ngFor="let job of jobList">
+                <div class="job-item-container">
+                  <div class="job-item-wrapper">
+                    <div class="job-item-left">
+                      <div class="title" (click)="gotoJobDetails(job.id)">{{job.title}}</div>
+                      <div class="client" [ngClass]="job.clientType">{{job.clientName}}</div>
+                      <div class="other date">{{job.date}}</div>
+                      <div class="other time">{{job.time}}</div>
+                      <div class="other location">{{job.location}}</div>
+                    </div>
+                    <div class="job-type" [ngClass]="job.jobType">{{job.jobType}}</div>
+                    <div class="rate">
+                      <span class="rate-value">${{job.rateValue}}</span>
+                      <span class="rate-unit">/{{job.rateUnit}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #emptyBlock>
+              <div class="joblist-empty">
+                <img class="empty-icon" src="../assets/images/no-listings-icon.png">
+                <div class="description-large">No Active Listings</div>
+                <div class="description-small">There are no active listings to show in your area. Try broadening your search criteria, or watch the video below to learn more!</div>
+                <button md-button>
+                  <img src="assets/images/play-video-icon.png">
+                  <span>Learn more about the Job Board</span>
+                </button>
+                <button md-button>
+                  <img src="assets/images/agency-icon.png">
+                  <span>Connect to an Agency</span>
+                </button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="map-container">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" #gm>
+          <agm-marker *ngFor="let marker of markers"
+            [latitude]="marker.latitude"
+            [longitude]="marker.longitude"
+            [iconUrl]="marker.icon">
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</div>

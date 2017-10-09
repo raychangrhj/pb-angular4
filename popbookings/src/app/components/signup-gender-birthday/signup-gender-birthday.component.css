@@ -1,0 +1,178 @@
+.signup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    padding: 4px 0;
+    max-width: 710px;
+    max-height: 600px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+    user-select: none;
+    overflow: auto;
+}
+.signup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(to right, #48B8F7 0%, #48B8F7 16.66%, #89D5FF 16.66%, #89D5FF 33.33%, #E1E1E3 33.33%);
+}
+.signup .help {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #B7B6BC;
+    border: 1px solid #B7B6BC;
+    border-radius: 50%;
+    text-decoration: none;
+}
+.signup .padding-wrapper {
+    padding: 0 10px;
+    width: 100%;
+}
+.signup .step {
+    padding-top: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.signup .page-title {
+    padding: 30px 0 70px;
+    line-height: 36px;
+    font-family: CircularStd;
+    font-size: 28px;
+    font-weight: bold;
+    color: #484848;
+}
+.signup .gender-segments-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+}
+.signup .gender {
+    flex: 1;
+    box-sizing: border-box;
+    line-height: 28px;
+    font-family: SFUIText;
+    font-size: 11px;
+    color: #FC5A93;
+    border: 1px solid #FC5A93;
+    border-right: none;
+    transition: all 0.3s;
+}
+.signup .gender:first-child {
+    border-radius: 6px 0 0 6px;
+}
+.signup .gender:last-child {
+    border-right: 1px solid #FC5A93;
+    border-radius: 0 6px 6px 0;
+}
+.signup .gender:hover {
+    cursor: pointer;
+}
+.signup .gender.active {
+    color: white;
+    background: #FC5A93;
+}
+.signup .birthday-wrapper {
+    padding: 70px 0 30px;
+}
+.signup .birthday-wrapper input {
+    height: 50px;
+    line-height: 50px;
+    font-family: CircularStd;
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 0;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+}
+.signup .form-field-wrapper[for=month],
+.signup .form-field-wrapper[for=day] {
+    margin-right: 15px;
+}
+.signup input#month,
+.signup input#day {
+    width: 65px;
+}
+.signup input#year {
+    width: 105px;
+}
+.signup .birthday-wrapper input::-webkit-inner-spin-button,
+.signup .birthday-wrapper input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+.signup .birthday-wrapper input::-webkit-input-placeholder {
+    color: #B7B6BC;
+}
+.signup .birthday-wrapper input:focus::-webkit-input-placeholder {
+    visibility: hidden;
+}
+.signup .birthday-wrapper input:-webkit-autofill {
+    box-shadow: 0 0 0 50px #F9F9F9 inset !important;
+}
+.signup .hint-message {
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #9E9E9E;
+}
+.signup .hint-message a {
+    color: #3CA8F5;
+}
+.signup .btn-next {
+    margin: 62px 0 20px;
+    width: 280px;
+    height: 50px;
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.signup .btn-back {
+    position: relative;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #B7B6BC;
+    transition: all 0.3s;
+}
+.signup .btn-back::before {
+    content: "arrow_back";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -20px;
+    font-family: Material Icons;
+    font-size: 16px;
+}
+.signup .btn-back:hover {
+    cursor: pointer;
+    color: #484848;
+}
+@media (min-width: 375px) {
+    .signup .padding-wrapper {
+        margin-right: auto;
+        margin-left: auto;
+        padding: 0;
+        width: 315px;
+    }
+}

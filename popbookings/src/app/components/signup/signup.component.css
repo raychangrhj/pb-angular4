@@ -1,0 +1,187 @@
+.signup {
+    width: 100%;
+    font-family: SFUIText;
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    color: #B7B6BC;
+    background-color: white;
+    text-align: center;
+    user-select: none;
+    overflow: auto;
+}
+/deep/.mat-tab-header {
+    border-bottom: none;
+}
+/deep/.mat-tab-labels {
+    background-color: #F9F9F9;
+}
+/deep/.mat-tab-label {
+    min-width: 0 !important;
+    width: 33.33%;
+    height: 54px !important;
+    border-top: 4px solid #E1E1E3;
+    border-bottom: 1px solid #E1E1E3;
+    opacity: 1 !important;
+}
+/deep/.mat-tab-label:not(:last-child) {
+    border-right: 1px solid #E1E1E3;
+}
+/deep/.mat-tab-label:nth-child(1).mat-tab-label-active {
+    border-top-color: #48B8F7;
+}
+/deep/.mat-tab-label:nth-child(2).mat-tab-label-active {
+    border-top-color: #FC5A93;
+}
+/deep/.mat-tab-label:nth-child(3).mat-tab-label-active {
+    border-top-color: #0DA990;
+}
+/deep/.mat-tab-label-active {
+    background-color: white !important;
+    border-bottom-color: white;
+}
+/deep/.mat-ink-bar {
+    display: none;
+}
+.signup .tab-view {
+    padding: 0 20px;
+}
+.signup a {
+    color: #B7B6BC;
+}
+.signup .help {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    border: 1px solid #B7B6BC;
+    border-radius: 50%;
+    text-decoration: none;
+}
+.signup .logo-wrapper {
+    padding: 50px 0 35px;
+}
+.signup .description {
+    margin-bottom: 60px;
+    line-height: 24px;
+    font-family: SFUIDisplay;
+    font-size: 19px;
+    letter-spacing: -0.5px;
+    color: #484848;
+}
+.signup .btn-social {
+    margin: 5px 0 25px;
+    width: 100%;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    font-weight: 500;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: left;
+}
+.signup .btn-social img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+.signup .btn-social::after {
+    content: "keyboard_arrow_right";
+    position: absolute;
+    right: 5px;
+    font-family: Material Icons;
+    font-size: 24px;
+    font-weight: normal;
+    color: #B7B6BC;
+}
+.signup .separator-or {
+    margin: 5px 0 25px;
+    border-top: 1px solid #B7B6BC;
+}
+.signup .separator-or::after {
+    content: "OR";
+    display: inline-block;
+    position: relative;
+    top: -10px;
+    padding: 0 10px;
+    background-color: white;
+}
+.signup .btn-back {
+    margin-bottom: 15px;
+    position: relative;
+    transition: all 0.3s;
+}
+.signup .btn-back::before {
+    content: "arrow_back";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -20px;
+    font-family: Material Icons;
+    font-size: 16px;
+}
+.signup .btn-back:hover {
+    cursor: pointer;
+    color: #484848;
+}
+.signup md-form-field {
+    width: 100%;
+}
+.signup .btn-create-account {
+    margin-bottom: 25px;
+    width: 280px;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+}
+.signup .email-sent-message {
+    margin: 40px 0 30px;
+    min-height: 48px;
+    line-height: 24px;
+    font-family: SFUIDisplay;
+    font-size: 21px;
+    letter-spacing: 0;
+    color: #484848;
+}
+.signup .description-small {
+    line-height: 21px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    letter-spacing: 0;
+    color: #484848;
+}
+.signup .btn-resend-email {
+    margin: 78px 0 25px;
+    width: 280px;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+@media (min-width: 375px) {
+    .signup {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 375px;
+        max-height: 600px;
+        border: 1px solid #E1E1E3;
+        border-radius: 3px;
+    }
+    .signup .tab-view {
+        padding: 0 30px;
+    }
+}

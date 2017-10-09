@@ -1,0 +1,88 @@
+<app-navbar [loggedIn]=true [hasAccount]=true></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <div class="jobdetails">
+      <div class="panel-left">
+        <div class="panel-jobdetails">
+          <div class="panel-header">Job Details</div>
+          <div class="panel-body">
+            <div class="jobdetail-item">
+              <div class="jobdetail-title">{{jobDetail.title}}</div>
+              <div class="jobdetail-description" [ngClass]="jobDetailAllVisible ? 'all' : ''">{{jobDetail.description}}</div>
+              <div class="btn-read-more" (click)="jobDetailAllVisible = !jobDetailAllVisible">{{jobDetailAllVisible ? "Less" : "Read More"}}</div>
+            </div>
+            <div class="jobdetail-item">
+              <img src="assets/images/calendar-icon.png">
+              <div class="padding-left"><b>{{jobDetail.fullDate}}</b></div>
+            </div>
+            <div class="jobdetail-item">
+              <img src="assets/images/time-icon.png">
+              <div class="padding-left"><b>{{jobDetail.time}}</b></div>
+            </div>
+            <div class="jobdetail-item">
+              <img src="assets/images/rate-icon.png">
+              <div class="padding-left"><b>${{jobDetail.rateValue}}</b>/hour (Instant Pay at Booking)</div>
+            </div>
+            <div class="jobdetail-item">
+              <img src="assets/images/location-icon.png">
+              <div class="padding-left">
+                <div><b>KC Live!</b></div>
+                <div>1401 w Main</div>
+                <div>{{jobDetail.location}} 64105</div>
+                <div style="opacity:0.5">(12 miles from you)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-right">
+        <div class="panel-client">
+          <div class="panel-body">
+            <div class="client-info company">
+              <img class="icon-left" [attr.src]="client.companyLogo">
+              <span>{{client.companyTitle}}</span>
+              <span class="star-rating" *ngIf="jobDetail.clientType == 'business'">
+                  <span class="star-rating-top" [style.width]="client.companyRating * 20 + '%'">★★★★★</span>
+                  <span class="star-rating-bottom">★★★★★</span>
+              </span>
+            </div>
+            <div class="client-info manager">
+              <img class="icon-left" [attr.src]="client.managerPhoto">
+              <span>{{client.managerName}}</span>
+              <img class="icon-message" src="assets/images/messages-icon-2x.png">
+            </div>
+          </div>
+        </div>
+        <div class="panel-invited" *ngIf="jobDetail.jobType == 'invited'">
+          <div class="description">You've been invited to work this listing! Are you interested?</div>
+          <button md-button class="btn-light-red btn-book" *ngIf="jobDetail.clientType == 'business'">BOOT IT!</button>
+          <button md-button class="btn-light-red-inv btn-select-shift" *ngIf="jobDetail.clientType == 'agency'" (click)="openShiftSeletionDialog()">SELECT SHIFTS</button>
+          <button md-button class="btn-no">NO, THANKS</button>
+        </div>
+        <div class="panel-share">
+          <div class="panel-title">Share this job listing</div>
+          <div class="panel-container">
+            <button class="btn-share" md-button>
+              <span class="material-icon">phone_iphone</span>
+              <span>Text</span>
+            </button>
+            <button class="btn-share" md-button>
+              <span class="material-icon">email</span>
+              <span>Email</span>
+            </button>
+            <button class="btn-share" md-button>
+              <span>More...</span>
+              <span class="material-icon">keyboard_arrow_down</span>
+            </button>
+          </div>
+        </div>
+        <div class="panel-report">
+          <button md-button class="btn-report">
+            <img src="assets/images/flag-icon.png">
+            <span>Report this job listing</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

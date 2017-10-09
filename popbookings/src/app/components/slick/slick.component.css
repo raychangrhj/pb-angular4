@@ -1,0 +1,166 @@
+.slick-container {
+    position: relative;
+}
+.btn-add-image-large {
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    background-color: #FDFDFD;
+    border: 0.5px solid #E1E1E3;
+    border-radius: 9px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.btn-add-image-large img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.slick-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 50px;
+    color: #FC5A93;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.3s;
+    z-index: 1;
+}
+.slick-button::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    line-height: 50px;
+    font-family: Material Icons;
+    font-size: 24px;
+    text-align: center;
+}
+.slick-button:hover {
+    cursor: pointer;
+    color: red;
+}
+.slick-button.slick-left {
+    left: 0;
+    border-radius: 0 25px 25px 0;
+}
+.slick-button.slick-right {
+    right: 0;
+    border-radius: 25px 0 0 25px;
+}
+.slick-button.slick-left::before {
+    content: "keyboard_arrow_left";
+}
+.slick-button.slick-right::before {
+    content: "keyboard_arrow_right";
+}
+.slider {
+    position: relative;
+    width: 2000px;
+    text-align: left;
+    transition: all 0.3s;
+}
+.image-wrapper {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px;
+    width: 200px;
+    height: 200px;
+    background-color: #EEE;
+    border-radius: 9px;
+    overflow: hidden;
+}
+.image-wrapper img {
+    width: 200px;
+    height: 200px;
+}
+.image-wrapper .label {
+    position: absolute;
+    padding: 0;
+    bottom: 10px;
+    left: 10px;
+    height: 30px;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: bold;
+    color: #484848;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+}
+.image-wrapper .label div {
+    float: left;
+}
+.image-wrapper .label .number {
+    width: 30px;
+}
+.image-wrapper .label .mark {
+    margin: 6px 10px 6px -4px;
+    padding: 0 0 0 6px;
+    height: 18px;
+    line-height: 18px;
+    background-color: transparent;
+    border-left: 1px solid #E1E1E3;
+}
+.image-wrapper .btn-setting {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 30px;
+    height: 30px;
+    color: #484848;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.3s;
+}
+.image-wrapper .btn-setting::before {
+    content: "settings";
+    position: absolute;
+    width: 30px;
+    line-height: 30px;
+    font-family: Material Icons;
+    font-size: 24px;
+    text-align: center;
+}
+.image-wrapper .btn-setting:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+.btn-add-image-small {
+    position: relative;
+    margin: 40px auto 0;
+    padding-left: 30px;
+    line-height: 24px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: normal;
+    color: #FC5A93;
+    transition: all 0.3s;
+}
+.btn-add-image-small::before {
+    content: "camera_enhance";
+    position: absolute;
+    margin-left: -30px;
+    font-family: Material Icons;
+    font-size: 24px;
+}
+.btn-add-image-small:hover {
+    cursor: pointer;
+    color: red;
+}
+#upload_image {
+    display: none;
+}

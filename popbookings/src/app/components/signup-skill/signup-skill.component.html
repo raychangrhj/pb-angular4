@@ -1,0 +1,33 @@
+<app-navbar [hasAccount]=true></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <div class="signup">
+      <a href="javascript:void(0)" class="help">?</a>
+      <div class="padding-wrapper">
+        <div class="step">STEP 3 OF 6</div>
+        <div class="page-title">Pick up to six of your top skills or positions.</div>
+        <div class="filter-skill-wrapper">
+          <md-form-field>
+            <input mdInput [(ngModel)]="searchSkill" (keyup)="filterSkills($event)" placeholder="Enter Skill or Position">
+            <div class="btn-cancel" (click)="cancelSearch()">Cancel</div>
+          </md-form-field>
+          <div class="filtered-skills" *ngIf="filteredSkills.length > 0">
+            <div class="filtered-skill" *ngFor="let skill of filteredSkills">
+              <span>{{skill}}</span>
+              <span class="btn-add-skill" (click)="addSkill(skill)"></span>
+            </div>
+          </div>
+          <div *ngIf="notMatched" class="not-matched-message">We can't find a match for that Skill or position.<br>Refine your search and try again.</div>
+          <div class="selected-skills">
+            <div class="selected-skill" *ngFor="let skill of selectedSkills">
+              <span>{{skill}}</span>
+              <span class="btn-delete-skill" (click)="deleteSkill(skill)"></span>
+            </div>
+          </div>
+        </div>
+        <button md-button class="btn-next" [disabled]="selectedSkills.length < 3" (click)="router.navigateByUrl('/signup-rate')">NEXT</button>
+        <div class="btn-back" (click)="location.back()">BACK</div>
+      </div>
+    </div>
+  </div>
+</div>

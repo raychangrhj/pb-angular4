@@ -1,0 +1,90 @@
+<app-navbar [loggedIn]=true [hasAccount]=true [activeNavItem]="'bookings'"></app-navbar>
+<div class="page-container">
+    <div class="page-wrapper">
+        <div class="filter-bar">
+            <div>
+                <button md-icon-button class="btn-collapse-filter" (click)="filterContainerVisible = !filterContainerVisible">
+                    <md-icon>more_vert</md-icon>
+                </button>
+            </div>
+            <div class="filter-container" [ngClass]="filterContainerVisible ? 'collapsed' : ''">
+                <md-select [(ngModel)]="filterStatus" (change)="update()">
+                    <md-option *ngFor="let status of filterStatusList" [value]="status.key">{{status.value}}</md-option>
+                </md-select>
+                <md-select [(ngModel)]="filterOther" (change)="update()">
+                    <md-option *ngFor="let other of filterOtherList" [value]="other">{{other}}</md-option>
+                </md-select>
+            </div>
+            <div class="button-container">
+                <button md-button class="btn-clear-filter" (click)="reset()">Clear Filters</button>
+            </div>
+            <div class="search-container">
+                <input class="search" placeholder="Search Bookings..." [(ngModel)]="searchString" (keyup)="search($event)">
+            </div>
+        </div>
+        <div class="bookings">
+            <div class="panel-left">
+                <div class="panel-bookings">
+                    <div class="panel-header">
+                        <span>{{bookedJobCount}} BOOKED - {{pendingJobCount}} PENDING</span>
+                        <div class="sort-wrapper">
+                            <span>SORT BY - </span>
+                            <md-select [(ngModel)]="sortField" (change)="sort()">
+                                <md-option *ngFor="let item of sortFieldList" [value]="item.key">{{item.value}}</md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="joblist-no-empty" *ngIf="jobList.length > 0; else emptyBlock">
+                            <div class="job-item" *ngFor="let job of jobList">
+                                <div class="job-item-container">
+                                    <div class="job-item-wrapper">
+                                        <div class="job-item-left">
+                                            <div class="title" (click)="gotoJobDetails(job.id)">{{job.title}}</div>
+                                            <div class="client" [ngClass]="job.clientType">{{job.clientName}}</div>
+                                            <div class="other date">{{job.date}}</div>
+                                            <div class="other time">{{job.time}}</div>
+                                            <div class="other location">{{job.location}}</div>
+                                        </div>
+                                        <div class="job-type" [ngClass]="job.jobType">{{job.jobType}}</div>
+                                        <div class="message">
+                                            <div *ngIf="job.notification" class="notification"></div>
+                                        </div>
+                                        <div class="rate">
+                                            <span class="rate-value">${{job.rateValue}}</span>
+                                            <span class="rate-unit">/{{job.rateUnit}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #emptyBlock>
+                            <div class="joblist-empty">
+                                <img class="empty-icon" src="../assets/images/no-booked-icon.png">
+                                <div class="description-large">No Booked Jobs</div>
+                                <div class="description-small">There are no active job bookings to show you so far. Watch the video below to learn more, or visit the Job Board to get to work!</div>
+                                <button md-button>
+                                    <img src="assets/images/play-video-icon.png">
+                                    <span>Learn more about Bookings</span>
+                                </button>
+                                <button md-button>
+                                    <img src="assets/images/job-board-icon.png">
+                                    <span>PopBookings Job Boarad</span>
+                                </button>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <app-booking-calendar></app-booking-calendar>
+                <div class="panel-settings">
+                    <button md-button class="btn-edit-calendar">
+                        <img src="assets/images/settings-icon.png">
+                        <span>Edit Calendar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,211 @@
+.signup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    padding: 4px 0;
+    max-width: 710px;
+    max-height: 600px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+    user-select: none;
+    overflow: auto;
+}
+.signup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(to right, #48B8F7 0%, #48B8F7 33.33%, #89D5FF 33.33%, #89D5FF 50%, #E1E1E3 50%);
+}
+.signup .help {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #B7B6BC;
+    border: 1px solid #B7B6BC;
+    border-radius: 50%;
+    text-decoration: none;
+}
+.signup .padding-wrapper {
+    padding: 0 10px;
+    width: 100%;
+}
+.signup .step {
+    padding-top: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.signup .page-title {
+    padding: 30px 0 70px;
+    line-height: 36px;
+    font-family: CircularStd;
+    font-size: 28px;
+    font-weight: bold;
+    color: #484848;
+}
+.signup .filter-skill-wrapper {
+    position: relative;
+    min-height: 262px;
+}
+.signup md-form-field {
+    position: relative;
+    padding-bottom: 10px;
+    width: 100%;
+}
+.signup md-form-field .btn-cancel {
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #FC5A93;
+}
+.signup md-form-field .btn-cancel:hover {
+    cursor: pointer;
+    color: red;
+}
+.signup .filtered-skills {
+    position: absolute;
+    top: 50px;
+    max-height: 200px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    z-index: 1;
+}
+.signup .filtered-skill {
+    position: relative;
+    padding: 0 40px 0 15px;
+    height: 50px;
+    line-height: 50px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+    text-align: left;
+}
+.signup .filtered-skill:hover {
+    background-color: #F9F9F9;
+}
+.signup .filtered-skill .btn-add-skill {
+    position: absolute;
+    right: 4px;
+    height: 100%;
+    color: #AAA;
+    transition: all 0.3s;
+}
+.signup .filtered-skill .btn-add-skill::before {
+    content: "add";
+    font-family: Material Icons;
+    font-size: 30px;
+}
+.signup .filtered-skill .btn-add-skill:hover {
+    cursor: pointer;
+    color: #484848;
+}
+.signup .not-matched-message {
+    line-height: 18px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.signup .selected-skills {
+    padding-top: 30px;
+}
+.signup .selected-skill {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    padding: 0 15px;
+    height: 40px;
+    line-height: 40px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+    border: 0.5px solid #C8C7CC;
+    border-radius: 6px
+}
+.signup .selected-skill .btn-delete-skill {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    color: #9E9E9E;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.signup .selected-skill .btn-delete-skill::before {
+    content: "close";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-family: Material Icons;
+    font-size: 16px;
+    font-weight: normal;
+}
+.signup .selected-skill .btn-delete-skill:hover {
+    cursor: pointer;
+    color: #484848;
+}
+.signup .btn-next {
+    margin: 20px 0 20px;
+    width: 280px;
+    height: 50px;
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.signup .btn-back {
+    position: relative;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #B7B6BC;
+    transition: all 0.3s;
+}
+.signup .btn-back::before {
+    content: "arrow_back";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -20px;
+    font-family: Material Icons;
+    font-size: 16px;
+}
+.signup .btn-back:hover {
+    cursor: pointer;
+    color: #484848;
+}
+@media (min-width: 512px) {
+    .signup .padding-wrapper {
+        margin-right: auto;
+        margin-left: auto;
+        padding: 0;
+        width: 375px;
+    }
+}

@@ -1,0 +1,191 @@
+/deep/.mat-dialog-container {
+    padding: 0;
+    border-radius: 6px;
+}
+.dialog-page {
+    position: relative;
+    padding: 20px 20px 5px 20px;
+    text-align: center;
+    user-select: none;
+}
+.dialog-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    border-radius: 6px 6px 0 0;
+}
+.dialog-page[step="1"]::before {
+    background: linear-gradient(to right, #FFA6C6 0%, #FFA6C6 33.33%, #E1E1E3 33.33%);
+}
+.dialog-page[step="2"]::before {
+    background: linear-gradient(to right, #FC5A93 0%, #FC5A93 33.33%, #FFA6C6 33.33%, #FFA6C6 66.66%, #E1E1E3 66.66%);
+}
+.dialog-page[step="3"]::before {
+    background: linear-gradient(to right, #FC5A93 0%, #FC5A93 66.66%, #FFA6C6 66.66%);
+}
+.dialog-page .step {
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.dialog-page .title {
+    padding-top: 20px;
+    line-height: 36px;
+    font-family: CircularStd;
+    font-size: 28px;
+    font-weight: bold;
+    color: #484848;
+}
+.dialog-page .description {
+    padding: 10px 0 15px;
+    line-height: 25px;
+    font-family: SFUIDisplay;
+    font-size: 21px;
+    letter-spacing: -0.5px;
+    color: #484848;
+}
+.shifts-container {
+    height: 320px;
+    border-top: 1px solid #E1E1E3;
+    border-bottom: 1px solid #E1E1E3;
+    text-align: left;
+    overflow: auto;
+}
+.shift-table {
+    margin: 20px 0;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.shift-table-header {
+    position: relative;
+    padding: 15px 20px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: bold;
+    color: #484848;
+    border-bottom: 1px solid #E1E1E3;
+}
+.shift-table-header.padding-left {
+    padding-left: 60px;
+}
+.shift-table-header img,
+.shift-table-header .day {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+}
+.shift-table-header .day {
+    padding-top: 7px;
+    font-family: CircularStd;
+    font-size: 13px;
+    font-weight: bold;
+    color: #FC5A93;
+    text-align: center;
+}
+.shift-table-body {
+    padding-left: 20px;
+    background-color: #F9F9F9;
+}
+.shift {
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 600;
+    color: #484848;
+}
+.shift:not(:last-child) {
+    border-bottom: 1px solid #E1E1E3;
+}
+.shift.padding-left {
+    padding-left: 40px;
+}
+.shift.padding-right {
+    padding-right: 60px;
+}
+.shift img,
+.shift .day {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+}
+.shift .day {
+    padding-top: 7px;
+    font-family: CircularStd;
+    font-size: 13px;
+    font-weight: bold;
+    color: #FC5A93;
+    text-align: center;
+}
+.shift .select {
+    position: absolute;
+    top: 50%;
+    right: 35px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: 1px solid #C8C7CC;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+.shift .select:hover {
+    cursor: pointer;
+}
+.shift .select.selected {
+    background-color: #48B8F7;
+    border: none;
+}
+.shift .select.selected::before {
+    content: "check";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    line-height: 24px;
+    font-family: Material Icons;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+.shift .detail {
+    font-size: 13px;
+    font-weight: normal;
+}
+.btn-next {
+    margin: 20px 0 10px;
+    width: 100%;
+    max-width: 300px;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #727272;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+}
+.btn-book {
+    margin: 20px 0 10px;
+    width: 100%;
+    max-width: 300px;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 17px;
+    letter-spacing: 3px;
+}
+.btn-cancel {
+    line-height: 30px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #B7B6BC;
+}

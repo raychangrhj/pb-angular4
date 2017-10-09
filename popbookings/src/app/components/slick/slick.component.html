@@ -1,0 +1,23 @@
+<div class="slick-container">
+  <label class="btn-add-image-large" for="upload_image" *ngIf="inputImageCount == 0; else elseBlock">
+    <img src="assets/images/add-photo-icon.png">
+  </label>
+  <ng-template #elseBlock>
+    <div class="slider-wrapper">
+      <span class="slick-button slick-left" (click)="slideToLeft()"></span>
+      <div class="slider" [style.left.px]="sliderLeft">
+        <div class="image-wrapper" *ngFor="let image of imageList">
+          <img src="{{image.image}}">
+          <div class="label">
+            <div class="number">{{image.number}}</div>
+            <div class="mark" *ngIf="activeImageNumber == image.number">Profile</div>
+          </div>
+          <div class="btn-setting" (click)="setActivated(image.number)"></div>
+        </div>
+      </div>
+      <span class="slick-button slick-right" (click)="slideToRight()"></span>
+    </div>
+    <label class="btn-add-image-small" for="upload_image" *ngIf="inputImageCount < 6">Add New Photo...</label>
+  </ng-template>
+</div>
+<input type="file" accept="image/*" id="upload_image" (change)="changeLister($event)">

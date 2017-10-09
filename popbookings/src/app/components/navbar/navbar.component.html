@@ -1,0 +1,49 @@
+<nav class="navbar navbar-fixed-top">
+  <div class="navbar-container">
+    <div class="navbar-header">
+      <a href="https://www.popbookings.com" target="_blank">
+        <div class="logo-container">
+          <img class="logo" src="assets/images/popbookings-logo-nav.png">
+        </div>
+      </a>
+      <button md-icon-button class="btn-collapse" (click)="collapsed = !collapsed">
+        <md-icon class="md-24">view_headline</md-icon>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" [ngClass]="collapsed ? 'collapsed' : ''">
+      <ul *ngIf="loggedIn" class="nav navbar-nav navbar-left">
+        <li class="nav-item-wrapper" *ngFor="let item of navItems">
+          <a href="{{item.path}}">
+            <div class="nav-item" id="{{item.id}}" [ngClass]="item.id === activeNavItem ? 'active' : 'k'">
+              <span>{{item.title}}</span>
+              <span *ngIf="item.notification" class="circle-notification"></span>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="hasAccount; else elseBlock">
+          <div class="dropdown">
+            <div class="dropdown-button">
+              <img src="assets/images/navbar-jessica.png">
+              <span>Jessica Davis</span>
+            </div>
+            <ul *ngIf="dropdownMenuToggle" class="dropdown-menu">
+              <li><a href="profile-talent">VIEW PROFILE</a></li>
+              <li><a href="settings-talent">ACCOUNT SETTINGS</a></li>
+              <li><a href="javascript:void(0)">SIGN OUT</a></li>
+            </ul>
+          </div>
+        </li>
+        <ng-template #elseBlock>
+          <div class="signin">
+            <span>Already have an account?</span>
+            <a href="signin">Sign In</a>
+          </div>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>

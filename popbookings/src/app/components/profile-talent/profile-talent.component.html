@@ -1,0 +1,84 @@
+<app-navbar [loggedIn]=true [hasAccount]=true></app-navbar>
+<div class="page-container">
+    <div class="page-wrapper">
+        <div class="profile">
+            <div class="panel-left">
+                <div class="panel-summary">
+                    <div class="carousel-container">
+                        <div class="carousel-background"></div>
+                        <ngx-carousel [inputs]="carousel">
+                            <ngx-item *ngFor="let photo of photoUrls">
+                                <img class="photo" [attr.src]="photo">
+                            </ngx-item>
+                            <md-icon class="leftRs">keyboard_arrow_left</md-icon>
+                            <md-icon class="rightRs">keyboard_arrow_right</md-icon>
+                        </ngx-carousel>
+                    </div>
+                    <div class="summary-wrapper">
+                        <div class="name">{{firstName}} {{lastName}}</div>
+                        <div class="rate"><b>${{hourlyRate}}</b>/hr</div>
+                        <div class="overview">{{overview}}</div>
+                        <div class="star-rating">
+                            <div class="star-rating-top" [style.width]="rating * 20 + '%'">★★★★★</div>
+                            <div class="star-rating-bottom">★★★★★</div>
+                        </div>
+                        <button md-button class="btn-edit-profile" (click)="router.navigateByUrl('profile-edit-talent')">EDIT FROFILE</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="panel-rank" *ngIf="profileRankVisible">
+                    <div class="rank-level">Profile Rank: <b>Professional</b></div>
+                    <div class="bar">
+                        <div class="rank-bar" [style.width]="profileRank + '%'"></div>
+                    </div>
+                    <button md-icon-button class="btn-close" (click)="profileRankVisible = !profileRankVisible">
+                        <md-icon>close</md-icon>
+                    </button>
+                </div>
+                <div class="panel-statistics">
+                    <div *ngFor="let item of statistics">
+                        <div class="value">{{item.value}}</div>
+                        <div class="title">{{item.title}}</div>
+                    </div>
+                </div>
+                <div class="panel-about">
+                    <div class="panel-header">About {{firstName}}</div>
+                    <div class="panel-body">
+                        <div class="about" [ngClass]="aboutAllVisible ? 'all' : ''">{{about}}</div>
+                        <button md-button class="btn-view-resume">
+                            <img src="assets/images/pdf-resume-icon.png">
+                            <span>View {{firstName}}'s Resume</span>
+                        </button>
+                        <div class="btn-view-all" (click)="aboutAllVisible = !aboutAllVisible">{{aboutAllVisible ? "LESS" : "READ MORE"}}</div>
+                    </div>
+                </div>
+                <div class="panel-booking-history">
+                    <div class="panel-header">Booking History</div>
+                    <div class="panel-body">
+                        <div class="booking-item-wrapper" *ngFor="let bookingHistory of bookingHistoryList; let i = index">
+                            <div class="booking-item" *ngIf="bookingHistoryAllVisible || i < 3">
+                                <div class="title">{{bookingHistory.title}}</div>
+                                <div class="date">{{bookingHistory.date}}</div>
+                                <div class="comment">"{{bookingHistory.comment}}"</div>
+                                <div class="star-rating">
+                                    <div class="star-rating-top" [style.width]="bookingHistory.rating * 20 + '%'">★★★★★</div>
+                                    <div class="star-rating-bottom">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-view-all" *ngIf="bookingHistoryList.length > 3" (click)="bookingHistoryAllVisible = !bookingHistoryAllVisible">
+                            {{bookingHistoryAllVisible ? "LESS" : "VIEW ALL (" + (bookingHistoryList.length - 3) + ")"}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-skills">
+                    <div class="panel-header">Professional Skills</div>
+                    <div class="panel-body">
+                        <div class="skill" *ngFor="let skill of skills">{{skill}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

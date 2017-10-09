@@ -1,0 +1,89 @@
+<div class="dialog-page" [attr.step]="step">
+  <div *ngIf="step == 1">
+    <div class="step">STEP {{step}} OF 3</div>
+    <div class="title">Shift Selection</div>
+    <div class="description">What days are you available to work this job?</div>
+    <div class="shifts-container">
+      <div class="shift-table">
+        <div class="shift-table-header">{{jobTitle}}</div>
+        <div class="shift-table-body">
+          <div class="shift padding-left padding-right" *ngFor="let shift of data.shifts; let i = index">
+            <img src="assets/images/calendar-icon-bg.png">
+            <span class="day">{{shift.day}}</span>
+            <span>{{shift.date}}</span>
+            <span class="select" [ngClass]="shift.selected ? 'selected' : ''" (click)="dayShiftItemChanged(i)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button md-button class="btn-next" (click)="gotoStep2()">NEXT</button>
+    </div>
+    <button md-button class="btn-cancel" (click)="cancel()">CANCEL</button>
+  </div>
+  <div *ngIf="step == 2">
+    <div class="step">STEP {{step}} OF 3</div>
+    <div class="title">Shift Selection</div>
+    <div class="description">Which shifts are you available to work each day?</div>
+    <div class="shifts-container">
+      <div *ngFor="let shift of data.shifts; let i = index">
+        <div class="shift-table" *ngIf="shift.selected">
+          <div class="shift-table-header padding-left">
+            <img src="assets/images/calendar-icon-bg.png">
+            <span class="day">{{shift.day}}</span>
+            <span>{{shift.date}}</span>
+          </div>
+          <div class="shift-table-body">
+            <div class="shift padding-right" *ngFor="let time of shift.times; let j = index">
+              <span>{{time.time}}</span>
+              <span class="select" [ngClass]="time.selected ? 'selected' : ''" (click)="timeShiftItemChanged(i, j)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button md-button class="btn-next" (click)="gotoStep3()">NEXT</button>
+    </div>
+    <button md-button class="btn-cancel" (click)="cancel()">CANCEL</button>
+  </div>
+  <div *ngIf="step == 3">
+    <div class="step">STEP {{step}} OF 3</div>
+    <div class="title">Shift Selection</div>
+    <div class="description">Confirm your work schedule and book this listing!</div>
+    <div class="shifts-container">
+      <div *ngFor="let shift of data.shifts;">
+        <div class="shift-table" *ngIf="shift.selectedCount > 0">
+          <div class="shift-table-header padding-left">
+            <img src="assets/images/calendar-icon-bg.png">
+            <span class="day">{{shift.day}}</span>
+            <span>{{shift.date}}</span>
+          </div>
+          <div class="shift-table-body">
+            <div class="shift padding-left">
+              <img src="assets/images/time-icon-grey.png">
+              <div *ngFor="let time of shift.times">
+                <span *ngIf="time.selected">{{time.time}}</span>
+              </div>
+              <div class="detail">{{shift.selectedCount}}/{{shift.times.length}} Shifts Selected</div>
+            </div>
+            <div class="shift padding-left">
+              <img src="assets/images/rate-icon-grey.png">
+              <span>$28/hr</span>
+            </div>
+            <div class="shift padding-left">
+              <img src="assets/images/location-icon-grey.png">
+              <div>KC Live!</div>
+              <div class="detail">1401 Main St</div>
+              <div class="detail">Kansas City,MO 64101</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button md-button class="btn-light-red btn-book" [md-dialog-close]="data.shifts">BOOK IT!</button>
+    </div>
+    <button md-button class="btn-cancel" (click)="cancel()">CANCEL</button>
+  </div>
+</div>

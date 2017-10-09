@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <form class="signin">
+      <a href="javascript:void(0)" class="help">?</a>
+      <div class="logo-wrapper">
+        <img src="assets/images/popbookings-logo.png">
+      </div>
+      <md-form-field>
+        <input mdInput type="email" [(ngModel)]="email" name="email" placeholder="Email">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput type="password" [(ngModel)]="password" name="password" placeholder="Password">
+      </md-form-field>
+      <div class="button-wrapper">
+        <button md-button (click)="onSubmit()" class="btn-light-blue btn-signin">SIGN IN</button>
+      </div>
+      <a href="javascript:void(0)"><p>FORGOT PASSWORD?</p></a>
+      <hr class="separator-or">
+      <div class="button-wrapper">
+        <button md-button class="btn-social btn-signin-facebook">
+          <img src="assets/images/facebook-icon.png">
+          <span>SIGN IN WITH FACEBOOK</span>
+        </button>
+      </div>
+      <div class="button-wrapper">
+        <button md-button class="btn-social btn-signin-google">
+          <img src="assets/images/google-icon.png">
+          <span>SIGN IN WITH GOOGLE</span>
+        </button>
+      </div>
+      <a href="signup"><p>CREATE ACCOUNT</p></a>
+    </form>
+  </div>
+</div>

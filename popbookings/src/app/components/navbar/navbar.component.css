@@ -1,0 +1,194 @@
+.navbar {
+    margin: 0;
+    height: 64px;
+    background-color: #FEFEFE;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+    z-index: 1000;
+    user-select: none;
+}
+.navbar-header {
+    position: relative;
+    width: 100%;
+}
+.navbar-header .logo-container {
+    float: left;
+    position: relative;
+    width: 180px;
+    height: 64px;
+}
+.navbar-header img.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.navbar-header .btn-collapse {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+.collapse {
+    background-color: #FEFEFE;
+    border-top: 1px solid #E1E1E3;
+    border-bottom: 1px solid #E1E1E3;
+}
+.collapse.collapsed {
+    display: block;
+}
+.navbar-nav {
+    margin: 0;
+}
+.nav-item-wrapper a {
+    padding: 0;
+}
+.nav-item-wrapper a:hover {
+    background-color: transparent;
+}
+.nav-item {
+    position: relative;
+    padding: 0 12px;
+    line-height: 40px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 500;
+    color: #979797;
+    border-bottom: 1px solid #E1E1E3;
+}
+.nav-item.active,
+.nav-item:hover {
+    color: #48B8F7;
+}
+.nav-item .circle-notification {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    background-color: #FC5A93;
+    border-radius: 50%;
+}
+.navbar-right {
+    margin-right: 0;
+}
+.navbar-right .signin {
+    padding-right: 20px;
+    line-height: 64px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 500;
+    color: #979797;
+}
+.navbar-right .signin a {
+    font-weight: bold;
+    color: #48B8F7;
+}
+.navbar .dropdown {
+    position: relative;
+}
+.navbar .dropdown-button {
+    position: relative;
+    padding-right: 35px;
+    line-height: 64px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    color: #979797;
+    cursor: pointer;
+    user-select: none;
+}
+.navbar .dropdown-button::after {
+    content: "expand_more";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: Material Icons;
+    font-size: 24px;
+}
+.navbar .dropdown-button img {
+    margin-right: 10px;
+    border-radius: 2px;
+}
+.navbar .dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding: 0;
+    min-width: 260px;
+    border: 1px solid #E1E1E3;
+}
+.navbar .dropdown-menu li {
+    position: relative;
+}
+.navbar .dropdown-menu li:hover {
+    background-color: #F0F0F0;
+}
+.navbar .dropdown-menu li:first-child::before,
+.navbar .dropdown-menu li:first-child::after {
+    content: "";
+    position: absolute;
+    right: 8px;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+}
+.navbar .dropdown-menu li:first-child::before {
+    top: -8px;
+    border-bottom: 8px solid #E1E1E3;
+    z-index: 1;
+}
+.navbar .dropdown-menu li:first-child::after {
+    top: -6px;
+    border-bottom: 8px solid white;
+    z-index: 2;
+}
+.navbar .dropdown-menu li:first-child:hover::after {
+    border-bottom-color: #F0F0F0;
+}
+.navbar .dropdown-menu li:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 15px;
+    left: 15px;
+    border-width: 1px 0 0;
+    border-style: solid;
+    border-color: #E1E1E3;
+}
+.navbar .dropdown-menu li a {
+    padding: 0;
+    height: 50px;
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 13px;
+    font-weight: 500px;
+    letter-spacing: 0.7px;
+    color: #979797;
+    text-align: center;
+}
+.navbar .dropdown-menu li a:hover {
+    background-color: transparent;
+}
+@media (min-width: 768px) {
+    .navbar-header {
+        width: auto;
+    }
+    .navbar-header .btn-collapse {
+        display: none;
+    }
+    .collapse {
+        border: none;
+    }
+    .nav-item {
+        line-height: 64px;
+        border: none;
+    }
+    .navbar .dropdown {
+        margin-right: 20px;
+    }
+    .navbar .dropdown-button::after {
+        right: 5px;
+    }
+}

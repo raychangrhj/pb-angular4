@@ -1,0 +1,24 @@
+<app-navbar [hasAccount]=true></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <div class="signup">
+      <a href="javascript:void(0)" class="help">?</a>
+      <div class="step">STEP 4 OF 6</div>
+      <div class="page-title">Set your prefered hourly rate for your services.</div>
+      <div class="set-rate-wrapper">
+        <span>$</span>
+        <div class="form-field-wrapper">
+          <input type="number" id="rate" [(ngModel)]="rate" (keyup)="validateRate()" min="3" max="999" placeholder="20.00">
+          <span *ngIf="!rateValid" class="form-field-error">{{rateError}}</span>
+        </div>
+        <span>per hour</span>
+      </div>
+      <div class="hint-message">
+        <div>Your prefered hourly rate will be made public.</div>
+        <a href="javascript:void(0)"><div>View Important Rate & Payment Information</div></a>
+      </div>
+      <button md-button class="btn-next" [disabled]="!rateValid" (click)="router.navigateByUrl('/signup-photo')">NEXT</button>
+      <div class="btn-back" (click)="location.back()">BACK</div>
+    </div>
+  </div>
+</div>

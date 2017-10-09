@@ -1,0 +1,17 @@
+<app-navbar [hasAccount]=true></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <div class="signup">
+      <a href="javascript:void(0)" class="help">?</a>
+      <div class="step">STEP 5 OF 6</div>
+      <div class="page-title">Pick your six best photos for your profile.</div>
+      <div class="hint-message">
+        <span *ngIf="photoCount < 6; else elseBlock">Pick 6 photos that you'd like to add to your profile. Tap the "Add Photo" button below to get started taking new photos or adding from your phone's library.</span>
+        <ng-template #elseBlock>We've pulled your six most-liked photos from your Facebook account. You can click on each photo to upload a new one from your computer instead!</ng-template>
+      </div>
+      <app-slick [count]="photoCount" (countChanged)="handleEvent($event)"></app-slick>
+      <button md-button class="btn-next" [disabled]="photoCount < 6" (click)="router.navigateByUrl('/signup-area')">NEXT</button>
+      <div class="btn-back" (click)="location.back()">BACK</div>
+    </div>
+  </div>
+</div>

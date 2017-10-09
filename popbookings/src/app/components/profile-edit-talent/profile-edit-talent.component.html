@@ -1,0 +1,112 @@
+<app-navbar [loggedIn]=true [hasAccount]=true></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper" [ngClass]="changesCount ? 'changed' : ''">
+    <div class="profile">
+      <div class="panel-left">
+        <div class="panel-photos">
+          <app-slick [count]="photoCount" (countChanged)="photoHandleEvent($event)"></app-slick>
+        </div>
+        <div class="panel-personal-info">
+          <div class="panel-header">Personal Info</div>
+          <div class="panel-body">
+            <div class="label-form">
+              <div class="form-label">First Name</div>
+              <input class="form-value" [(ngModel)]="firstName.value" (change)="propertyChanged(firstName)">
+            </div>
+            <div class="label-form">
+              <div class="form-label">Last Name</div>
+              <input class="form-value" [(ngModel)]="lastName.value" (change)="propertyChanged(lastName)">
+            </div>
+            <div class="label-form">
+              <div class="form-label">Gender</div>
+              <input class="form-value" [(ngModel)]="gender.value" (change)="propertyChanged(gender)">
+            </div>
+            <div class="label-form">
+              <div class="form-label">Date of Birth</div>
+              <input class="form-value" [(ngModel)]="birthday.value" (change)="propertyChanged(birthday)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-right">
+        <div class="panel-rank" *ngIf="profileRankVisible">
+          <div class="rank-level">Profile Rank: <b>Professional</b></div>
+          <div class="bar">
+            <div class="rank-bar" [style.width]="profileRank + '%'"></div>
+          </div>
+          <button md-icon-button class="btn-close" (click)="profileRankVisible = !profileRankVisible">
+            <md-icon>close</md-icon>
+          </button>
+        </div>
+        <div class="panel-statistics">
+          <div *ngFor="let item of statistics">
+            <div class="value">{{item.value}}</div>
+            <div class="title">{{item.title}}</div>
+          </div>
+        </div>
+        <div class="panel-about">
+          <div class="panel-header">About Me</div>
+          <div class="panel-body">
+            <div class="label-form">
+              <div class="form-label">Headline</div>
+              <div class="form-length">{{headline.value.length}}/150</div>
+              <input class="form-value" maxlength="150" [(ngModel)]="headline.value" (change)="propertyChanged(headline)">
+            </div>
+            <div class="label-form">
+              <div class="form-label">Description</div>
+              <textarea class="form-value" [(ngModel)]="description.value" (change)="propertyChanged(description)"></textarea>
+            </div>
+            <div class="resume-wrapper">
+              <button md-button class="btn-view-resume" *ngIf="resumeFileName">
+                <img src="assets/images/pdf-resume-icon.png">
+                <span>{{resumeFileName}}</span>
+                <span class="delete" (click)="resumeFileName = ''">close</span>
+              </button>
+              <button md-button class="btn-upload-resume" *ngIf="!resumeFileName">
+                <label for="upload_resume">Upload Resume</label>
+              </button>
+              <input type="file" id="upload_resume" (change)="uploadResume($event)">
+            </div>
+          </div>
+        </div>
+        <div class="panel-booking-history">
+          <div class="panel-header">Booking History</div>
+          <div class="panel-body">
+            <div class="booking-item-wrapper" *ngFor="let bookingHistory of bookingHistoryList; let i = index">
+              <div class="booking-item" *ngIf="bookingHistoryAllVisible || i < 3">
+                <div class="title">{{bookingHistory.title}}</div>
+                <div class="date">{{bookingHistory.date}}</div>
+                <div class="comment">{{bookingHistory.comment}}</div>
+                <div class="star-rating">
+                  <div class="star-rating-top" [style.width]="bookingHistory.rating * 20 + '%'">★★★★★</div>
+                  <div class="star-rating-bottom">★★★★★</div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-view-all" *ngIf="bookingHistoryList.length > 3" (click)="bookingHistoryAllVisible = !bookingHistoryAllVisible">
+              {{bookingHistoryAllVisible ? "LESS" : "VIEW ALL (" + (bookingHistoryList.length - 3) + ")"}}
+            </div>
+          </div>
+        </div>
+        <div class="panel-skills">
+          <div class="panel-header">Professional Skills</div>
+          <div class="panel-body">
+            <div class="skill" *ngFor="let skill of skills; let i = index">
+              <span>{{skill}}</span>
+              <span class="delete" (click)="deleteSkill(i)">close</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="save-changes-bar" *ngIf="changesCount">
+  <div class="bar-container">
+    <span class="changes-message">{{changesCount}} <span class="responsive-512">total profile</span> changes</span>
+    <div class="button-wrapper">
+      <button md-button class="btn-undo" (click)="cancelChanges()">CANCEL</button>
+      <button md-button class="btn-light-blue btn-save-changes" (click)="backupChanges()">SAVE CHANGES</button>
+    </div>
+  </div>
+</div>

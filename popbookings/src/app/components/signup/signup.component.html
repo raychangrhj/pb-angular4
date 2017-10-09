@@ -1,0 +1,158 @@
+<app-navbar></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper" [ngClass]="currentView">
+    <div class="signup">
+      <md-tab-group [selectedIndex]="currentTab" (selectChange)="onLinkClick($event)">
+        <md-tab label="WORK">
+          <div *ngIf="currentView == 'work-1'" class="tab-view">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="logo-wrapper">
+              <img src="assets/images/popbookings-logo.png">
+            </div>
+            <div class="description">Connect to a social account or sign up with email and get to work!</div>
+            <button md-button class="btn-social btn-signin-facebook">
+              <img src="assets/images/facebook-icon.png">
+              <span>CONTINUE WITH FACEBOOK</span>
+            </button>
+            <button md-button class="btn-social btn-signin-google">
+              <img src="assets/images/google-icon.png">
+              <span>CONTINUE WITH GOOGLE</span>
+            </button>
+            <hr class="separator-or">
+            <button md-button class="btn-social btn-signin-email" (click)="currentView = 'work-2'">
+              <img src="assets/images/email-icon.png">
+              <span>SIGN UP WITH EMAIL</span>
+            </button>
+            <div class="btn-back" (click)="location.back()">BACK</div>
+          </div>
+          <form *ngIf="currentView == 'work-2'" class="tab-view">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="logo-wrapper">
+              <img src="assets/images/popbookings-logo.png">
+            </div>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="workUser.firstName" name="firstName" placeholder="First Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="workUser.lastName" name="lastName" placeholder="Last Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="email" [(ngModel)]="workUser.email" name="email" placeholder="Email">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="password" [(ngModel)]="workUser.password" name="password" placeholder="Password">
+            </md-form-field>
+            <div style="height:92px;"></div>
+            <button md-button class="btn-light-blue btn-create-account" (click)="currentView = 'work-3'">CREATE ACCOUNT</button>
+            <div class="btn-back" (click)="currentView = 'work-1'">BACK</div>
+          </form>
+          <div *ngIf="currentView == 'work-3'" class="tab-view">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="logo-wrapper">
+              <img src="assets/images/popbookings-logo.png">
+            </div>
+            <img src="assets/images/email-sent-icon.png">
+            <div class="email-sent-message">We sent a verification email to: <b>{{workUser.email}}</b></div>
+            <div class="description-small">Click on the verification URL in the email to finalize account creation and start building your PopBookings profile!</div>
+            <button md-button class="btn-resend-email" (click)="router.navigateByUrl('/signup-mobile')">RE-SEND EMAIL</button>
+            <div class="btn-back" (click)="currentView = 'work-2'">BACK</div>
+          </div>
+        </md-tab>
+        <md-tab label="HIRE" [attr.aria-selected-rhj]=true>
+          <div *ngIf="currentView == 'hire-1'" class="tab-view">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="logo-wrapper">
+              <img src="assets/images/popbookings-logo.png">
+            </div>
+            <div class="description">Connect to a social account or sign up with email and start hiring today!</div>
+            <button md-button class="btn-social btn-signin-facebook">
+              <img src="assets/images/facebook-icon.png">
+              <span>CONTINUE WITH FACEBOOK</span>
+            </button>
+            <button md-button class="btn-social btn-signin-google">
+              <img src="assets/images/google-icon.png">
+              <span>CONTINUE WITH GOOGLE</span>
+            </button>
+            <hr class="separator-or">
+            <button md-button class="btn-social btn-signin-email" (click)="currentView = 'hire-2'">
+              <img src="assets/images/email-icon.png">
+              <span>SIGN UP WITH EMAIL</span>
+            </button>
+            <div class="btn-back" (click)="location.back()">BACK</div>
+          </div>
+          <form *ngIf="currentView == 'hire-2'" class="tab-view">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="logo-wrapper">
+              <img src="assets/images/popbookings-logo.png">
+            </div>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="hireUser.firstName" name="firstName" placeholder="First Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="hireUser.lastName" name="lastName" placeholder="Last Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="hireUser.companyName" name="companyName" placeholder="Company Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="email" [(ngModel)]="hireUser.email" name="email" placeholder="Email">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="password" [(ngModel)]="hireUser.password" name="password" placeholder="Password">
+            </md-form-field>
+            <div style="height:39px;"></div>
+            <button md-button class="btn-light-red btn-create-account">CREATE ACCOUNT</button>
+            <div class="btn-back" (click)="currentView = 'hire-1'">BACK</div>
+          </form>
+        </md-tab>
+        <md-tab label="MANAGE">
+          <div *ngIf="currentView == 'manage-1'" class="tab-view">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="logo-wrapper">
+              <img src="assets/images/popbookings-logo.png">
+            </div>
+            <div class="description">Connect to a social account or sign up with email and start managing talent!</div>
+            <button md-button class="btn-social btn-signin-facebook">
+              <img src="assets/images/facebook-icon.png">
+              <span>CONTINUE WITH FACEBOOK</span>
+            </button>
+            <button md-button class="btn-social btn-signin-google">
+              <img src="assets/images/google-icon.png">
+              <span>CONTINUE WITH GOOGLE</span>
+            </button>
+            <hr class="separator-or">
+            <button md-button class="btn-social btn-signin-email" (click)="currentView = 'manage-2'">
+              <img src="assets/images/email-icon.png">
+              <span>SIGN UP WITH EMAIL</span>
+            </button>
+            <div class="btn-back" (click)="location.back()">BACK</div>
+          </div>
+          <form *ngIf="currentView == 'manage-2'" class="tab-view">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="logo-wrapper">
+              <img src="assets/images/popbookings-logo.png">
+            </div>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="manageUser.firstName" name="firstName" placeholder="First Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="manageUser.lastName" name="lastName" placeholder="Last Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="text" [(ngModel)]="manageUser.companyName" name="companyName" placeholder="Company Name">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="email" [(ngModel)]="manageUser.email" name="email" placeholder="Email">
+            </md-form-field>
+            <md-form-field>
+              <input mdInput type="password" [(ngModel)]="manageUser.password" name="password" placeholder="Password">
+            </md-form-field>
+            <div style="height:39px;"></div>
+            <button md-button class="btn-light-green btn-create-account">CREATE ACCOUNT</button>
+            <div class="btn-back" (click)="currentView = 'manage-1'">BACK</div>
+          </form>
+        </md-tab>
+      </md-tab-group>
+    </div>
+  </div>
+</div>

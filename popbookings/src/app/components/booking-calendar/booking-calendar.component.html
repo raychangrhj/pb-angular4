@@ -1,0 +1,41 @@
+<div class="booking-calendar">
+  <div class="calendar-header">
+    <button md-icon-button class="btn-prev" (click)="moveToMonthByDiff(-1)">
+      <md-icon>keyboard_arrow_left</md-icon>
+    </button>
+    <span class="month">{{date.format("MMMM")}}</span>
+    <span class="year">{{date.format("YYYY")}}</span>
+    <button md-icon-button class="btn-next" (click)="moveToMonthByDiff(1)">
+      <md-icon>keyboard_arrow_right</md-icon>
+    </button>
+  </div>
+  <div class="calendar-body">
+    <table>
+      <tr>
+        <th>Mo</th>
+        <th>Tu</th>
+        <th>We</th>
+        <th>Th</th>
+        <th>Fr</th>
+        <th>Sa</th>
+        <th>Su</th>
+      </tr>
+      <tr *ngFor="let row of rows">
+        <td *ngFor="let col of cols">
+          <div class="day" [ngClass]="day[row][col].class" [attr.id]="day[row][col].id" [attr.date]="day[row][col].date">
+            <div class="top">
+              <div class="left"></div>
+              <div class="right"></div>
+            </div>
+            <div class="center">{{day[row][col].day}}</div>
+            <div class="bottom">
+              <label class="pending"></label>
+              <label class="booked"></label>
+              <label class="invited"></label>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,368 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/******************** Font Setting ********************/
+@font-face {
+    font-family: SFUIDisplay;
+    src: url(assets/font/SFUIDisplay-Regular.ttf);
+}
+@font-face {
+    font-family: SFUIText;
+    src: url(assets/font/SFUIText-Medium.ttf);
+}
+@font-face {
+    font-family: CircularStd;
+    src: url(assets/font/CircularStd-Book.ttf);
+}
+/******************** Material Design Change ********************/
+.mat-form-field-placeholder {
+    left: 15px !important;
+    font-family: SFUIText !important;
+    color: #979797 !important;
+}
+.mat-focused .mat-form-field-placeholder.mat-form-field-float,
+.mat-form-field-placeholder.mat-form-field-float:not(.mat-form-field-empty) {
+    -webkit-transform: translateY(-1.28125em) scale(.86) perspective(100px) translateZ(.001px);
+    transform: translateY(-1.28125em) scale(.86) perspective(100px) translateZ(.001px);
+    -ms-transform: translateY(-1.28125em) scale(.86);
+}
+input.mat-input-element {
+    padding-left: 15px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 600;
+    color: #484848;
+}
+.mat-form-field-underline {
+    background-color: #979797;
+}
+.mat-form-field-ripple {
+    background-color: #FC5A93;
+}
+.mat-button-ripple {
+    opacity: 0.5;
+}
+.mat-button:hover /deep/.mat-button-focus-overlay {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.mat-select-panel {
+    border-radius: 3px;
+}
+.mat-slide-toggle {
+    width: 50px !important;
+    height: 30px !important;
+}
+.mat-slide-toggle-label {
+    margin: 0 !important;
+}
+.mat-slide-toggle-bar {
+    margin: 0 !important;
+    width: 50px !important;
+    height: 30px !important;
+    border-radius: 15px !important;
+}
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #FC5A93;
+}
+.mat-slide-toggle-thumb-container {
+    top: 1px !important;
+    left: 1px !important;
+    width: 28px !important;
+    height: 28px !important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+    transform: translate3d(20px,0,0) !important;
+}
+.mat-slide-toggle-thumb {
+    width: 28px !important;
+    height: 28px !important;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5) !important;
+}
+.mat-slide-toggle-ripple {
+    top: -6px !important;
+    left: -6px !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: white;
+}
+/******************** Common Style Sheet ********************/
+input:-webkit-autofill {
+    box-shadow: 0 0 0 50px white inset !important;
+}
+body {
+    background-color: #F9F9F9;
+}
+.page-container {
+    position: absolute;
+    top: 64px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.page-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.btn-light-red {
+    color: white !important;
+    background-color: #FC5A93;
+    border: 1px solid #EF3E7C !important;
+}
+.btn-light-red-inv {
+    color: #FC5A93 !important;
+    background-color: white;
+    border: 1px solid #FC5A93 !important;
+}
+.btn-light-green {
+    color: white !important;
+    background-color: #0DA990;
+    border: 1px solid #09957F !important;
+}
+.btn-light-green-inv {
+    color: #0DA990 !important;
+    background-color: white;
+    border: 1px solid #0DA990 !important;
+}
+.btn-light-blue {
+    color: white !important;
+    background-color: #48B8F7;
+    border: 1px solid #35A6E5 !important;
+}
+.btn-light-blue-inv {
+    color: #48B8F7 !important;
+    background-color: white;
+    border: 1px solid #48B8F7;
+}
+.btn-light-red:disabled,
+.btn-light-red-inv:disabled,
+.btn-light-green:disabled,
+.btn-light-green-inv:disabled,
+.btn-light-blue:disabled,
+.btn-light-blue-inv:disabled {
+    opacity: 0.5;
+}
+.form-field-wrapper {
+    display: inline-block;
+    position: relative;
+}
+.form-field-error {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    line-height: 16px;
+    font-family: CircularStd;
+    font-size: 12px;
+    font-weight: normal;
+    color: red;
+}
+/******************** Custom Responsive ********************/
+.responsive-512 {
+    display: none;
+}
+@media (min-width: 512px) {
+    .responsive-512 {
+        display: initial;
+    }
+}
+/******************** Filter Bar ********************/
+.filter-bar {
+    position: relative;
+    padding: 10px 0;
+    height: 50px;
+    background-color: #FEFEFE;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    user-select: none;
+}
+.filter-bar > div {
+    float: left;
+}
+.filter-bar > div:first-child {
+    margin: 0 5px;
+}
+.filter-bar .btn-collapse-filter {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+.filter-bar .filter-container {
+    display: none;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    background-color: #FEFEFE;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    z-index: 5;
+}
+.filter-bar .filter-container.collapsed {
+    display: block;
+}
+.filter-bar .mat-select {
+    position: relative;
+    padding: 0 0 0 10px;
+    width: 100%;
+    line-height: 30px;
+}
+.filter-bar .mat-select::after {
+    content: "keyboard_arrow_down";
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-family: Material Icons;
+    font-size: 24px;
+    color: #979797;
+}
+.filter-bar .mat-select-value,
+.mat-select-content md-option {
+    font-family: SFUIDisplay;
+    font-size: 13px;
+    color: #979797;
+}
+.filter-bar .mat-select-arrow {
+    border: none;
+}
+.filter-bar .mat-select-underline {
+    display: none;
+}
+.mat-select-content md-option {
+    height: 30px;
+    line-height: 30px;
+}
+.filter-bar .btn-clear-filter {
+    padding: 0 10px;
+    line-height: 28px;
+    font-family: SFUIDisplay;
+    font-size: 13px;
+    color: #979797;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.filter-bar .search-container {
+    position: absolute;
+    right: 10px;
+    left: 135px;
+}
+.filter-bar .search {
+    padding: 0 10px;
+    width: 100%;
+    height: 30px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #979797;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 6px;
+    text-align: left;
+}
+.filter-bar .search::-webkit-input-placeholder {
+    text-align: center;
+    background: none;
+}
+@media (min-width: 768px) {
+    .filter-bar > div {
+        padding-left: 10px;
+    }
+    .filter-bar .btn-collapse-filter {
+        display: none;
+    }
+    .filter-bar .filter-container {
+        display: block;
+        position: relative;
+        top: 0;
+        width: auto;
+        border: none;
+    }
+    .filter-bar .mat-select {
+        position: relative;
+        padding: 0 5px;
+        width: 140px;
+    }
+    .filter-bar .mat-select:not(:last-child) {
+        border-right: 1px solid #C8C7CC;
+    }
+    .filter-bar .mat-select::after {
+        right: 4px;
+    }
+    .filter-bar .btn-clear-filter {
+        padding: 0 35px 0 10px;
+    }
+    .filter-bar .btn-clear-filter::after {
+        content: "\F014";
+        position: absolute;
+        right: 10px;
+        font-family: FontAwesome;
+        font-size: 20px;
+    }
+    .filter-bar .search-container {
+        left: initial;
+        width: auto;
+    }
+    .filter-bar .search {
+        width: 180px;
+    }
+}
+@media (min-width: 1120px) {
+    .filter-bar .mat-select {
+        padding: 0 20px;
+        width: 180px;
+    }
+    .filter-bar .mat-select::after {
+        right: 20px;
+    }
+    .filter-bar .search {
+        width: 400px;
+    }
+    .filter-bar .search::-webkit-input-placeholder {
+        background: url(assets/images/search-icon.png) no-repeat;
+        background-position: left 90px center;
+    }
+}
+/******************** Settings Changes Bar ********************/
+.save-changes-bar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 64px;
+    background-color: #FEFEFE;
+    box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.2);
+    user-select: none;
+}
+.save-changes-bar .bar-container {
+    margin: 12px auto;
+    padding: 0 10px;
+    max-width: 1100px;
+}
+.save-changes-bar .changes-message {
+    line-height: 40px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
+.save-changes-bar .button-wrapper {
+    float: right;
+}
+.save-changes-bar button {
+    padding: 0 8px;
+    min-width: 0;
+    height: 40px;
+    font-family: SFUIText;
+    font-size: 15px;
+}
+.save-changes-bar .btn-undo {
+    color: #AFAFAF;
+}
+@media (min-width: 512px) {
+    .save-changes-bar button {
+        padding: 0 20px;
+    }
+}
+@media (min-width: 768px) {
+    .save-changes-bar .btn-save-changes {
+        width: 200px;
+    }
+}

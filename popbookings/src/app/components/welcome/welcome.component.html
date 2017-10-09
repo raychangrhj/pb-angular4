@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="page-container">
+    <div class="page-wrapper">
+        <div class="welcome">
+            <a href="javascript:void(0)" class="help">?</a>
+            <div class="title">Welcome to PopBookings!</div>
+            <div class="description">What are you looking to do?</div>
+            <div class="row">
+                <div class="col">
+                    <div class="img-wrapper">
+                        <img src="assets/images/work-icon.png">
+                    </div>
+                    <div class="col-title">I'm looking for work</div>
+                    <div class="col-description">Get paid to work temporary<br>jobs & events</div>
+                    <button md-button class="btn-light-blue" (click)="router.navigate(['/signup', {view: 'work-1'}])">WORK</button>
+                </div>
+                <div class="col">
+                    <div class="img-wrapper">
+                        <img src="assets/images/hire-icon.png">
+                    </div>
+                    <div class="col-title">I'm looking for staff</div>
+                    <div class="col-description">Hire temporary staff to work<br>your company's jobs & events</div>
+                    <button md-button class="btn-light-red" (click)="router.navigate(['/signup', {view: 'hire-1'}])">HIRE</button>
+                </div>
+                <div class="col">
+                    <div class="img-wrapper">
+                        <img src="assets/images/manage-icon.png">
+                    </div>
+                    <div class="col-title">I have staff to manage</div>
+                    <div class="col-description">Connect with talent, fill temporary<br>job openings & manage your staff</div>
+                    <button md-button class="btn-light-green" (click)="router.navigate(['/signup', {view: 'manage-1'}])">MANAGE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

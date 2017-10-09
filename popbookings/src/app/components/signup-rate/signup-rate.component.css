@@ -1,0 +1,131 @@
+.signup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    padding: 4px 0;
+    max-width: 710px;
+    max-height: 600px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+    user-select: none;
+    overflow: auto;
+}
+.signup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(to right, #48B8F7 0%, #48B8F7 50%, #89D5FF 50%, #89D5FF 66.66%, #E1E1E3 66.66%);
+}
+.signup .help {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #B7B6BC;
+    border: 1px solid #B7B6BC;
+    border-radius: 50%;
+    text-decoration: none;
+}
+.signup .step {
+    padding-top: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.signup .page-title {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px 0 70px;
+    max-width: 350px;
+    line-height: 36px;
+    font-family: CircularStd;
+    font-size: 28px;
+    font-weight: bold;
+    color: #484848;
+}
+.signup .set-rate-wrapper {
+    line-height: 50px;
+    font-family: CircularStd;
+    font-size: 21px;
+    font-weight: bold;
+    color: #B7B6BC;
+}
+.signup .form-field-wrapper {
+    margin: 0 10px;
+}
+.signup #rate {
+    padding: 0 20px;
+    width: 120px;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.signup #rate::-webkit-inner-spin-button,
+.signup #rate::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+.signup #rate::-webkit-input-placeholder {
+    color: #B7B6BC;
+}
+.signup #rate:focus::-webkit-input-placeholder {
+    visibility: hidden;
+}
+.signup #rate:-webkit-autofill {
+    box-shadow: 0 0 0 50px #F9F9F9 inset !important;
+}
+.signup .hint-message {
+    padding: 40px 0 150px;
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #9E9E9E;
+}
+.signup .hint-message a {
+    color: #3CA8F5;
+}
+.signup .btn-next {
+    margin-bottom: 20px;
+    width: 280px;
+    height: 50px;
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.signup .btn-back {
+    position: relative;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #B7B6BC;
+    transition: all 0.3s;
+}
+.signup .btn-back::before {
+    content: "arrow_back";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -20px;
+    font-family: Material Icons;
+    font-size: 16px;
+}
+.signup .btn-back:hover {
+    cursor: pointer;
+    color: #484848;
+}
