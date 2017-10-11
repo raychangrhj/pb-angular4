@@ -115,7 +115,7 @@ export class JobBoardComponent implements OnInit {
   }
 
   gotoJobDetails(jobId) {
-    this.router.navigate(["jobdetails", {id: jobId}]);
+    this.router.navigate(["jobdetails", { source: "job-board", id: jobId }]);
   }
 
   markerIconUrl(iconType: string) {

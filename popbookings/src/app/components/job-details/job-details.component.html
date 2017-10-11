@@ -38,10 +38,10 @@
       <div class="panel-right">
         <div class="panel-client">
           <div class="panel-body">
-            <div class="client-info company">
+            <div class="client-info company" (click)="gotoClientProfile()">
               <img class="icon-left" [attr.src]="client.companyLogo">
               <span>{{client.companyTitle}}</span>
-              <span class="star-rating" *ngIf="jobDetail.clientType == 'business'">
+              <span class="star-rating">
                   <span class="star-rating-top" [style.width]="client.companyRating * 20 + '%'">★★★★★</span>
                   <span class="star-rating-bottom">★★★★★</span>
               </span>
@@ -58,6 +58,22 @@
           <button md-button class="btn-light-red btn-book" *ngIf="jobDetail.clientType == 'business'">BOOT IT!</button>
           <button md-button class="btn-light-red-inv btn-select-shift" *ngIf="jobDetail.clientType == 'agency'" (click)="openShiftSeletionDialog()">SELECT SHIFTS</button>
           <button md-button class="btn-no">NO, THANKS</button>
+        </div>
+        <div class="panel-apply" *ngIf="jobDetail.jobType == 'apply'">
+          <div class="description">You are qualified to work this listing!<br>Are you interested?</div>
+          <button md-button class="btn-light-blue btn-apply">APPLY NOW</button>
+        </div>
+        <div class="panel-pending" *ngIf="jobDetail.jobType == 'pending'">
+          <div class="panel-header">Your application is pending</div>
+          <div class="panel-body">
+            <button md-button class="btn-no">CANCEL</button>
+          </div>
+        </div>
+        <div class="panel-booked" *ngIf="jobDetail.jobType == 'booked'">
+          <div class="panel-header">You’ve booked this job!</div>
+          <div class="panel-body">
+            <button md-button class="btn-no">REQUEST TO CANCEL</button>
+          </div>
         </div>
         <div class="panel-share">
           <div class="panel-title">Share this job listing</div>

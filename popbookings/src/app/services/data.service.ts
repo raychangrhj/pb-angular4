@@ -94,9 +94,11 @@ export class DataService {
       {
         id: "1",
         title: "Bartender - Big Xll Fan Fest",
+        description: "Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more! Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more!",
         clientType: "agency",
         clientName: "Worldwide Promotions, Inc.",
         date: "March 8-10,2017",
+        fullDate: "Monday, March 8 - Wednesday, March 10, 2017",
         time: "9:30AM-2:30PM",
         location: "Kansas City,MO",
         jobType: "pending",
@@ -106,9 +108,11 @@ export class DataService {
       }, {
         id: "2",
         title: "Promo Rep - St Patty's Day Rarade",
+        description: "Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more! Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more!",
         clientType: "agency",
         clientName: "Supreme Talent",
         date: "March 18-20,2017",
+        fullDate: "Monday, March 18 - Wednesday, March 20, 2017",
         time: "9:30AM-2:30PM",
         location: "Kansas City,Mo",
         jobType: "booked",
@@ -118,9 +122,11 @@ export class DataService {
       }, {
         id: "3",
         title: "Product Rep - Boulevard Nights",
+        description: "Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more! Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more!",
         clientType: "business",
         clientName: "Boulevard Brewing Co.",
         date: "March 8-9,2017",
+        fullDate: "Monday, March 8 - Wednesday, March 9, 2017",
         time: "9:30AM-2:30PM",
         location: "Nashville",
         jobType: "booked",
@@ -130,9 +136,11 @@ export class DataService {
       }, {
         id: "4",
         title: "Wait Staff - Charity Luncheon",
+        description: "Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more! Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more!",
         clientType: "business",
         clientName: "Unbound",
         date: "March 8-10,2017",
+        fullDate: "Monday, March 8 - Wednesday, March 10, 2017",
         time: "9:30AM-2:30PM",
         location: "Altanta",
         jobType: "pending",
@@ -142,9 +150,11 @@ export class DataService {
       }, {
         id: "5",
         title: "Support Staff - Techweek KC",
+        description: "Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more! Techweek 2016 will be bigger and better than ever combining content focus on technology and entrepreneurism. Techweek is a weeklong festival featuring the Big Data Summit, Launch KC Grant competition, networking events, a hiring fair, a hackathon and many more!",
         clientType: "business",
         clientName: "Techweek, Inc.",
         date: "March 8-10,2017",
+        fullDate: "Monday, March 8 - Wednesday, March 10, 2017",
         time: "9:30AM-2:30PM",
         location: "San Antonio",
         jobType: "booked",
@@ -241,6 +251,42 @@ export class DataService {
           { time: "11:00AM - 1:00PM", selected: false },
           { time: "1:00PM - 3:00PM", selected: false }
         ]
+      }
+    ];
+  }
+
+  getBookingHistoryForClientData() {
+    return [
+      {
+        title: "Ashley T. - Model",
+        date: "Jan. 19, 2017",
+        comment: "I had an awesome time working for Boulevard on a product & merchandise shoot and I would not hesitate to book with them again. Great company!",
+        rating: 4
+      }, {
+        title: "John W. - Brand Ambassador",
+        date: "Jan. 19, 2017",
+        comment: "This was my third time working for Boulevard and I've had a great experience every time. They have an awesome reputation for a reason.",
+        rating: 4.5
+      }, {
+        title: "Laura H. - General Staff",
+        date: "Dec. 21, 2016",
+        comment: "Working oulevard events never seems like work. They are organized and spare no expense to provide a quality experience for their customers, employees and contractors.",
+        rating: 5
+      }, {
+        title: "Laura H. - General Staff",
+        date: "Dec. 21, 2016",
+        comment: "Working oulevard events never seems like work. They are organized and spare no expense to provide a quality experience for their customers, employees and contractors.",
+        rating: 5
+      }, {
+        title: "Laura H. - General Staff",
+        date: "Dec. 21, 2016",
+        comment: "Working oulevard events never seems like work. They are organized and spare no expense to provide a quality experience for their customers, employees and contractors.",
+        rating: 5
+      }, {
+        title: "Laura H. - General Staff",
+        date: "Dec. 21, 2016",
+        comment: "Working oulevard events never seems like work. They are organized and spare no expense to provide a quality experience for their customers, employees and contractors.",
+        rating: 5
       }
     ];
   }

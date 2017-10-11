@@ -1,0 +1,255 @@
+.page-wrapper {
+    overflow: auto;
+}
+.profile {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1100px;
+    user-select: none;
+}
+.panel-left,
+.panel-right {
+    float: left;
+    padding: 20px 10px;
+    width: 100%;
+}
+.panel-summary {
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.panel-summary .company-logo {
+    width: 100%;
+    height: 150px;
+    border-radius: 3px 3px 0 0;
+}
+.panel-summary .summary-wrapper {
+    padding: 0 15px;
+}
+.panel-summary .company-name {
+    padding-top: 15px;
+    line-height: 22px;
+    font-family: SFUIDisplay;
+    font-size: 22px;
+    font-weight: bold;
+    color: #484848;
+}
+.panel-summary .star-rating {
+    display: inline-block;
+    position: relative;
+    padding: 10px 0;
+    font-size: 22px;
+    color: #E0E0E0;
+    unicode-bidi: bidi-override;
+}
+.panel-summary .star-rating-top {
+    position: absolute;
+    color: #FFC057;
+    overflow: hidden;
+    z-index: 1;
+}
+.panel-summary .star-rating-bottom {
+    z-index: 0;
+}
+.panel-summary .client {
+    position: relative;
+    padding: 20px 40px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 600;
+    color: #484848;
+    border-top: 1px solid #E1E1E3;
+    border-bottom: 1px solid #E1E1E3;
+}
+.panel-summary .client .photo,
+.panel-summary .client .icon-message {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.panel-summary .client .photo {
+    left: 0;
+    width: 28px;
+    height: 28px;
+    background-color: #EEE;
+    border-radius: 2px;
+}
+.panel-summary .client .icon-message {
+    right: 0;
+    width: 31px;
+    height: 25px;
+}
+.panel-summary .statistics {
+    padding: 15px 0;
+    font-family: SFUIText;
+}
+.panel-summary .statistics > div {
+    display: inline-block;
+    width: 33.33%;
+    text-align: center;
+}
+.panel-summary .statistics > div:not(:first-child) {
+    border-left: 1px solid #E1E1E3;
+}
+.panel-summary .statistics .value {
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #484848;
+}
+.panel-summary .statistics .title {
+    padding-top: 5px;
+    line-height: 11px;
+    font-size: 11px;
+    letter-spacing: -0.5px;
+    color: #FC5A93;
+}
+.summary-other {
+    position: relative;
+    padding: 20px 5px 20px 55px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: bold;
+    color: #484848;
+    border-bottom: 1px solid #E1E1E3;
+}
+.summary-other img {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+}
+.summary-other .font-normal {
+    font-weight: normal;
+}
+.panel-right > div:not(:first-child) {
+    margin-top: 20px;
+}
+.panel-header {
+    padding: 15px 20px;
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #9B9B9B;
+    background-color: #F0F0F0;
+    border-bottom: 1px solid #E1E1E3;
+    border-radius: 3px 3px 0 0;
+    text-transform: uppercase;
+}
+.panel-body {
+    padding: 0 20px;
+    background-color: white;
+    border-radius: 0 0 3px 3px;
+}
+.panel-about {
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.panel-about .about {
+    padding-top: 20px;
+    line-height: 20px;
+    max-height: 80px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+    overflow: hidden;
+}
+.panel-about .about.all {
+    max-height: unset;
+}
+.btn-read-more {
+    display: inline-block;
+    margin: 10px 0 15px 0;
+    color: #FC5A93;
+    transition: all 0.3s;
+}
+.btn-read-more:hover {
+    cursor: pointer;
+    color: red;
+}
+.panel-booking-history {
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.panel-booking-history .booking-item {
+    position: relative;
+    padding: 20px 0;
+}
+.panel-booking-history .booking-item-wrapper:not(:first-child) .booking-item {
+    border-top: 1px solid #E1E1E3;
+}
+.booking-item .title {
+    padding-right: 90px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
+.booking-item .date {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #979797;
+}
+.booking-item .comment {
+    padding: 10px 0;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+}
+.booking-item .star-rating {
+    display: inline-block;
+    position: relative;
+    font-size: 15px;
+    color: #E0E0E0;
+    unicode-bidi: bidi-override;
+}
+.booking-item .star-rating-top {
+    position: absolute;
+    color: #FFC057;
+    overflow: hidden;
+    z-index: 1;
+}
+.booking-item .star-rating-bottom {
+    z-index: 0;
+}
+.btn-view-all {
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #929292;
+    border-top: 1px solid #E1E1E3;
+    text-align: center;
+    transition: all 0.3s;
+}
+.btn-view-all:hover {
+    cursor: pointer;
+    color: #484848;
+}
+@media (min-width: 512px) {
+    .panel-summary .statistics .value {
+        line-height: 30px;
+        font-size: 22px;
+    }
+    .panel-summary .statistics .title {
+        line-height: 15px;
+        font-size: 13px;
+    }
+}
+@media (min-width: 768px) {
+    .panel-left {
+        width: 33.33%;
+    }
+    .panel-right {
+        width: 66.66%;
+    }
+}

@@ -1,0 +1,72 @@
+<app-navbar [loggedIn]=true [hasAccount]=true></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <div class="profile">
+      <div class="panel-left">
+        <div class="panel-summary">
+          <img class="company-logo" [attr.src]="companyLogo">
+          <div class="summary-wrapper">
+            <div class="company-name">{{companyName}}</div>
+            <span class="star-rating">
+              <span class="star-rating-top" [style.width]="companyRating * 20 + '%'">★★★★★</span>
+              <span class="star-rating-bottom">★★★★★</span>
+            </span>
+            <div class="client">
+              <img class="photo" [attr.src]="clientPhoto">
+              <span>{{clientName}}</span>
+              <img class="icon-message" src="assets/images/messages-icon-2x.png">
+            </div>
+            <div class="statistics">
+              <div *ngFor="let item of statistics">
+                <div class="value">{{item.value}}</div>
+                <div class="title">{{item.title}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="summary-other">
+          <img src="assets/images/phone-icon.png">
+          <span>{{phoneNumber}}</span>
+        </div>
+        <div class="summary-other">
+          <img src="assets/images/website-icon.png">
+          <span>{{siteUrl}}</span>
+        </div>
+        <div class="summary-other">
+          <img src="assets/images/location-icon.png">
+          <div>{{companyName}}</div>
+          <div class="font-normal">{{location.street}}</div>
+          <div class="font-normal">{{location.city}}</div>
+        </div>
+      </div>
+      <div class="panel-right">
+        <div class="panel-about">
+          <div class="panel-header">About {{companyName}}</div>
+          <div class="panel-body">
+            <div class="about" [ngClass]="aboutAllVisible ? 'all' : ''">{{about}}</div>
+            <div class="btn-read-more" (click)="aboutAllVisible = !aboutAllVisible">{{aboutAllVisible ? 'Less' : 'Read More'}}</div>
+          </div>
+        </div>
+        <div class="panel-booking-history">
+          <div class="panel-header">Ratings & Reviews</div>
+          <div class="panel-body">
+            <div class="booking-item-wrapper" *ngFor="let bookingHistory of bookingHistoryList; let i = index">
+              <div class="booking-item" *ngIf="bookingHistoryAllVisible || i < 3">
+                <div class="title">{{bookingHistory.title}}</div>
+                <div class="date">{{bookingHistory.date}}</div>
+                <div class="comment">"{{bookingHistory.comment}}"</div>
+                <span class="star-rating">
+                  <span class="star-rating-top" [style.width]="bookingHistory.rating * 20 + '%'">★★★★★</span>
+                  <span class="star-rating-bottom">★★★★★</span>
+                </span>
+              </div>
+            </div>
+            <div class="btn-view-all" *ngIf="bookingHistoryList.length > 3" (click)="bookingHistoryAllVisible = !bookingHistoryAllVisible">
+              {{bookingHistoryAllVisible ? "LESS" : "VIEW ALL (" + (bookingHistoryList.length - 3) + ")"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

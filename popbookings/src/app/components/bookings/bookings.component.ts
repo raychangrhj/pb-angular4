@@ -70,7 +70,7 @@ export class BookingsComponent implements OnInit {
   }
 
   gotoJobDetails(jobId) {
-    console.log(jobId);
+    this.router.navigate(["jobdetails", { source: "bookings", id: jobId }]);
   }
 
 }

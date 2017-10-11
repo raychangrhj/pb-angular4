@@ -42,6 +42,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { ProfileTalentComponent } from './components/profile-talent/profile-talent.component';
 import { ProfileEditTalentComponent } from './components/profile-edit-talent/profile-edit-talent.component';
+import { ProfileAgencyComponent } from './components/profile-agency/profile-agency.component';
+import { ProfileBusinessComponent } from './components/profile-business/profile-business.component';
 import { SettingsTalentComponent } from './components/settings-talent/settings-talent.component';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
 import { ShiftSelectionDialogComponent } from './components/shift-selection-dialog/shift-selection-dialog.component';
@@ -60,8 +62,10 @@ var routes = [
   {path: "bookings", component: BookingsComponent, data: {title: "Bookings"}},
   {path: "messages", component: MessagesComponent, data: {title: "Messages"}},
   {path: "payments", component: PaymentsComponent, data: {title: "Payments"}},
-  {path: "profile-talent", component: ProfileTalentComponent, data: {title: "Profile"}},
+  {path: "profile-talent", component: ProfileTalentComponent, data: {title: "Talent Profile"}},
   {path: "profile-edit-talent", component: ProfileEditTalentComponent, data: {title: "Profile Edit"}},
+  {path: "profile-agency", component: ProfileAgencyComponent, data: {title: "Agency Profile"}},
+  {path: "profile-business", component: ProfileBusinessComponent, data: {title: "Business Profile"}},
   {path: "settings-talent", component: SettingsTalentComponent, data: {title: "Settings"}},
   {path: "jobdetails", component: JobDetailsComponent, data: {title: "Job Details"}}
 ];
@@ -87,6 +91,8 @@ var routes = [
     PaymentsComponent,
     ProfileTalentComponent,
     ProfileEditTalentComponent,
+    ProfileAgencyComponent,
+    ProfileBusinessComponent,
     SettingsTalentComponent,
     JobDetailsComponent,
     ShiftSelectionDialogComponent

@@ -25,15 +25,23 @@ export class JobDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.jobDetail = this.dataService.getJobBoardData().filter(job => job.id == this.activatedRoute.snapshot.params.id)[0];
+    var dataSource = this.activatedRoute.snapshot.params.source;
+    var jobId = this.activatedRoute.snapshot.params.id;
+    if(dataSource == "job-board") this.jobDetail = this.dataService.getJobBoardData().filter(job => job.id == jobId)[0];
+    if(dataSource == "bookings") this.jobDetail = this.dataService.getBookingData().filter(job => job.id == jobId)[0];
     this.jobDetailAllVisible = false;
     this.client = {
       companyLogo: "https://cdn.okccdn.com/media/img/emojis/apple/1F600.png",
-      companyTitle: "Techweek, Inc.",
+      companyTitle: this.jobDetail.clientName,
       companyRating: 4.5,
       managerPhoto: "https://cdn.okccdn.com/media/img/emojis/apple/1F601.png",
       managerName: "Stacy W. - Event Coordinator"
     };
+  }
+
+  gotoClientProfile() {
+    if(this.jobDetail.clientType == "agency") this.router.navigate(["profile-agency", { client: this.jobDetail.clientName }]);
+    if(this.jobDetail.clientType == "business") this.router.navigate(["profile-business", { client: this.jobDetail.clientName }]);
   }
 
   openShiftSeletionDialog() {
