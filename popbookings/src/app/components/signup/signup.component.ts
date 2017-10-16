@@ -57,6 +57,10 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  submitWorkForm() {
+    this.currentView = 'work-3'
+  }
+
 }
 
 interface UserInfo {

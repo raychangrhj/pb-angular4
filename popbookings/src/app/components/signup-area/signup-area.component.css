@@ -64,7 +64,7 @@
     width: 100%;
 }
 .signup md-form-field::before {
-    content: "near_me";
+    content: "\E569";
     position: absolute;
     bottom: 22px;
     left: 20px;
@@ -87,7 +87,7 @@ input.mat-input-element {
     transition: all 0.3s;
 }
 .signup .btn-search::before {
-    content: "search";
+    content: "\E8B6";
     position: absolute;
     font-family: Material Icons;
     font-size: 22px;
@@ -119,7 +119,7 @@ input.mat-input-element {
     transition: all 0.3s;
 }
 .signup .btn-back::before {
-    content: "arrow_back";
+    content: "\E5C4";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

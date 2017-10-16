@@ -156,7 +156,7 @@
     transition: all 0.3s;
 }
 .signup .btn-back::before {
-    content: "arrow_back";
+    content: "\E5C4";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

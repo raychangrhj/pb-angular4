@@ -46,6 +46,7 @@ import { ProfileAgencyComponent } from './components/profile-agency/profile-agen
 import { ProfileBusinessComponent } from './components/profile-business/profile-business.component';
 import { SettingsTalentComponent } from './components/settings-talent/settings-talent.component';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
+import { AgencyConnectionDialogComponent } from './components/agency-connection-dialog/agency-connection-dialog.component';
 import { ShiftSelectionDialogComponent } from './components/shift-selection-dialog/shift-selection-dialog.component';
 
 var routes = [
@@ -95,9 +96,13 @@ var routes = [
     ProfileBusinessComponent,
     SettingsTalentComponent,
     JobDetailsComponent,
+    AgencyConnectionDialogComponent,
     ShiftSelectionDialogComponent
   ],
-  entryComponents: [ShiftSelectionDialogComponent],
+  entryComponents: [
+    AgencyConnectionDialogComponent,
+    ShiftSelectionDialogComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -110,7 +110,7 @@
     transition: all 0.3s;
 }
 .signup .filtered-skill .btn-add-skill::before {
-    content: "add";
+    content: "\E145";
     font-family: Material Icons;
     font-size: 30px;
 }
@@ -153,7 +153,7 @@
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 .signup .selected-skill .btn-delete-skill::before {
-    content: "close";
+    content: "\E5CD";
     position: absolute;
     top: 0;
     left: 0;
@@ -189,7 +189,7 @@
     transition: all 0.3s;
 }
 .signup .btn-back::before {
-    content: "arrow_back";
+    content: "\E5C4";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

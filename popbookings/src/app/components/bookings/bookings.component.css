@@ -43,7 +43,7 @@
     width: 70px;
 }
 .panel-header .mat-select::after {
-    content: "keyboard_arrow_down";
+    content: "\E313";
     position: absolute;
     top: 0;
     right: 0;
@@ -133,7 +133,7 @@
     color: white;
 }
 .job-item .client.business::before {
-    content: "account_balance";
+    content: "\E84F";
     position: absolute;
     top: 0;
     left: 0;
@@ -161,14 +161,14 @@
     border-right: 1px solid #E1E1E3;
 }
 .job-item .date::before {
-    content: "event";
+    content: "\E878";
 }
 .job-item .time::before {
-    content: "watch_later";
+    content: "\E924";
     transform: rotate(-60deg);
 }
 .job-item .location::before {
-    content: "location_on";
+    content: "\E0C8";
 }
 .job-item .job-type {
     position: absolute;
@@ -272,7 +272,7 @@
     height: 28px;
 }
 .joblist-empty button::after {
-    content: "keyboard_arrow_right";
+    content: "\E315";
     position: absolute;
     right: 5px;
     font-family: Material Icons;
@@ -295,7 +295,7 @@
     text-align: left;
 }
 .btn-edit-calendar::after {
-    content: "keyboard_arrow_right";
+    content: "\E315";
     position: absolute;
     right: 10px;
     font-family: Material Icons;

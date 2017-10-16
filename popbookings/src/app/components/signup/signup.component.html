@@ -25,7 +25,7 @@
             </button>
             <div class="btn-back" (click)="location.back()">BACK</div>
           </div>
-          <form *ngIf="currentView == 'work-2'" class="tab-view">
+          <form *ngIf="currentView == 'work-2'" class="tab-view" (submit)="submitWorkForm()">
             <a href="javascript:void(0)" class="help">?</a>
             <div class="logo-wrapper">
               <img src="assets/images/popbookings-logo.png">
@@ -43,7 +43,7 @@
               <input mdInput type="password" [(ngModel)]="workUser.password" name="password" placeholder="Password">
             </md-form-field>
             <div style="height:92px;"></div>
-            <button md-button class="btn-light-blue btn-create-account" (click)="currentView = 'work-3'">CREATE ACCOUNT</button>
+            <button md-button type="submit" class="btn-light-blue btn-create-account">CREATE ACCOUNT</button>
             <div class="btn-back" (click)="currentView = 'work-1'">BACK</div>
           </form>
           <div *ngIf="currentView == 'work-3'" class="tab-view">

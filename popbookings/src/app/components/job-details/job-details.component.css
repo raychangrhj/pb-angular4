@@ -124,11 +124,12 @@
 .client-info .star-rating-botton {
     z-index: 0;
 }
-.client-info.company:hover {
+.client-info.company:hover,
+.client-info.manager:hover {
     cursor: pointer;
 }
 .client-info.company::after {
-    content: "keyboard_arrow_right";
+    content: "\E315";
     position: absolute;
     top: 50%;
     right: 0;
@@ -241,7 +242,8 @@
 .panel-share .panel-container {
     padding: 10px 0;
 }
-.btn-share {
+.panel-share button {
+    position: relative;
     padding: 0;
     min-width: 0;
     width: 30%;
@@ -250,12 +252,29 @@
     font-size: 13px;
     color: #979797;
 }
-.btn-share:not(:last-child) {
+.panel-share button:not(:last-child) {
     border-right: 1px solid #E1E1E3;
 }
-.btn-share .material-icon {
+.panel-share .btn-text::before {
+    content: "\E325";
+    position: absolute;
+    left: 8px;
     font-family: Material Icons;
     font-size: 20px;
+}
+.panel-share .btn-email::before {
+    content: "\E0BE";
+    position: absolute;
+    left: 4px;
+    font-family: Material Icons;
+    font-size: 20px;
+}
+.panel-share .btn-more::after {
+    content: "\E313";
+    position: absolute;
+    right: 4px;
+    font-family: Material Icons;
+    font-size: 24px;
 }
 .panel-report {
     text-align: center;

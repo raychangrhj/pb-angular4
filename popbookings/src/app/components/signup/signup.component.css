@@ -90,7 +90,7 @@
     height: 20px;
 }
 .signup .btn-social::after {
-    content: "keyboard_arrow_right";
+    content: "\E315";
     position: absolute;
     right: 5px;
     font-family: Material Icons;
@@ -101,6 +101,7 @@
 .signup .separator-or {
     margin: 5px 0 25px;
     border-top: 1px solid #B7B6BC;
+    overflow: unset;
 }
 .signup .separator-or::after {
     content: "OR";
@@ -116,7 +117,7 @@
     transition: all 0.3s;
 }
 .signup .btn-back::before {
-    content: "arrow_back";
+    content: "\E5C4";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

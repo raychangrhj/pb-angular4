@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'app/services/common.service';
 import { DataService } from 'app/services/data.service';
@@ -6,7 +6,10 @@ import { DataService } from 'app/services/data.service';
 @Component({
   selector: 'app-settings-talent',
   templateUrl: './settings-talent.component.html',
-  styleUrls: ['./settings-talent.component.css']
+  styleUrls: ['./settings-talent.component.css'],
+  host: {
+    '(document:click)': 'onClick($event)'
+  }
 })
 export class SettingsTalentComponent implements OnInit {
   settingMenuList: any[];
@@ -18,8 +21,17 @@ export class SettingsTalentComponent implements OnInit {
   backupNotificationChannelItems: any[];
   backupNotifyMeAboutItems: any[];
   changesCount: number;
+  agencySearchString: string;
+  agencyItemId: string;
+  agencyList: any[];
+  searchedAgencyList: any[];
+  connectedAgencyList: any[];
+  pendingRequestList: any[];
+  agencyConnectionSidenavVisible: boolean;
+  connectingAgency: any;
 
   constructor(
+    private elementRef: ElementRef,
     private router: ActivatedRoute,
     private commonService: CommonService,
     private dataService: DataService
@@ -34,7 +46,7 @@ export class SettingsTalentComponent implements OnInit {
       {label: "Agency Connect", id: "agency_connect"},
       {label: "payments", id: "payments"}
     ];
-    this.selectedMenu = this.settingMenuList[0].id;
+
     this.email = "jessica.davis@gmail.com";
     this.phoneNumber = "(913) 555-5555";
     this.notificationChannelItems = [
@@ -80,10 +92,65 @@ export class SettingsTalentComponent implements OnInit {
       }
     ];
     this.backupSettings();
+
+    this.agencySearchString = "";
+    this.agencyItemId = "";
+    this.agencyList = [
+      {
+        logo: "https://cdn.okccdn.com/media/img/emojis/apple/1F600.png",
+        title: "United Talent Agency",
+        rating: 4
+      }, {
+        logo: "https://cdn.okccdn.com/media/img/emojis/apple/1F601.png",
+        title: "Worldwide Promotions, Inc.",
+        rating: 4.5
+      }, {
+        logo: "https://cdn.okccdn.com/media/img/emojis/apple/1F602.png",
+        title: "Supreme Talent",
+        rating: 5
+      }
+    ];
+    this.searchedAgencyList = [];
+    this.connectedAgencyList = [
+      {
+        id: "1",
+        logo: "https://cdn.okccdn.com/media/img/emojis/apple/1F600.png",
+        title: "Worldwide Promotions, Inc.",
+        rating: 4.5
+      }, {
+        id: "2",
+        logo: "https://cdn.okccdn.com/media/img/emojis/apple/1F601.png",
+        title: "Supreme Talent",
+        rating: 4
+      }
+    ];
+    this.pendingRequestList = [
+      {
+        id: "3",
+        logo: "https://cdn.okccdn.com/media/img/emojis/apple/1F602.png",
+        title: "Talent Professional U.S.A.",
+        rating: 4.5
+      }
+    ];
+    this.agencyConnectionSidenavVisible = false;
+
+    this.menuSelected(this.settingMenuList[4].id);
+  }
+
+  onClick(event) {
+    this.agencyItemId = "";
+    var detailButtons = this.elementRef.nativeElement.querySelectorAll(".btn-detail");
+    for (var i = 0; i < detailButtons.length; i++) {
+      var detailButton = detailButtons[i];
+      if(detailButton.contains(event.target)) {
+        this.agencyItemId = detailButton.attributes.agencyId.value;
+      }
+    }
   }
 
   menuSelected(menuId) {
     this.selectedMenu = menuId;
+    this.resumeSettings();
   }
 
   notificationChannelItemChanged(index) {
@@ -118,6 +185,28 @@ export class SettingsTalentComponent implements OnInit {
       this.backupNotifyMeAboutItems.push({ title: element.title, description: element.description, checked: element.checked });
     });
     this.changesCount = 0;
+  }
+
+  agencySearchKeyupEvent(event) {
+    if(event.key == "Enter") this.searchAgency();
+  }
+
+  searchAgency() {
+    this.searchedAgencyList = this.agencyList.filter(agency => this.commonService.contains(agency.title, this.agencySearchString));
+  }
+
+  openAgencyConnectionDialog(selectedAgency) {
+    this.connectingAgency = selectedAgency;
+    this.connectingAgency.statistics = [
+      { value: "8", title: "Bookings" },
+      { value: "142.5", title: "Hours Booked" },
+      { value: "$4,000 +", title: "Total Paid" }
+    ];
+    this.connectingAgency.about = "Boulevard Brewing Company has grown to be the largest specialty brewer in the Midwest, with full or partial distribution currently in 31 states and Washington DC. Since 1989 our brewery has remained dedicated to the craft of producing fresh, flavorful beers using traditional ingredients and the best. Boulevard Brewing Company has grown to be the largest specialty brewer in the Midwest, with full or partial distribution currently in 31 states and Washington DC. Since 1989 our brewery has remained dedicated to the craft of producing fresh, flavorful beers using traditional ingredients and the best.";
+    this.connectingAgency.aboutAllVisible = false;
+    this.connectingAgency.bookingHistoryList = this.dataService.getBookingHistoryForClientData();
+    this.connectingAgency.bookingHistoryAllVisible = false;
+    this.agencyConnectionSidenavVisible = true;
   }
 
 }

@@ -1,0 +1,55 @@
+/deep/.mat-dialog-container {
+    padding: 0;
+    max-width: 500px;
+    border-radius: 6px;
+    overflow: auto;
+    user-select: none;
+}
+.dialog-container {
+    padding: 20px;
+}
+.description-large {
+    line-height: 36px;
+    font-family: SFUIDisplay;
+    font-size: 28px;
+    font-weight: 600;
+    color: #212121;
+}
+.description-small {
+    margin-top: 15px;
+    min-height: 150px;
+    line-height: 24px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    color: #929292;
+}
+.buttons-container {
+    border-top: 1px solid #E1E1E3;
+    padding-top: 20px;
+}
+.buttons-container button {
+    width: calc(50% - 10px);
+    height: 40px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.btn-not {
+    color: #727272;
+    border: 1px solid #E1E1E3;
+}
+.btn-connect {
+    float: right;
+}
+@media (min-width: 375px) {
+    .buttons-container button {
+        height: 50px;
+        font-size: 17px;
+        letter-spacing: 3px;
+    }
+}
+@media (min-width: 768px) {
+    /deep/.mat-dialog-container {
+        width: 500px;
+    }
+}

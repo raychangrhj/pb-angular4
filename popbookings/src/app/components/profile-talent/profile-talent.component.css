@@ -251,7 +251,7 @@
     border-radius: 3px;
 }
 .panel-about .btn-view-resume::after {
-    content: "keyboard_arrow_right";
+    content: "\E315";
     position: absolute;
     right: 10px;
     font-family: Material Icons;

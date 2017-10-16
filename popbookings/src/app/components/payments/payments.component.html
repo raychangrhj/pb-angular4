@@ -1,1 +1,104 @@
 <app-navbar [loggedIn]=true [hasAccount]=true [activeNavItem]="'payments'"></app-navbar>
+<div class="page-container">
+    <div class="page-wrapper">
+        <div class="filter-bar">
+            <div>
+                <button md-icon-button class="btn-collapse-filter" (click)="filterContainerVisible = !filterContainerVisible">
+                    <md-icon>more_vert</md-icon>
+                </button>
+            </div>
+            <div class="filter-container" [ngClass]="filterContainerVisible ? 'collapsed' : ''">
+                <md-select [(ngModel)]="filterStatus" (change)="update()">
+                    <md-option *ngFor="let status of filterStatusList" [value]="status.key">{{status.value}}</md-option>
+                </md-select>
+                <md-select [(ngModel)]="filterOther" (change)="update()">
+                    <md-option *ngFor="let other of filterOtherList" [value]="other">{{other}}</md-option>
+                </md-select>
+            </div>
+            <div class="button-container">
+                <button md-button class="btn-clear-filter" (click)="reset()">Clear Filters</button>
+            </div>
+            <div class="search-container">
+                <input class="search" placeholder="Search Payments..." [(ngModel)]="searchString" (keyup)="search($event)">
+            </div>
+        </div>
+        <div class="payments">
+            <div class="panel-left">
+                <div class="panel-payments">
+                    <div class="panel-header">
+                        <span>{{paidJobCount}} PAID - {{pendingJobCount}} PENDING</span>
+                        <div class="sort-wrapper">
+                            <span>SORT BY - </span>
+                            <md-select [(ngModel)]="sortField" (change)="sort()">
+                                <md-option *ngFor="let item of sortFieldList" [value]="item.key">{{item.value}}</md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="joblist-no-empty" *ngIf="jobList.length > 0; else emptyBlock">
+                            <div class="job-item" *ngFor="let job of jobList">
+                                <div class="job-item-container">
+                                    <div class="job-item-wrapper">
+                                        <div class="job-item-left">
+                                            <div class="title" (click)="gotoJobDetails(job.id)">{{job.title}}</div>
+                                            <div class="client">{{job.clientName}}</div>
+                                        </div>
+                                        <div class="hours">
+                                            <span>{{job.hours}}</span>
+                                            <span>{{job.jobType == "paid" ? 'Total Hours' : 'Hours Booked'}}</span>
+                                        </div>
+                                        <div class="money" [ngClass]="job.jobType">{{job.money}}</div>
+                                        <div class="date">
+                                            <span>{{job.jobType == "paid" ? 'Paid on' : 'Payment Scheduled for'}}</span>
+                                            <span>{{job.date}} at {{job.time}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #emptyBlock>
+                            <div class="joblist-empty">
+                                <img class="empty-icon" src="assets/images/no-payments-icon.png">
+                                <div class="description-large">No Payments</div>
+                                <div class="description-small">Well...This is awkward.<br><br>There are no payment records to show you for this account. Watch the video below to learn more, or visit the Job Board to get to work!</div>
+                                <button md-button>
+                                    <img src="assets/images/play-video-icon.png">
+                                    <span>Learn more about Payments</span>
+                                </button>
+                                <button md-button>
+                                    <img src="assets/images/job-board-icon.png">
+                                    <span>PopBookings Job Board</span>
+                                </button>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="panel-bank-transfer">
+                    <div class="panel-title">Bank Transfer</div>
+                    <div class="btn-check-account">
+                        <div class="bank-title">{{bankTitle}}</div>
+                        <div class="bank-account" [innerHTML]="'Checking Account: ' + bankAccount"></div>
+                    </div>
+                </div>
+                <div class="panel-payment-history">
+                    <div class="panel-title">Payment History</div>
+                    <div class="payment-amount">${{paymentAmount}}</div>
+                    <div class="payment-count">{{paidJobCount}} Payments</div>
+                    <div class="buttons-container">
+                        <button md-button class="btn-pdf">PDF</button>
+                        <button md-button class="btn-csv">CSV</button>
+                        <button md-button class="btn-more">More...</button>
+                    </div>
+                </div>
+                <div class="panel-report">
+                    <button md-button class="btn-report">
+                        <img src="assets/images/flag-icon.png">
+                        <span>Report a Payment Issue</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

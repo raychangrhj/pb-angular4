@@ -60,10 +60,10 @@
     border-radius: 25px 0 0 25px;
 }
 .slick-button.slick-left::before {
-    content: "keyboard_arrow_left";
+    content: "\E314";
 }
 .slick-button.slick-right::before {
-    content: "keyboard_arrow_right";
+    content: "\E315";
 }
 .slider {
     position: relative;
@@ -127,7 +127,7 @@
     transition: all 0.3s;
 }
 .image-wrapper .btn-setting::before {
-    content: "settings";
+    content: "\E8B8";
     position: absolute;
     width: 30px;
     line-height: 30px;
@@ -151,7 +151,7 @@
     transition: all 0.3s;
 }
 .btn-add-image-small::before {
-    content: "camera_enhance";
+    content: "\E8FC";
     position: absolute;
     margin-left: -30px;
     font-family: Material Icons;

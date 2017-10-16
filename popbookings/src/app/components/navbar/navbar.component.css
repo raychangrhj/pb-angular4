@@ -21,6 +21,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 160px;
+    height: 40px;
 }
 .navbar-header .btn-collapse {
     display: block;
@@ -99,7 +101,7 @@
     user-select: none;
 }
 .navbar .dropdown-button::after {
-    content: "expand_more";
+    content: "\E313";
     position: absolute;
     top: 50%;
     right: 0;

@@ -46,7 +46,7 @@
                   <span class="star-rating-bottom">★★★★★</span>
               </span>
             </div>
-            <div class="client-info manager">
+            <div class="client-info manager" (click)="openAgencyConnectionDialog()">
               <img class="icon-left" [attr.src]="client.managerPhoto">
               <span>{{client.managerName}}</span>
               <img class="icon-message" src="assets/images/messages-icon-2x.png">
@@ -78,18 +78,9 @@
         <div class="panel-share">
           <div class="panel-title">Share this job listing</div>
           <div class="panel-container">
-            <button class="btn-share" md-button>
-              <span class="material-icon">phone_iphone</span>
-              <span>Text</span>
-            </button>
-            <button class="btn-share" md-button>
-              <span class="material-icon">email</span>
-              <span>Email</span>
-            </button>
-            <button class="btn-share" md-button>
-              <span>More...</span>
-              <span class="material-icon">keyboard_arrow_down</span>
-            </button>
+            <button class="btn-text" md-button>Text</button>
+            <button class="btn-email" md-button>Email</button>
+            <button class="btn-more" md-button>More...</button>
           </div>
         </div>
         <div class="panel-report">

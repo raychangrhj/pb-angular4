@@ -26,7 +26,7 @@
     text-decoration: none;
 }
 .signin .logo-wrapper {
-    padding: 50px 0 35px;
+    padding: 45px 0 35px;
 }
 .signin md-form-field {
     width: 100%;
@@ -43,6 +43,7 @@
 .signin .separator-or {
     margin: 30px 0;
     border-top: 1px solid #B7B6BC;
+    overflow: unset;
 }
 .signin .separator-or::after {
     content: "OR";
@@ -70,7 +71,7 @@
     height: 20px;
 }
 .signin .btn-social::after {
-    content: "keyboard_arrow_right";
+    content: "\E315";
     position: absolute;
     right: 5px;
     font-family: Material Icons;

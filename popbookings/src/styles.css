@@ -207,7 +207,7 @@ body {
     line-height: 30px;
 }
 .filter-bar .mat-select::after {
-    content: "keyboard_arrow_down";
+    content: "\E313";
     position: absolute;
     top: 0;
     right: 10px;

@@ -1,6 +1,8 @@
 /deep/.mat-dialog-container {
     padding: 0;
+    max-width: 500px;
     border-radius: 6px;
+    overflow: auto;
 }
 .dialog-page {
     position: relative;
@@ -146,7 +148,7 @@
     border: none;
 }
 .shift .select.selected::before {
-    content: "check";
+    content: "\E5CA";
     position: absolute;
     top: 0;
     left: 0;
@@ -217,7 +219,7 @@
     }
 }
 @media (min-width: 768px) {
-    .dialog-page {
-        min-width: 500px;
+    /deep/.mat-dialog-container {
+        width: 500px;
     }
 }

@@ -60,7 +60,7 @@
               <button md-button class="btn-view-resume" *ngIf="resumeFileName">
                 <img src="assets/images/pdf-resume-icon.png">
                 <span>{{resumeFileName}}</span>
-                <span class="delete" (click)="resumeFileName = ''">close</span>
+                <span class="delete" (click)="resumeFileName = ''"></span>
               </button>
               <button md-button class="btn-upload-resume" *ngIf="!resumeFileName">
                 <label for="upload_resume">Upload Resume</label>
@@ -93,7 +93,7 @@
           <div class="panel-body">
             <div class="skill" *ngFor="let skill of skills; let i = index">
               <span>{{skill}}</span>
-              <span class="delete" (click)="deleteSkill(i)">close</span>
+              <span class="delete" (click)="deleteSkill(i)"></span>
             </div>
           </div>
         </div>

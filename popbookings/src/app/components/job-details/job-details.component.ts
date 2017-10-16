@@ -4,6 +4,7 @@ import { CommonService } from 'app/services/common.service';
 import { DataService } from 'app/services/data.service';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import * as moment from 'moment';
+import { AgencyConnectionDialogComponent } from 'app/components/agency-connection-dialog/agency-connection-dialog.component';
 import { ShiftSelectionDialogComponent } from 'app/components/shift-selection-dialog/shift-selection-dialog.component';
 
 @Component({
@@ -42,6 +43,12 @@ export class JobDetailsComponent implements OnInit {
   gotoClientProfile() {
     if(this.jobDetail.clientType == "agency") this.router.navigate(["profile-agency", { client: this.jobDetail.clientName }]);
     if(this.jobDetail.clientType == "business") this.router.navigate(["profile-business", { client: this.jobDetail.clientName }]);
+  }
+
+  openAgencyConnectionDialog() {
+    let dialogRef = this.dialog.open(AgencyConnectionDialogComponent, {
+      data: { data: "" }
+    });
   }
 
   openShiftSeletionDialog() {

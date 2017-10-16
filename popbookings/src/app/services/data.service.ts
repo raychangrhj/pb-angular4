@@ -189,6 +189,62 @@ export class DataService {
     ];
   }
 
+  getPaymentData() {
+    return [
+      {
+        id: "1",
+        title: "Techweek, Inc. paid you!",
+        clientName: "Support Staff - Techweek KC",
+        hours: 4.5,
+        money: "+ $380.00",
+        amount: 380,
+        date: "3/21/17",
+        time: "4:34 pm",
+        jobType: "paid"
+      }, {
+        id: "2",
+        title: "Payment is pending completion",
+        clientName: "Bartender - Big Xll Fan Fest",
+        hours: 18.5,
+        money: "$1,200.00",
+        amount: 1200,
+        date: "3/22/17",
+        time: "9:00 am",
+        jobType: "pending"
+      }, {
+        id: "3",
+        title: "Payment is pending completion",
+        clientName: "Wait Staff - Charity Event",
+        hours: 6,
+        money: "$420.50",
+        amount: 420.5,
+        date: "4/2/17",
+        time: "9:00 am",
+        jobType: "pending"
+      }, {
+        id: "4",
+        title: "Worldwide Promotions paid you!",
+        clientName: "Bartender - Miller/Johnson Wedding",
+        hours: 6.5,
+        money: "+ $610.00",
+        amount: 610,
+        date: "3/9/17",
+        time: "2:17 pm",
+        jobType: "paid"
+      }, {
+        id: "5",
+        title: "Worldwide Promotions paid you!",
+        clientName: "Wait Staff - Spring Celebration",
+        hours: 11.5,
+        money: "+ $988.00",
+        amount: 988,
+        date: "3/9/17",
+        time: "2:17 pm",
+        jobType: "paid"
+      }
+    ];
+  }
+
   getBookingHistoryData() {
     return [
       {

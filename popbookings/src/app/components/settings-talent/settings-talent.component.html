@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="panel-right">
-        <div class="panel-notification-channels">
+        <div class="panel-notification-channels" *ngIf="selectedMenu == 'notifications'">
           <div class="panel-header">Notification Channels</div>
           <div class="panel-body">
             <div class="setting-item" *ngFor="let item of notificationChannelItems; let i = index">
@@ -22,13 +22,83 @@
             </div>
           </div>
         </div>
-        <div class="panel-notify-me-about">
+        <div class="panel-notify-me-about" *ngIf="selectedMenu == 'notifications'">
           <div class="panel-header">Notify Me About</div>
           <div class="panel-body">
             <div class="setting-item" *ngFor="let item of notifyMeAboutItems; let i = index">
               <div class="item-title">{{item.title}}</div>
               <div class="item-description">{{item.description}}</div>
               <div class="item-checked" [ngClass]="item.checked ? 'checked' : ''" (click)="notifyMeAboutItemChanged(i)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-search-agency" *ngIf="selectedMenu == 'agency_connect'">
+          <div class="search-bar">
+            <div class="search-bar-container">
+              <input class="search" placeholder="Search agencies by name to connect..." [(ngModel)]="agencySearchString" (keyup)="agencySearchKeyupEvent($event)">
+              <button md-button class="btn-light-blue btn-search" *ngIf="searchedAgencyList.length == 0" (click)="searchAgency()"></button>
+              <button md-button class="btn-cancel" *ngIf="searchedAgencyList.length > 0" (click)="agencySearchString = ''; searchedAgencyList = []"></button>
+            </div>
+          </div>
+          <div class="agency-search-result">
+            <div class="agency-item searched" *ngFor="let agency of searchedAgencyList" (click)="openAgencyConnectionDialog(agency)">
+              <div class="agency-item-container">
+                <div class="agency-item-wrapper">
+                  <img [attr.src]="agency.logo">
+                  <div class="title">{{agency.title}}</div>
+                  <span class="star-rating">
+                    <span class="star-rating-top" [style.width]="agency.rating * 20 + '%'">★★★★★</span>
+                    <span class="star-rating-bottom">★★★★★</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-connected-agency" *ngIf="selectedMenu == 'agency_connect'">
+          <div class="panel-header">Connected agencies</div>
+          <div class="panel-body">
+            <div class="agency-item connected" *ngFor="let agency of connectedAgencyList">
+              <div class="agency-item-container">
+                <div class="agency-item-wrapper">
+                  <img [attr.src]="agency.logo">
+                  <div class="title">{{agency.title}}</div>
+                  <span class="star-rating">
+                    <span class="star-rating-top" [style.width]="agency.rating * 20 + '%'">★★★★★</span>
+                    <span class="star-rating-bottom">★★★★★</span>
+                  </span>
+                  <div class="dropdown">
+                    <button md-button class="btn-detail" [attr.agencyId]="agency.id"></button>
+                    <ul class="dropdown-menu" *ngIf="agencyItemId == agency.id">
+                      <li>View Agency Details</li>
+                      <li>Disconnect From Agency</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-pending-request" *ngIf="selectedMenu == 'agency_connect'">
+          <div class="panel-header">Requests Pending</div>
+          <div class="panel-body">
+            <div class="agency-item pending" *ngFor="let agency of pendingRequestList">
+              <div class="agency-item-container">
+                <div class="agency-item-wrapper">
+                  <img [attr.src]="agency.logo">
+                  <div class="title">{{agency.title}}</div>
+                  <span class="star-rating">
+                    <span class="star-rating-top" [style.width]="agency.rating * 20 + '%'">★★★★★</span>
+                    <span class="star-rating-bottom">★★★★★</span>
+                  </span>
+                  <div class="dropdown">
+                    <button md-button class="btn-detail" [attr.agencyId]="agency.id"></button>
+                    <ul class="dropdown-menu" *ngIf="agencyItemId == agency.id">
+                      <li>View Agency Details</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -42,6 +112,63 @@
     <div class="button-wrapper">
       <button md-button class="btn-undo" (click)="resumeSettings()">UNDO</button>
       <button md-button class="btn-light-blue btn-save-changes" (click)="backupSettings()">SAVE CHANGES</button>
+    </div>
+  </div>
+</div>
+<div class="agency-connection-sidenav-backdrop" *ngIf="agencyConnectionSidenavVisible">
+  <div class="sidenav-container">
+    <div class="sidenav-wrapper">
+      <button md-button class="btn-close" (click)="agencyConnectionSidenavVisible = false"></button>
+      <div class="sidenav-header">
+        <a href="profile-agency" target="_blank"><button md-button class="btn-open-new">Open profile in new tab</button></a>
+        <button md-button class="btn-detail-profile"></button>
+      </div>
+      <div class="sidenav-body">
+        <div class="panel-summary">
+          <img [attr.src]="connectingAgency.logo">
+          <div class="title">{{connectingAgency.title}}</div>
+          <span class="star-rating">
+            <span class="star-rating-top" [style.width]="connectingAgency.rating * 20 + '%'">★★★★★</span>
+            <span class="star-rating-bottom">★★★★★</span>
+          </span>
+        </div>
+        <div class="panel-statistics">
+          <div *ngFor="let item of connectingAgency.statistics">
+            <div class="value">{{item.value}}</div>
+            <div class="title">{{item.title}}</div>
+          </div>
+        </div>
+        <div class="panel-about">
+          <div class="panel-header">About {{connectingAgency.title}}</div>
+          <div class="panel-body">
+            <div class="about" [ngClass]="connectingAgency.aboutAllVisible ? 'all' : ''">{{connectingAgency.about}}</div>
+            <div class="btn-read-more" (click)="connectingAgency.aboutAllVisible = !connectingAgency.aboutAllVisible">{{connectingAgency.aboutAllVisible ? 'Less' : 'Read More'}}</div>
+          </div>
+        </div>
+        <div class="panel-booking-history">
+          <div class="panel-header">Ratings & Reviews</div>
+          <div class="panel-body">
+            <div class="booking-item-wrapper" *ngFor="let bookingHistory of connectingAgency.bookingHistoryList; let i = index">
+              <div class="booking-item" *ngIf="connectingAgency.bookingHistoryAllVisible || i < 3">
+                <div class="title">{{bookingHistory.title}}</div>
+                <div class="date">{{bookingHistory.date}}</div>
+                <div class="comment">"{{bookingHistory.comment}}"</div>
+                <span class="star-rating">
+                  <span class="star-rating-top" [style.width]="bookingHistory.rating * 20 + '%'">★★★★★</span>
+                  <span class="star-rating-bottom">★★★★★</span>
+                </span>
+              </div>
+            </div>
+            <div class="btn-view-all" *ngIf="connectingAgency.bookingHistoryList.length > 3" (click)="connectingAgency.bookingHistoryAllVisible = !connectingAgency.bookingHistoryAllVisible">
+              {{connectingAgency.bookingHistoryAllVisible ? "LESS" : "VIEW ALL (" + (connectingAgency.bookingHistoryList.length - 3) + ")"}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidenav-footer">
+        <div class="message">United Talent Agency is Available to Connect!</div>
+        <button md-button class="btn-light-green btn-connect">REQUEST TO CONNECT</button>
+      </div>
     </div>
   </div>
 </div>
