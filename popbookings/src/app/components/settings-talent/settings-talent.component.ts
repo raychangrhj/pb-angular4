@@ -1,7 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'app/services/common.service';
 import { DataService } from 'app/services/data.service';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { ContractorAgreementDialogComponent } from 'app/components/contractor-agreement-dialog/contractor-agreement-dialog.component';
 
 @Component({
   selector: 'app-settings-talent',
@@ -14,6 +16,11 @@ import { DataService } from 'app/services/data.service';
 export class SettingsTalentComponent implements OnInit {
   settingMenuList: any[];
   selectedMenu: string;
+  accounts: any[];
+  available: boolean;
+  location: string;
+  travelData: any[];
+  unavailableDates: string[];
   email: string;
   phoneNumber: string;
   notificationChannelItems: any[];
@@ -21,6 +28,7 @@ export class SettingsTalentComponent implements OnInit {
   backupNotificationChannelItems: any[];
   backupNotifyMeAboutItems: any[];
   changesCount: number;
+  importantDocuments: any[];
   agencySearchString: string;
   agencyItemId: string;
   agencyList: any[];
@@ -29,12 +37,17 @@ export class SettingsTalentComponent implements OnInit {
   pendingRequestList: any[];
   agencyConnectionSidenavVisible: boolean;
   connectingAgency: any;
+  applicationAgency: any;
+  agencyApplicationVisible: boolean;
+  agencyApplicationData: any;
+  paymentInfo: any;
 
   constructor(
     private elementRef: ElementRef,
     private router: ActivatedRoute,
     private commonService: CommonService,
-    private dataService: DataService
+    private dataService: DataService,
+    public dialog: MdDialog
   ) { }
 
   ngOnInit() {
@@ -44,9 +57,45 @@ export class SettingsTalentComponent implements OnInit {
       {label: "Notifications", id: "notifications"},
       {label: "Important Documents", id: "important_documents"},
       {label: "Agency Connect", id: "agency_connect"},
-      {label: "payments", id: "payments"}
+      {label: "Payments", id: "payments"}
     ];
 
+    this.accounts = [
+      {
+        type: "facebook",
+        title: "Facebook",
+        link: "www.facebook.com/jessica.davis",
+        status: true
+      }, {
+        type: "google",
+        title: "Google",
+        link: "",
+        status: false
+      }, {
+        type: "email",
+        title: "Email",
+        link: "",
+        status: false
+      }
+    ];
+    this.available = true;
+    this.location = "Kansas City,MO";
+    this.travelData = [
+      {
+        target: "Miami,FL",
+        date: "March 9-11,2017",
+        destination: "Las Vegas,NV",
+        startDate: new Date(),
+        endDate: new Date()
+      }, {
+        target: "Miami,FL",
+        date: "July 15-19,2017",
+        destination: "Las Vegas,NV",
+        startDate: new Date(),
+        endDate: new Date()
+      }
+    ];
+    this.unavailableDates = [ "March 3-7,2018", "March 26-28,2018" ];
     this.email = "jessica.davis@gmail.com";
     this.phoneNumber = "(913) 555-5555";
     this.notificationChannelItems = [
@@ -93,6 +142,37 @@ export class SettingsTalentComponent implements OnInit {
     ];
     this.backupSettings();
 
+    this.importantDocuments = [
+      {
+        title: "General",
+        collapsed: true,
+        documents: [
+          { title: "W-9*", data: "W9_2017.png" },
+          { title: "Driver's License*", data: "" }
+        ]
+      }, {
+        title: "Talent Pros, Inc.",
+        collapsed: true,
+        documents: [
+          { title: "Independent Contractor Agreement", data: "ICA_0909_2017.png" }
+        ]
+      }, {
+        title: "United Talent Agency",
+        collapsed: false,
+        documents: [
+          { title: "A", data: "" },
+          { title: "B", data: "b.png" },
+          { title: "C", data: "c.png" }
+        ]
+      }, {
+        title: "Supreme Talent USA",
+        collapsed: false,
+        documents: [
+          { title: "A", data: "a.png" },
+          { title: "B", data: "" }
+        ]
+      }
+    ];
     this.agencySearchString = "";
     this.agencyItemId = "";
     this.agencyList = [
@@ -133,6 +213,14 @@ export class SettingsTalentComponent implements OnInit {
       }
     ];
     this.agencyConnectionSidenavVisible = false;
+    this.paymentInfo = {
+      editing: false,
+      bank: "Landmark National Bank - Personal Checking",
+      account: "Account Ending - 5344",
+      routingNumber: "",
+      accountNumber: "",
+      accountNumberConfirm: ""
+    };
 
     this.menuSelected(this.settingMenuList[4].id);
   }
@@ -150,7 +238,17 @@ export class SettingsTalentComponent implements OnInit {
 
   menuSelected(menuId) {
     this.selectedMenu = menuId;
+    this.agencyApplicationVisible = false;
+    this.agencyApplicationData = {
+      changed: false,
+      w9: "",
+      driverLicense: ""
+    };
     this.resumeSettings();
+  }
+
+  saveTravelData(index) {
+    console.log(this.travelData[index]);
   }
 
   notificationChannelItemChanged(index) {
@@ -187,6 +285,11 @@ export class SettingsTalentComponent implements OnInit {
     this.changesCount = 0;
   }
 
+  uploadImportantDocumentData(event, i, j) {
+    this.importantDocuments[i].documents[j].data = event.target.files[0].name;
+    event.target.value = "";
+  }
+
   agencySearchKeyupEvent(event) {
     if(event.key == "Enter") this.searchAgency();
   }
@@ -207,6 +310,26 @@ export class SettingsTalentComponent implements OnInit {
     this.connectingAgency.bookingHistoryList = this.dataService.getBookingHistoryForClientData();
     this.connectingAgency.bookingHistoryAllVisible = false;
     this.agencyConnectionSidenavVisible = true;
+  }
+
+  deleteAgencyApplicationData(data) {
+    this.agencyApplicationData[data] = "";
+    this.agencyApplicationData.changed = true;
+  }
+
+  uploadAgencyApplicationData(event, data) {
+    this.agencyApplicationData[data] = event.target.files[0].name;
+    this.agencyApplicationData.changed = true;
+    event.target.value = "";
+  }
+
+  submitAgencyApplicationData() {
+    let dialogRef = this.dialog.open(ContractorAgreementDialogComponent, {
+      data: { data: "" }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.agencyApplicationData.changed = false;
+    });
   }
 
 }

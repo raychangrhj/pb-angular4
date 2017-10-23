@@ -1,0 +1,13 @@
+<div class="dialog-container">
+  <div class="title">
+    <span>Contractor Agreement</span>
+    <button md-icon-button class="btn-download">
+      <md-icon class="md-24">file_download</md-icon>
+    </button>
+  </div>
+  <div class="content" [innerHTML]="content"></div>
+  <div class="buttons-wrapper">
+    <button md-button class="btn-disagree" (click)="disagree()">DISAGREE</button>
+    <button md-button class="btn-light-red btn-agree" (click)="agree()">AGREE</button>
+  </div>
+</div>

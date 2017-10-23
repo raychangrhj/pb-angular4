@@ -12,6 +12,87 @@
         </div>
       </div>
       <div class="panel-right">
+        <div class="panel-accounts" *ngIf="selectedMenu == 'accounts'">
+          <div class="panel-header">
+            <span>Accounts</span>
+            <button md-button class="btn-add"></button>
+          </div>
+          <div class="panel-body">
+            <div class="setting-item" [ngClass]="item.link ? '' : 'unset'" *ngFor="let item of accounts">
+              <div class="item-title">
+                <img [src]="'assets/images/' + item.type + '-icon.png'">
+                <span>{{item.title}}</span>
+              </div>
+              <div class="item-description">{{item.link ? item.link : "Connect Account..."}}</div>
+              <md-slide-toggle *ngIf="item.link" [checked]="item.status"></md-slide-toggle>
+            </div>
+          </div>
+        </div>
+        <div class="panel-status" *ngIf="selectedMenu == 'availability'">
+          <div class="panel-header">Status</div>
+          <div class="panel-body">
+            <div class="setting-item">
+              <div class="item-title">Available to Book!</div>
+              <div class="item-description">Employers will see as you listed as "Available" and will be allowed to send you booking invites.</div>
+              <md-slide-toggle [checked]="available"></md-slide-toggle>
+            </div>
+          </div>
+        </div>
+        <div class="panel-default-location" *ngIf="selectedMenu == 'availability'">
+          <div class="panel-header">Default Location</div>
+          <div class="panel-body">
+            <div class="setting-item">
+              <div class="location">{{location}}</div>
+              <button md-button class="btn-details"></button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-travel-dates" *ngIf="selectedMenu == 'availability'">
+          <div class="panel-header">
+            <span>Travel Dates</span>
+            <button md-button class="btn-add"></button>
+          </div>
+          <div class="panel-body">
+            <div class="travel-item" *ngFor="let item of travelData; let i = index">
+              <div class="travel-summary">
+                <div class="travel-target">{{item.target}}</div>
+                <div class="travel-date">{{item.date}}</div>
+                <button md-button class="btn-details"></button>
+              </div>
+              <div class="travel-detail">
+                <button md-button class="btn-cancel">CANCEL</button>
+                <button md-button class="btn-light-blue btn-save" (click)="saveTravelData(i)">SAVE</button>
+                <md-form-field class="destination">
+                  <input mdInput [(ngModel)]="item.destination" placeholder="Destination">
+                </md-form-field>
+                <div class="start-end-dates">
+                  <md-form-field class="start-date" (click)="startDatePicker.open()">
+                    <input mdInput [(ngModel)]="item.startDate" [mdDatepicker]="startDatePicker" readonly placeholder="Start Date">
+                    <md-datepicker-toggle mdSuffix [for]="startDatePicker"></md-datepicker-toggle>
+                    <md-datepicker #startDatePicker></md-datepicker>
+                  </md-form-field>
+                  <md-form-field class="end-date" (click)="endDatePicker.open()">
+                    <input mdInput [(ngModel)]="item.endDate" [mdDatepicker]="endDatePicker" readonly placeholder="End Date">
+                    <md-datepicker-toggle mdSuffix [for]="endDatePicker"></md-datepicker-toggle>
+                    <md-datepicker #endDatePicker></md-datepicker>
+                  </md-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-unavailable-dates" *ngIf="selectedMenu == 'availability'">
+          <div class="panel-header">
+            <span>Unavailable Dates</span>
+            <button md-button class="btn-add"></button>
+          </div>
+          <div class="panel-body">
+            <div class="setting-item" *ngFor="let item of unavailableDates">
+              <span>{{item}}</span>
+              <button md-button class="btn-details"></button>
+            </div>
+          </div>
+        </div>
         <div class="panel-notification-channels" *ngIf="selectedMenu == 'notifications'">
           <div class="panel-header">Notification Channels</div>
           <div class="panel-body">
@@ -32,7 +113,33 @@
             </div>
           </div>
         </div>
-        <div class="panel-search-agency" *ngIf="selectedMenu == 'agency_connect'">
+        <div class="panel-important-documents" *ngIf="selectedMenu == 'important_documents'">
+          <div class="panel-header">Important Documents</div>
+          <div class="panel-body">
+            <div class="item-group" *ngFor="let importantDocument of importantDocuments; let i = index">
+              <div class="group-title"
+                  [ngClass]="(i > 0 ? 'collapsable' : '') + (importantDocument.collapsed ? ' collapsed' : '')"
+                  [attr.count]="importantDocument.documents.length"
+                  (click)="importantDocument.collapsed = !importantDocument.collapsed">
+                {{importantDocument.title}}
+              </div>
+              <div *ngIf="i == 0 || importantDocument.collapsed">
+                <div class="item"
+                    [attr.title]="document.title"
+                    *ngFor="let document of importantDocument.documents; let j = index">
+                  <div class="data" *ngIf="document.data">
+                    <img src="assets/images/messages-add-photo-icon.png">
+                    <span>{{document.data}}</span>
+                    <button md-button class="delete" (click)="document.data = ''"></button>
+                  </div>
+                  <label class="btn-upload" [attr.for]="'upload_' + i + '_' + j" *ngIf="!document.data"></label>
+                  <input type="file" class="hidden" [attr.id]="'upload_' + i + '_' + j" (change)="uploadImportantDocumentData($event, i, j)">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-search-agency" *ngIf="selectedMenu == 'agency_connect' && !agencyApplicationVisible">
           <div class="search-bar">
             <div class="search-bar-container">
               <input class="search" placeholder="Search agencies by name to connect..." [(ngModel)]="agencySearchString" (keyup)="agencySearchKeyupEvent($event)">
@@ -44,7 +151,7 @@
             <div class="agency-item searched" *ngFor="let agency of searchedAgencyList" (click)="openAgencyConnectionDialog(agency)">
               <div class="agency-item-container">
                 <div class="agency-item-wrapper">
-                  <img [attr.src]="agency.logo">
+                  <img [src]="agency.logo">
                   <div class="title">{{agency.title}}</div>
                   <span class="star-rating">
                     <span class="star-rating-top" [style.width]="agency.rating * 20 + '%'">★★★★★</span>
@@ -55,13 +162,13 @@
             </div>
           </div>
         </div>
-        <div class="panel-connected-agency" *ngIf="selectedMenu == 'agency_connect'">
+        <div class="panel-connected-agency" *ngIf="selectedMenu == 'agency_connect' && !agencyApplicationVisible">
           <div class="panel-header">Connected agencies</div>
           <div class="panel-body">
             <div class="agency-item connected" *ngFor="let agency of connectedAgencyList">
               <div class="agency-item-container">
                 <div class="agency-item-wrapper">
-                  <img [attr.src]="agency.logo">
+                  <img [src]="agency.logo">
                   <div class="title">{{agency.title}}</div>
                   <span class="star-rating">
                     <span class="star-rating-top" [style.width]="agency.rating * 20 + '%'">★★★★★</span>
@@ -70,7 +177,7 @@
                   <div class="dropdown">
                     <button md-button class="btn-detail" [attr.agencyId]="agency.id"></button>
                     <ul class="dropdown-menu" *ngIf="agencyItemId == agency.id">
-                      <li>View Agency Details</li>
+                      <li (click)="applicationAgency = agency; agencyApplicationVisible = true">View Agency Details</li>
                       <li>Disconnect From Agency</li>
                     </ul>
                   </div>
@@ -79,13 +186,13 @@
             </div>
           </div>
         </div>
-        <div class="panel-pending-request" *ngIf="selectedMenu == 'agency_connect'">
+        <div class="panel-pending-request" *ngIf="selectedMenu == 'agency_connect' && !agencyApplicationVisible">
           <div class="panel-header">Requests Pending</div>
           <div class="panel-body">
             <div class="agency-item pending" *ngFor="let agency of pendingRequestList">
               <div class="agency-item-container">
                 <div class="agency-item-wrapper">
-                  <img [attr.src]="agency.logo">
+                  <img [src]="agency.logo">
                   <div class="title">{{agency.title}}</div>
                   <span class="star-rating">
                     <span class="star-rating-top" [style.width]="agency.rating * 20 + '%'">★★★★★</span>
@@ -100,6 +207,93 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="panel-agency-application" *ngIf="agencyApplicationVisible">
+          <div class="summary">
+            <div class="summary-wrapper">
+              <img [src]="applicationAgency.logo">
+              <div class="title">{{applicationAgency.title}}</div>
+              <span class="star-rating">
+                <span class="star-rating-top" [style.width]="applicationAgency.rating * 20 + '%'">★★★★★</span>
+                <span class="star-rating-bottom">★★★★★</span>
+              </span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="item-group">
+              <div class="group-title">File Uploads</div>
+              <div class="item" title="W-9*">
+                <div class="data" *ngIf="agencyApplicationData.w9">
+                  <img src="assets/images/messages-add-photo-icon.png">
+                  <span>{{agencyApplicationData.w9}}</span>
+                  <button md-button class="delete" (click)="deleteAgencyApplicationData('w9')"></button>
+                </div>
+                <label class="btn-upload" for="upload_w9" *ngIf="!agencyApplicationData.w9"></label>
+                <input type="file" class="hidden" id="upload_w9" (change)="uploadAgencyApplicationData($event, 'w9')">
+              </div>
+              <div class="item" title="Driver's License*">
+                <div class="data" *ngIf="agencyApplicationData.driverLicense">
+                  <img src="assets/images/messages-add-photo-icon.png">
+                  <span>{{agencyApplicationData.driverLicense}}</span>
+                  <button md-button class="delete" (click)="deleteAgencyApplicationData('driverLicense')"></button>
+                </div>
+                <label class="btn-upload" for="upload_driver_license" *ngIf="!agencyApplicationData.driverLicense"></label>
+                <input type="file" class="hidden" id="upload_driver_license" (change)="uploadAgencyApplicationData($event, 'driverLicense')">
+              </div>
+            </div>
+            <div class="item-group">
+              <div class="group-title">Signatures</div>
+              <div class="item" title="Section 501-B Waiver*">
+                <button md-button class="btn-view">View & Sign...</button>
+              </div>
+              <div class="item" title="Work Release Waiver*">
+                <button md-button class="btn-view">View & Sign...</button>
+              </div>
+            </div>
+            <div class="item-group">
+              <div class="group-title">Terms & Conditions</div>
+              <div class="item" title="Contractor Agreement*">
+                <button md-button class="btn-view">View & Accept...</button>
+              </div>
+            </div>
+          </div>
+          <div class="buttons-wrapper">
+            <button md-button class="btn-cancel" (click)="agencyApplicationVisible = false">CANCEL</button>
+            <button md-button class="btn-light-green btn-submit" [disabled]="!agencyApplicationData.changed" (click)="submitAgencyApplicationData()">SUBMIT</button>
+          </div>
+        </div>
+        <div class="panel-payment-information" *ngIf="selectedMenu == 'payments' && !paymentInfo.editing">
+          <div class="panel-header">Payment Information</div>
+          <div class="panel-body">
+            <div class="setting-item">
+              <div class="item-title">{{paymentInfo.bank}}</div>
+              <div class="item-description">{{paymentInfo.account}}</div>
+              <button md-button class="btn-details" (click)="paymentInfo.editing = true"></button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-connect-bank" *ngIf="selectedMenu == 'payments' && paymentInfo.editing">
+          <div class="panel-header">Connect a Bank Account</div>
+          <div class="content">
+            <div class="bank-item">
+              <a class="item-help" href="javascript:void(0)">What's This?</a>
+              <div class="item-label">Routing Number</div>
+              <input class="item-value" [(ngModel)]="paymentInfo.routingNumber" placeholder="Enter Routing Number...">
+            </div>
+            <div class="bank-item">
+              <a class="item-help" href="javascript:void(0)">What's This?</a>
+              <div class="item-label">Account Number</div>
+              <input class="item-value" [(ngModel)]="paymentInfo.accountNumber" placeholder="Enter Account Number...">
+            </div>
+            <div class="bank-item">
+              <div class="item-label">Confirm Account Number</div>
+              <input class="item-value" [(ngModel)]="paymentInfo.accountNumberConfirm" placeholder="Re-Enter Account Number...">
+            </div>
+          </div>
+          <div class="buttons-wrapper">
+            <button md-button class="btn-cancel" (click)="paymentInfo.editing = false">CANCEL</button>
+            <button md-button class="btn-light-blue btn-connect" [disabled]="!paymentInfo.routingNumber || !paymentInfo.accountNumber || paymentInfo.accountNumber!=paymentInfo.accountNumberConfirm" (click)="paymentInfo.editing = false">CONNECT!</button>
           </div>
         </div>
       </div>
@@ -125,7 +319,7 @@
       </div>
       <div class="sidenav-body">
         <div class="panel-summary">
-          <img [attr.src]="connectingAgency.logo">
+          <img [src]="connectingAgency.logo">
           <div class="title">{{connectingAgency.title}}</div>
           <span class="star-rating">
             <span class="star-rating-top" [style.width]="connectingAgency.rating * 20 + '%'">★★★★★</span>

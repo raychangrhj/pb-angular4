@@ -1,0 +1,17 @@
+<div class="account">
+  <div class="token" *ngIf="token">
+    <div>
+      <label>token:</label> {{token}}
+    </div>
+    <div>
+      <label>success:</label> {{success}}
+    </div>
+    <div>
+      <label>id:</label> [{{id}}]
+    </div>
+  </div>
+  <div class="phone-number" *ngIf="phoneNumber">
+    <label>PhoneNumber: </label>
+    <span>{{phoneNumber}}</span>
+  </div>
+</div>

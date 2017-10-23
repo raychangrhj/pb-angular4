@@ -5,21 +5,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {
+  DateAdapter,
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
+  MdDatepickerModule,
   MdDialogModule,
   MdFormFieldModule,
   MdIconModule,
   MdInputModule,
   MdMenuModule,
+  MdNativeDateModule,
   MdSelectModule,
   MdSlideToggleModule,
-  MdTabsModule
+  MdTabsModule,
+  MD_DATE_FORMATS,
+  NativeDateAdapter
 } from '@angular/material';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { AgmCoreModule } from '@agm/core'
 import {} from '@types/googlemaps';
+import * as moment from 'moment';
 
 import { AppComponent } from './app.component';
 import { CommonService } from './services/common.service';
@@ -48,28 +54,54 @@ import { SettingsTalentComponent } from './components/settings-talent/settings-t
 import { JobDetailsComponent } from './components/job-details/job-details.component';
 import { AgencyConnectionDialogComponent } from './components/agency-connection-dialog/agency-connection-dialog.component';
 import { ShiftSelectionDialogComponent } from './components/shift-selection-dialog/shift-selection-dialog.component';
+import { AccountComponent } from './components/account/account.component';
+import { ContractorAgreementDialogComponent } from './components/contractor-agreement-dialog/contractor-agreement-dialog.component';
 
 var routes = [
-  {path: "", component: WelcomeComponent, data: {title: "PopBookings"}},
-  {path: "signin", component: SigninComponent, data: {title: "SignIn"}},
-  {path: "signup", component: SignupComponent, data: {title: "SignUp", view: ""}},
-  {path: "signup-mobile", component: SignupMobileComponent, data: {title: "Verify Mobile"}},
-  {path: "signup-gender-birthday", component: SignupGenderBirthdayComponent, data: {title: "Gender & Birthday"}},
-  {path: "signup-skill", component: SignupSkillComponent, data: {title: "Skills"}},
-  {path: "signup-rate", component: SignupRateComponent, data: {title: "Hourly Rate"}},
-  {path: "signup-photo", component: SignupPhotoComponent, data: {title: "Photos"}},
-  {path: "signup-area", component: SignupAreaComponent, data: {title: "Location"}},
-  {path: "jobboard", component: JobBoardComponent, data: {title: "JobBoard"}},
-  {path: "bookings", component: BookingsComponent, data: {title: "Bookings"}},
-  {path: "messages", component: MessagesComponent, data: {title: "Messages"}},
-  {path: "payments", component: PaymentsComponent, data: {title: "Payments"}},
-  {path: "profile-talent", component: ProfileTalentComponent, data: {title: "Talent Profile"}},
-  {path: "profile-edit-talent", component: ProfileEditTalentComponent, data: {title: "Profile Edit"}},
-  {path: "profile-agency", component: ProfileAgencyComponent, data: {title: "Agency Profile"}},
-  {path: "profile-business", component: ProfileBusinessComponent, data: {title: "Business Profile"}},
-  {path: "settings-talent", component: SettingsTalentComponent, data: {title: "Settings"}},
-  {path: "jobdetails", component: JobDetailsComponent, data: {title: "Job Details"}}
+  { path: "", component: WelcomeComponent, data: { title: "PopBookings" } },
+  { path: "signin", component: SigninComponent, data: { title: "SignIn" } },
+  { path: "signup", component: SignupComponent, data: { title: "SignUp", view: "" } },
+  { path: "signup-mobile", component: SignupMobileComponent, data: { title: "Verify Mobile" } },
+  { path: "signup-gender-birthday", component: SignupGenderBirthdayComponent, data: { title: "Gender & Birthday" } },
+  { path: "signup-skill", component: SignupSkillComponent, data: { title: "Skills" } },
+  { path: "signup-rate", component: SignupRateComponent, data: { title: "Hourly Rate" } },
+  { path: "signup-photo", component: SignupPhotoComponent, data: { title: "Photos" } },
+  { path: "signup-area", component: SignupAreaComponent, data: { title: "Location" } },
+  { path: "jobboard", component: JobBoardComponent, data: { title: "JobBoard" } },
+  { path: "bookings", component: BookingsComponent, data: { title: "Bookings" } },
+  { path: "messages", component: MessagesComponent, data: { title: "Messages" } },
+  { path: "payments", component: PaymentsComponent, data: { title: "Payments" } },
+  { path: "profile-talent", component: ProfileTalentComponent, data: { title: "Talent Profile" } },
+  { path: "profile-edit-talent", component: ProfileEditTalentComponent, data: { title: "Profile Edit" } },
+  { path: "profile-agency", component: ProfileAgencyComponent, data: { title: "Agency Profile" } },
+  { path: "profile-business", component: ProfileBusinessComponent, data: { title: "Business Profile" } },
+  { path: "settings-talent", component: SettingsTalentComponent, data: { title: "Settings" } },
+  { path: "jobdetails", component: JobDetailsComponent, data: { title: "Job Details" } },
+  { path: "Account/ConfirmAccount/:token", component: AccountComponent, data:{ title: "Confirm Account" } },
+  { path: "Account/SetPhoneNumber/:phoneNumber", component: AccountComponent, data: { title: "Set Phone Number" } }
 ];
+
+export class CustomDateAdapter extends NativeDateAdapter {
+  format(date: Date, displayFormat: Object): string {
+    if(displayFormat == "input") {
+      return moment(date).format("ddd, MMMM D,YYYY");
+    } else {
+      return date.toDateString();
+    }
+  }
+}
+
+const CUSTOM_DATE_FORMATS = {
+  parse: {
+    dateInput: { month: "short", year: "numeric", day: "numeric" }
+  },
+  display: {
+    dateInput: "input",
+    monthYearLabel: { year: "numeric", month: "short" },
+    dateAllyLabel: { year: "numeric", month: "long", day: "numeric" },
+    monthYearAllyLabel: { year: "numeric", month: "long" }
+  }
+};
 
 @NgModule({
   declarations: [
@@ -97,11 +129,14 @@ var routes = [
     SettingsTalentComponent,
     JobDetailsComponent,
     AgencyConnectionDialogComponent,
-    ShiftSelectionDialogComponent
+    ShiftSelectionDialogComponent,
+    AccountComponent,
+    ContractorAgreementDialogComponent
   ],
   entryComponents: [
     AgencyConnectionDialogComponent,
-    ShiftSelectionDialogComponent
+    ShiftSelectionDialogComponent,
+    ContractorAgreementDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -113,11 +148,13 @@ var routes = [
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,
+    MdDatepickerModule,
     MdDialogModule,
     MdFormFieldModule,
     MdIconModule,
     MdInputModule,
     MdMenuModule,
+    MdNativeDateModule,
     MdSelectModule,
     MdSlideToggleModule,
     MdTabsModule,
@@ -127,7 +164,12 @@ var routes = [
       libraries: ["places"]
     })
   ],
-  providers: [CommonService, DataService],
+  providers: [
+    CommonService,
+    DataService,
+    { provide: DateAdapter, useClass: CustomDateAdapter },
+    { provide: MD_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

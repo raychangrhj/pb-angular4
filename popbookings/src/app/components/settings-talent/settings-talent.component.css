@@ -73,6 +73,7 @@
     margin-top: 20px;
 }
 .panel-right .panel-header {
+    position: relative;
     padding: 15px 15px;
     line-height: 20px;
     font-family: SFUIText;
@@ -82,6 +83,27 @@
     border-bottom: 1px solid #E1E1E3;
     border-radius: 3px 3px 0 0;
     text-transform: uppercase;
+}
+.panel-right .panel-header .btn-add {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    padding: 0;
+    min-width: 0;
+    width: 30px;
+    height: 30px;
+}
+.panel-right .panel-header .btn-add::before {
+    content: "\E145";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    line-height: 30px;
+    font-family: Material Icons;
+    font-size: 30px;
+    color: #929292;
 }
 .panel-right .panel-body {
     padding: 0 15px;
@@ -101,11 +123,13 @@
     line-height: 21px;
     font-size: 17px;
     font-weight: bold;
+    word-break: break-all;
 }
 .setting-item .item-description {
     padding-top: 10px;
     line-height: 21px;
     font-size: 15px;
+    word-break: break-all;
 }
 .setting-item md-slide-toggle {
     position: absolute;
@@ -144,11 +168,370 @@
     color: white;
     text-align: center;
 }
+.setting-item .location {
+    position: relative;
+    padding-left: 25px;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
+.setting-item .location::before {
+    content: "\E569";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: Material Icons;
+    font-size: 20px;
+}
+.setting-item .btn-details {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    padding: 0;
+    min-width: 0;
+    width: 40px;
+    height: 30px;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.setting-item .btn-details::before {
+    content: "\E5D3";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38px;
+    line-height: 28px;
+    font-family: Material Icons;
+    font-size: 24px;
+    color: #929292;
+}
+.panel-accounts .setting-item {
+    padding-right: 55px;
+}
+.panel-accounts .setting-item.unset::after {
+    content: "\E315";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: Material Icons;
+    font-size: 30px;
+    color: #929292;
+}
+.panel-accounts .setting-item.unset:hover {
+    cursor: pointer;
+}
+.panel-accounts .item-title img {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+}
+.panel-status .setting-item {
+    padding-right: 55px;
+}
+.panel-default-location .setting-item {
+    padding-right: 50px;
+}
+.panel-travel-dates .panel-header,
+.panel-unavailable-dates .panel-header {
+    padding-right: 50px !important;
+}
+.panel-travel-dates .travel-item:not(:last-child) {
+    border-bottom: 2px solid #929292;
+}
+.panel-travel-dates .travel-summary,
+.panel-travel-dates .travel-detail {
+    position: relative;
+    padding: 20px 0;
+}
+.panel-travel-dates .travel-summary {
+    padding-right: 50px;
+    border-bottom: 1px solid #E1E1E3;
+}
+.panel-travel-dates .travel-target {
+    position: relative;
+    padding-left: 25px;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
+.panel-travel-dates .travel-target::before {
+    content: "\E195";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #0DA990;
+    font-family: Material Icons;
+    font-size: 20px;
+    transform: rotate(90deg);
+}
+.panel-travel-dates .travel-date {
+    line-height: 25px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+}
+.panel-travel-dates .btn-details {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    padding: 0;
+    min-width: 0;
+    width: 40px;
+    height: 30px;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.panel-travel-dates .btn-details::before {
+    content: "\E5D3";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38px;
+    line-height: 28px;
+    font-family: Material Icons;
+    font-size: 24px;
+    color: #929292;
+}
+.panel-travel-dates .btn-cancel,
+.panel-travel-dates .btn-save {
+    position: absolute;
+    top: 20px;
+    padding: 0;
+    min-width: 0;
+    width: 70px;
+    line-height: 28px;
+    font-family: SFUIText;
+    font-size: 13px;
+    z-index: 1;
+}
+.panel-travel-dates .btn-cancel {
+    right: 80px;
+    color: #727272;
+    background-color: #FAFAFA;
+    border: 1px solid #E1E1E3;
+}
+.panel-travel-dates .btn-save {
+    right: 0;
+}
+.panel-travel-dates md-form-field {
+    width: 100%;
+}
+.panel-travel-dates .destination {
+    padding-top: 30px;
+}
+/deep/.panel-travel-dates .destination .mat-form-field-underline {
+    height: 2px;
+    background-color: #E1E1E3 !important;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-wrapper {
+    padding: 20px 0 10px;
+}
+.panel-travel-dates .start-date {
+    margin-right: 16px;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-infix {
+    padding-right: 30px;
+    padding-left: 40px;
+    line-height: 20px;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-infix::before,
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-infix::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: Material Icons;
+    font-size: 24px;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-infix::before {
+    content: "\E878";
+    left: 10px;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-infix::after {
+    content: "\E313";
+    right: 5px;
+    color: #929292;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-infix input {
+    padding-left: 0;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder-wrapper {
+    overflow: unset;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder.mat-form-field-empty {
+    padding-left: 30px;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder {
+    transition: none;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-focused .mat-form-field-placeholder.mat-form-field-float {
+    padding-left: 0;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-focused .mat-form-field-placeholder.mat-form-field-float,
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder.mat-form-field-float:not(.mat-form-field-empty) {
+    transform: translateY(-2em) scale(.86) perspective(100px) translateZ(.001px);
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-suffix {
+    display: none;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-underline {
+    background-color: transparent;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-ripple {
+    display: none;
+}
+.panel-unavailable-dates .setting-item {
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
 .panel-notification-channels .setting-item {
-    padding-right: 60px;
+    padding-right: 55px;
 }
 .panel-notify-me-about .setting-item {
     padding-right: 30px;
+}
+.panel-important-documents .item-group {
+    padding: 10px 0;
+}
+.panel-important-documents .item-group:not(:last-child) {
+    border-bottom: 1px solid #E1E1E3;
+}
+.panel-important-documents .group-title {
+    padding: 15px 0;
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #9B9B9B;
+    text-transform: uppercase;
+}
+.panel-important-documents .group-title.collapsable {
+    position: relative;
+    padding-right: 50px;
+    cursor: pointer;
+}
+.panel-important-documents .group-title.collapsable::before {
+    content: attr(count);
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    color: #FC5A93;
+}
+.panel-important-documents .group-title.collapsable::after {
+    content: "\E315";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: Material Icons;
+    font-size: 30px;
+    color: #929292;
+    transition: all 0.3s;
+}
+.panel-important-documents .group-title.collapsable.collapsed::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+.panel-important-documents .item {
+    padding: 10px 0;
+    line-height: 0;
+    text-align: right;
+}
+.panel-important-documents .item::before {
+    content: attr(title);
+    float: left;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
+.panel-important-documents .data {
+    display: inline-block;
+    position: relative;
+    padding: 4px 40px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FC5A93;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+.panel-important-documents .data img {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 16px;
+}
+.panel-important-documents .data span {
+    display: inline-block;
+    padding-right: 10px;
+    border-right: 1px solid #E1E1E3;
+}
+.panel-important-documents .data button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    padding: 0;
+    min-width: 0;
+    width: 20px;
+    height: 20px;
+}
+.panel-important-documents .data button::before {
+    content: "\E5CD";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    line-height: 20px;
+    font-family: Material Icons;
+    font-size: 20px;
+    font-weight: bold;
+    color: #9B9B9B;
+}
+.panel-important-documents .btn-upload {
+    position: relative;
+    margin: 0;
+    width: 40px;
+    height: 30px;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+.panel-important-documents .btn-upload::before {
+    content: "\E2C6";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38px;
+    line-height: 28px;
+    font-family: Material Icons;
+    font-size: 24px;
+    font-weight: normal;
+    color: #9B9B9B;
+    text-align: center;
+}
+.panel-important-documents .btn-upload:hover {
+    cursor: pointer;
+    background-color: #F0F0F0;
 }
 .panel-search-agency {
     background-color: white;
@@ -345,14 +728,251 @@
     color: #484848;
     background-color: #F9F9F9;
 }
+.panel-agency-application {
+    background-color: white;
+}
+.panel-agency-application .summary {
+    padding: 15px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.panel-agency-application .summary-wrapper {
+    position: relative;
+}
+.panel-agency-application .summary img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    background-color: #EEE;
+    border-radius: 6px;
+}
+.panel-agency-application .summary .title {
+    margin-left: 80px;
+    padding: 5px 0;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 24px;
+    font-weight: bold;
+    color: #484848;
+}
+.panel-agency-application .summary .star-rating {
+    position: relative;
+    margin-left: 80px;
+    font-size: 22px;
+    color: #E0E0E0;
+    unicode-bidi: bidi-override;
+}
+.panel-agency-application .summary .star-rating-top {
+    position: absolute;
+    color: #FFC057;
+    overflow: hidden;
+    z-index: 1;
+}
+.panel-agency-application .summary .star-rating-bottom {
+    z-index: 0;
+}
+.panel-agency-application .content {
+    padding: 0 15px;
+}
+.panel-agency-application .item-group {
+    padding: 10px 0;
+}
+.panel-agency-application .item-group:not(:last-child) {
+    border-bottom: 1px solid #E1E1E3;
+}
+.panel-agency-application .group-title {
+    padding: 15px 0;
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #9B9B9B;
+    text-transform: uppercase;
+}
+.panel-agency-application .item {
+    padding: 10px 0;
+    line-height: 0;
+    text-align: right;
+}
+.panel-agency-application .item::before {
+    content: attr(title);
+    float: left;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+}
+.panel-agency-application .data {
+    display: inline-block;
+    position: relative;
+    padding: 4px 40px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FC5A93;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+.panel-agency-application .data img {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 16px;
+}
+.panel-agency-application .data span {
+    display: inline-block;
+    padding-right: 10px;
+    border-right: 1px solid #E1E1E3;
+}
+.panel-agency-application .data button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    padding: 0;
+    min-width: 0;
+    width: 20px;
+    height: 20px;
+}
+.panel-agency-application .data button::before {
+    content: "\E5CD";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    line-height: 20px;
+    font-family: Material Icons;
+    font-size: 20px;
+    font-weight: bold;
+    color: #9B9B9B;
+}
+.panel-agency-application .btn-upload {
+    position: relative;
+    margin: 0;
+    width: 40px;
+    height: 30px;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+.panel-agency-application .btn-upload::before {
+    content: "\E2C6";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38px;
+    line-height: 28px;
+    font-family: Material Icons;
+    font-size: 24px;
+    font-weight: normal;
+    color: #9B9B9B;
+    text-align: center;
+}
+.panel-agency-application .btn-upload:hover {
+    cursor: pointer;
+    background-color: #F0F0F0;
+}
+.panel-agency-application .btn-view {
+    padding-right: 30px;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    color: #9B9B9B;
+}
+.panel-agency-application .btn-view::after {
+    content: "\E315";
+    position: absolute;
+    right: 0;
+    font-family: Material Icons;
+    font-size: 26px;
+}
+.panel-agency-application .buttons-wrapper,
+.panel-connect-bank .buttons-wrapper {
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.2);
+    text-align: right;
+}
+.panel-agency-application .buttons-wrapper button,
+.panel-connect-bank .buttons-wrapper button {
+    padding: 0;
+    width: 100px;
+    line-height: 30px;
+    font-family: SFUIText;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+.panel-agency-application .btn-cancel,
+.panel-connect-bank .btn-cancel {
+    margin-right: 15px;
+    color: #727272;
+    background-color: #EAEAEA;
+    border: 1px solid #E6E6E8;
+    border-radius: 3px;
+}
+.panel-payment-information .setting-item {
+    padding-right: 50px;
+}
+.panel-connect-bank .content {
+    padding: 10px 15px 50px 15px;
+    background-color: white;
+}
+.panel-connect-bank .bank-item {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #E1E1E3;
+}
+.bank-item .item-help {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #FC5A93;
+}
+.bank-item .item-label {
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.bank-item .item-value {
+    width: 100%;
+    line-height: 28px;
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    color: #484848;
+    border: none;
+}
+.bank-item .item-value::-webkit-input-placeholder {
+    color: #9B9B9B;
+}
 @media (min-width: 512px) {
-    .panel-right .panel-header,
+    .panel-right .panel-header {
+        padding: 15px 20px;
+    }
     .panel-right .panel-body,
     .agency-search-result {
-        padding: 15px 20px;
+        padding: 0 20px;
     }
     .setting-item {
         padding: 20px 0;
+    }
+    .setting-item .btn-details {
+        top: 20px;
+    }
+    .panel-travel-dates md-form-field {
+        width: calc(50% - 10px);
+    }
+    .panel-travel-dates .destination {
+        padding-top: 0;
     }
     .agency-item {
         padding: 15px 0;
@@ -366,6 +986,29 @@
     .agency-item .star-rating {
         margin-left: 80px;
         font-size: 22px;
+    }
+    .panel-agency-application .summary {
+        padding: 20px;
+    }
+    .panel-agency-application .summary .title,
+    .panel-agency-application .summary .star-rating {
+        margin-left: 90px;
+    }
+    .panel-agency-application .content {
+        padding: 0 20px;
+    }
+    .panel-agency-application .buttons-wrapper,
+    .panel-connect-bank .buttons-wrapper {
+        padding: 20px;
+    }
+    .panel-agency-application .buttons-wrapper button,
+    .panel-connect-bank .buttons-wrapper button {
+        width: 150px;
+        line-height: 38px;
+        font-size: 15px;
+    }
+    .panel-connect-bank .content {
+        padding: 10px 20px 60px 20px;
     }
 }
 @media (min-width: 768px) {

@@ -8,23 +8,34 @@
 .dialog-container {
     padding: 20px;
 }
-.description-large {
+.title {
+    position: relative;
+    padding: 10px 30px 25px 0;
     line-height: 36px;
-    font-family: SFUIDisplay;
+    font-family: CircularStd;
     font-size: 28px;
-    font-weight: 600;
-    color: #212121;
+    font-weight: bold;
+    color: #484848;
+    text-align: center;
 }
-.description-small {
-    margin-top: 15px;
-    min-height: 150px;
-    line-height: 24px;
+.btn-download {
+    position: absolute;
+    top: 8px;
+    right: 0;
+}
+.content {
+    padding: 5px 0;
+    height: 380px;
+    line-height: 21px;
     font-family: SFUIDisplay;
-    font-size: 17px;
-    color: #929292;
+    font-size: 15px;
+    font-weight: bold;
+    color: #484848;
+    border-top: 1px solid #E1E1E3;
+    border-bottom: 1px solid #E1E1E3;
+    overflow: auto;
 }
 .buttons-wrapper {
-    border-top: 1px solid #E1E1E3;
     padding-top: 20px;
 }
 .buttons-wrapper button {
@@ -34,12 +45,11 @@
     font-size: 15px;
     letter-spacing: 1px;
 }
-.btn-not {
+.btn-disagree {
+    margin-right: 16px;
     color: #727272;
-    border: 1px solid #E1E1E3;
-}
-.btn-connect {
-    float: right;
+    border: 1px solid #E6E6E8;
+    background-color: #F9F9F9;
 }
 @media (min-width: 375px) {
     .buttons-wrapper button {
