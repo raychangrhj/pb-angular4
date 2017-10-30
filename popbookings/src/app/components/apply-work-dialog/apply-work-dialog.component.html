@@ -1,0 +1,26 @@
+<div class="dialog-container">
+  <div class="title">
+    <span>Apply to Work</span>
+    <a class="help" href="javascript:void(0)">?</a>
+  </div>
+  <div class="content">
+    <div class="summary-wrapper">
+      <div class="job-title">{{jobDetail.title}}</div>
+      <div class="job-other">
+        <div>{{jobDetail.date}}</div>
+        <div>{{jobDetail.location}}</div>
+        <div>{{jobDetail.rate}}</div>
+      </div>
+    </div>
+    <div class="coverletter-label">Cover Letter (Optional)</div>
+    <div class="coverletter">{{coverletter}}</div>
+    <div class="agree-wrapper">
+      <div class="btn-agree" [ngClass]="agreePolicy ? 'checked' : ''" (click)="agreePolicy = !agreePolicy"></div>
+      <span>I have read and agree to the <b>PopBookings Terms and Conditions</b> and the <b>PopBookings Privacy Policy.</b></span>
+    </div>
+  </div>
+  <div class="buttons-wrapper">
+    <button md-button class="btn-cancel" (click)="cancel()">CANCEL</button>
+    <button md-button class="btn-light-blue btn-apply" [disabled]="!agreePolicy" (click)="apply()">APPLY</button>
+  </div>
+</div>

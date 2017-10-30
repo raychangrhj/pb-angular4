@@ -3,12 +3,12 @@
     max-width: 500px;
     border-radius: 6px;
     overflow: auto;
+    user-select: none;
 }
 .dialog-page {
     position: relative;
     padding: 20px 15px 5px 15px;
     text-align: center;
-    user-select: none;
 }
 .dialog-page::before {
     content: "";

@@ -1,1 +1,86 @@
 <app-navbar [loggedIn]=true [hasAccount]=true [activeNavItem]="'messages'"></app-navbar>
+<div class="page-container">
+    <div class="page-wrapper">
+        <div class="filter-bar">
+            <div>
+                <button md-icon-button class="btn-collapse-filter" (click)="filterContainerVisible = !filterContainerVisible">
+                    <md-icon>more_vert</md-icon>
+                </button>
+            </div>
+            <div class="filter-container" [ngClass]="filterContainerVisible ? 'collapsed' : ''">
+                <md-select [(ngModel)]="filterMessage" (change)="update()">
+                    <md-option *ngFor="let message of filterMessageList" [value]="message.key">{{message.value}}</md-option>
+                </md-select>
+                <md-select [(ngModel)]="filterBooking" (change)="update()">
+                    <md-option *ngFor="let booking of filterBookingList" [value]="booking.key">{{booking.value}}</md-option>
+                </md-select>
+                <md-select [(ngModel)]="filterOther" (change)="update()">
+                    <md-option *ngFor="let other of filterOtherList" [value]="other">{{other}}</md-option>
+                </md-select>
+            </div>
+            <div class="button-container">
+                <button md-button class="btn-clear-filter" (click)="reset()">Clear Filters</button>
+            </div>
+            <div class="search-container">
+                <input class="search" placeholder="Search Messages..." [(ngModel)]="searchString" (keyup)="search($event)">
+            </div>
+        </div>
+        <div class="messages">
+            <div class="panel-left" [ngClass]="conversationsVisible ? 'collapsed' : ''">
+                <div class="panel-conversations-list">
+                    <div class="conversation-item" [ngClass]="item.id == currentConversation.id ? 'selected' : ''" *ngFor="let item of conversations" (click)="currentConversation = item; conversationsVisible = false">
+                        <div class="conversation-item-container">
+                            <div class="conversation-item-wrapper">
+                                <div class="live" *ngIf="item.live"></div>
+                                <div class="title">{{item.title}}</div>
+                                <div class="date">{{item.date}}</div>
+                                <div class="name">
+                                    <span *ngIf="item.type == 'direct'">{{item.name}} - {{item.company}}</span>
+                                    <span *ngIf="item.type == 'group'">{{item.members}} Members</span>
+                                </div>
+                                <div class="last-message">
+                                    <img class="avatar" [src]="item.avatar">
+                                    <span>{{item.lastMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="panel-header">
+                    <button md-icon-button class="btn-collapse-conversations" (click)="conversationsVisible = !conversationsVisible">
+                        <md-icon>forward</md-icon>
+                    </button>
+                    <div class="title">{{currentConversation.title}}</div>
+                    <div class="btn-detail"></div>
+                    <div class="message-segments-wrapper">
+                        <div class="segment" [ngClass]="messageType == 'direct' ? 'active' : ''" (click)="messageType='direct'">DIRECT</div>
+                        <div class="segment" [ngClass]="messageType == 'group' ? 'active' : ''" (click)="messageType='group'">GROUP</div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="message-item" [ngClass]="item.type" *ngFor="let item of messages">
+                        <div class="message-item-container">
+                            <div class="message-item-wrapper">
+                                <div class="date" [attr.date]="item.date" *ngIf="item.first"></div>
+                                <div class="message" [ngClass]="item.type + (item.last ? ' last' : '')">{{item.message}}</div>
+                                <div class="user" *ngIf="item.last">
+                                    <img [src]="item.user.avatar">
+                                    <span>{{item.user.name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="receiver">
+                        <div class="live" *ngIf="currentConversation.live"></div>
+                    </div>
+                    <input class="message" placeholder="Send a message...">
+                    <div class="btn-send"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

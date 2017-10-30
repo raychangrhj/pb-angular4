@@ -6,7 +6,7 @@
     user-select: none;
 }
 .dialog-container {
-    padding: 20px;
+    padding: 15px;
 }
 .title {
     position: relative;
@@ -39,6 +39,7 @@
     padding-top: 20px;
 }
 .buttons-wrapper button {
+    padding: 0;
     width: calc(50% - 10px);
     height: 40px;
     font-family: SFUIText;
@@ -46,12 +47,17 @@
     letter-spacing: 1px;
 }
 .btn-disagree {
-    margin-right: 16px;
     color: #727272;
-    border: 1px solid #E6E6E8;
     background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
 }
-@media (min-width: 375px) {
+.btn-agree {
+    float: right;
+}
+@media (min-width: 512px) {
+    .dialog-container {
+        padding: 20px;
+    }
     .buttons-wrapper button {
         height: 50px;
         font-size: 17px;

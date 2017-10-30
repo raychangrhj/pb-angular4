@@ -270,22 +270,15 @@
     color: #484848;
 }
 .booking-item .star-rating {
+    display: inline-block;
     position: relative;
-    width: 62px;
     font-size: 15px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .booking-item .star-rating-top {
     position: absolute;
-    top: 0;
-    left: 0;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.booking-item .star-rating-bottom {
-    z-index: 0;
 }
 .btn-view-all {
     line-height: 50px;

@@ -1,0 +1,45 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <button md-icon-button class="btn-close" (click)="dialogRef.close()">
+      <md-icon class="md-24">close</md-icon>
+    </button>
+    <div class="title">Ready to Book!</div>
+    <div class="job-title">
+      <div>Review & Confirm the following shifts for:</div>
+      <b>{{jobTitle}}</b>
+    </div>
+  </div>
+  <div class="dialog-content">
+    <div class="shift-table" *ngFor="let shift of shifts">
+      <div class="shift-table-header">
+        <img src="assets/images/calendar-icon-bg.png">
+        <span class="day">{{shift.day}}</span>
+        <span>{{shift.date}}</span>
+      </div>
+      <div class="shift-table-body">
+        <div class="shift">
+          <img src="assets/images/time-icon-grey.png">
+          <div *ngFor="let time of shift.times">{{time}}</div>
+        </div>
+        <div class="shift">
+          <img src="assets/images/rate-icon-grey.png">
+          <span>${{shift.rate.value}} /</span>
+          <span class="font-normal">{{shift.rate.unit}}</span>
+        </div>
+        <div class="shift">
+          <img src="assets/images/location-icon-grey.png">
+          <div>{{shift.location.name}}</div>
+          <div class="font-normal">{{shift.location.street}}</div>
+          <div class="font-normal">{{shift.location.city}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-footer">
+    <button md-button class="btn-light-red btn-book" [md-dialog-close]="'ok'">BOOK IT!</button>
+    <div class="buttons-wrapper">
+      <button md-button>MESSAGE AGENCY</button>
+      <button md-button>ADD TO CALENDAR</button>
+    </div>
+  </div>
+</div>

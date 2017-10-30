@@ -40,16 +40,11 @@
     padding: 10px 0;
     font-size: 22px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .panel-summary .star-rating-top {
     position: absolute;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.panel-summary .star-rating-bottom {
-    z-index: 0;
 }
 .panel-summary .client {
     position: relative;
@@ -210,16 +205,11 @@
     position: relative;
     font-size: 15px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .booking-item .star-rating-top {
     position: absolute;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.booking-item .star-rating-bottom {
-    z-index: 0;
 }
 .btn-view-all {
     line-height: 50px;

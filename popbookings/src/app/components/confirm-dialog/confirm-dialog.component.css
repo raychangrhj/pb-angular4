@@ -7,50 +7,47 @@
 }
 .dialog-container {
     padding: 15px;
+    text-align: center;
 }
-.description-large {
+.icon {
+    margin: 20px 0;
+    width: 60px;
+    height: 60px;
+}
+.title {
     line-height: 36px;
     font-family: SFUIDisplay;
     font-size: 28px;
     font-weight: 600;
-    color: #212121;
 }
-.description-small {
-    margin-top: 15px;
-    min-height: 150px;
+.description {
+    padding: 20px 0;
     line-height: 24px;
     font-family: SFUIDisplay;
     font-size: 17px;
-    color: #929292;
+    color: #727272;
+    text-align: left;
+}
+/deep/.description b {
+    color: initial !important;
 }
 .buttons-wrapper {
-    border-top: 1px solid #E1E1E3;
     padding-top: 20px;
+    border-top: 1px solid #E1E1E3;
 }
-.buttons-wrapper button {
-    padding: 0;
-    width: calc(50% - 10px);
-    height: 40px;
+.btn-ok {
+    width: 220px;
+    height: 50px;
     font-family: SFUIText;
-    font-size: 15px;
+    font-size: 17px;
     letter-spacing: 1px;
-}
-.btn-not {
     color: #727272;
     background-color: #F9F9F9;
     border: 1px solid #E1E1E3;
 }
-.btn-connect {
-    float: right;
-}
 @media (min-width: 512px) {
     .dialog-container {
         padding: 20px;
-    }
-    .buttons-wrapper button {
-        height: 50px;
-        font-size: 17px;
-        letter-spacing: 3px;
     }
 }
 @media (min-width: 768px) {

@@ -1,0 +1,380 @@
+/deep/.navbar {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1) !important;
+}
+.messages {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1100px;
+    width: 100%;
+    height: calc(100% - 50px);
+    user-select: none;
+}
+.panel-left,
+.panel-right {
+    float: left;
+    height: 100%;
+}
+.panel-left {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    border-right: 1px solid #E1E1E3;
+    overflow: auto;
+    z-index: 1;
+}
+.panel-left.collapsed {
+    width: 240px;
+}
+.panel-right {
+    position: relative;
+    width: 100%;
+}
+.panel-conversations-list {
+    border-bottom: 1px solid #E1E1E3;
+}
+.conversation-item {
+    padding-left: 15px;
+    background-color: white;
+    cursor: pointer;
+}
+.conversation-item.selected,
+.conversation-item:hover {
+    margin-top: -1px;
+    background-color: #ECF7FE;
+    border-top: 1px solid #E1E1E3;
+    border-bottom: 1px solid #E1E1E3;
+}
+.conversation-item-container {
+    padding: 15px;
+    border-bottom: 1px solid #E1E1E3;
+}
+.conversation-item:last-child .conversation-item-container {
+    border-bottom: 1px solid white;
+}
+.conversation-item.selected .conversation-item-container,
+.conversation-item:hover .conversation-item-container {
+    border: none;
+}
+.conversation-item-wrapper {
+    position: relative;
+}
+.conversation-item .live {
+    position: absolute;
+    top: 8px;
+    left: -15px;
+    width: 8px;
+    height: 8px;
+    background-color: #FC5A93;
+    border-radius: 50%;
+}
+.conversation-item .title,
+.conversation-item .name,
+.conversation-item .last-message {
+    height: 24px;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.conversation-item .title {
+    padding-right: 50px;
+    font-family: CircularStd;
+    font-size: 15px;
+    font-weight: bold;
+    color: #484848;
+}
+.conversation-item .date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 24px;
+    font-family: SFUIDisplay;
+    font-size: 11px;
+    color: #929292;
+}
+.conversation-item .name {
+    font-family: SFUIDisplay;
+    font-size: 12px;
+    font-weight: 600;
+    color: #484848;
+}
+.conversation-item .last-message {
+    position: relative;
+    padding-left: 25px;
+    font-family: SFUIDisplay;
+    font-size: 12px;
+    color: #484848;
+}
+.conversation-item .last-message img {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+}
+.panel-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100px;
+    background-color: #FEFEFE;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.panel-header .btn-collapse-conversations {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    color: #727272;
+}
+.panel-header .title {
+    padding: 0 40px;
+    height: 50px;
+    line-height: 50px;
+    font-family: CircularStd;
+    font-size: 17px;
+    font-weight: bold;
+    color: #484848;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.panel-header .btn-detail {
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #979797;
+    border-radius: 50%;
+}
+.panel-header .btn-detail::before {
+    content: "\E5D3";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    line-height: 22px;
+    font-family: Material Icons;
+    font-size: 22px;
+    color: #979797;
+    text-align: center;
+}
+.panel-header .btn-detail:hover {
+    cursor: pointer;
+}
+.panel-header .message-segments-wrapper {
+    display: flex;
+    margin: 5px auto;
+    max-width: 230px;
+}
+.panel-header .segment {
+    flex: 1;
+    height: 30px;
+    line-height: 30px;
+    font-family: SFUIText;
+    font-size: 11px;
+    color: #FC5A93;
+    border: 1px solid #FC5A93;
+    border-right: none;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+.panel-header .segment:first-child {
+    border-radius: 6px 0 0 6px;
+}
+.panel-header .segment:last-child {
+    border-right: 1px solid #FC5A93;
+    border-radius: 0 6px 6px 0;
+}
+.panel-header .segment:hover {
+    cursor: pointer;
+}
+.panel-header .segment.active {
+    color: white;
+    background-color: #FC5A93;
+}
+.panel-body {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    bottom: 50px;
+    left: 0;
+    padding: 0 15px;
+    overflow: auto;
+}
+.message-item {
+    padding: 5px 0;
+}
+.message-item.sender .message-item-wrapper {
+    text-align: right;
+}
+.message-item .date {
+    position: relative;
+    margin: 20px 0;
+    height: 1px;
+    background-color: #C8C7CC;
+}
+.message-item .date::before {
+    content: attr(date);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 1px));
+    padding: 0 10px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 10px;
+    color: #C8C7CC;
+    background-color: #F9F9F9;
+}
+.message-item .message {
+    display: inline-block;
+    position: relative;
+    padding: 10px 12px;
+    line-height: 17px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: -0.5px;
+    border-radius: 6px;
+    text-align: left;
+}
+.message-item .message.last::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.message-item .message.receiver {
+    max-width: 300px;
+    color: #484848;
+    background-color: #EAEAEA;
+}
+.message-item .message.receiver.last::after {
+    left: 6px;
+    border-top: 6px solid #EAEAEA;
+}
+.message-item .message.sender {
+    max-width: 200px;
+    color: white;
+    background-color: #48B8F7;
+}
+.message-item .message.sender.last::after {
+    right: 6px;
+    border-top: 6px solid #48B8F7;
+}
+.message-item .user {
+    margin-top: 8px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 12px;
+    font-weight: 600;
+    color: #484848;
+}
+.message-item .user img {
+    margin-top: -1px;
+    width: 20px;
+    height: 20px;
+}
+.panel-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px 15px 10px 55px;
+    height: 50px;
+    background-color: #FEFEFE;
+    border: none;
+    box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.panel-footer .receiver {
+    position: absolute;
+    top: 13px;
+    left: 15px;
+    width: 24px;
+    height: 24px;
+    background-color: #969696;
+    border-radius: 3px;
+}
+.panel-footer .receiver::before {
+    content: "\E315";
+    position: absolute;
+    top: 0;
+    left: -3px;
+    line-height: 24px;
+    font-family: Material Icons;
+    font-size: 30px;
+    color: white;
+}
+.panel-footer .live {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: #FC5A93;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+.panel-footer .message {
+    padding: 0 30px 0 10px;
+    width: 100%;
+    height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+    border: 1px solid #C8C7CC;
+    border-radius: 6px;
+}
+.panel-footer .message::-webkit-input-placeholder {
+    color: #C8C7CC;
+}
+.panel-footer .btn-send {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #48B8F7;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+.panel-footer .btn-send::before {
+    content: "\E5D8";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    line-height: 20px;
+    font-family: Material Icons;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+.panel-footer .btn-send:hover {
+    cursor: pointer;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 768px) {
+    .messages {
+        margin: 20px auto;
+        width: calc(100% - 40px);
+        height: calc(100% - 90px);
+        border: 1px solid #E1E1E3;
+        border-radius: 3px;
+    }
+    .panel-left {
+        position: relative;
+        width: 33.33% !important;
+    }
+    .panel-right {
+        width: 66.66%;
+    }
+    .panel-header .btn-collapse-conversations {
+        display: none;
+    }
+}

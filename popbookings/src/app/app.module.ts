@@ -56,6 +56,11 @@ import { AgencyConnectionDialogComponent } from './components/agency-connection-
 import { ShiftSelectionDialogComponent } from './components/shift-selection-dialog/shift-selection-dialog.component';
 import { AccountComponent } from './components/account/account.component';
 import { ContractorAgreementDialogComponent } from './components/contractor-agreement-dialog/contractor-agreement-dialog.component';
+import { BookingInviteDialogComponent } from './components/booking-invite-dialog/booking-invite-dialog.component';
+import { ApplyWorkDialogComponent } from './components/apply-work-dialog/apply-work-dialog.component';
+import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ReadyBookDialogComponent } from './components/ready-book-dialog/ready-book-dialog.component';
 
 var routes = [
   { path: "", component: WelcomeComponent, data: { title: "PopBookings" } },
@@ -131,12 +136,21 @@ const CUSTOM_DATE_FORMATS = {
     AgencyConnectionDialogComponent,
     ShiftSelectionDialogComponent,
     AccountComponent,
-    ContractorAgreementDialogComponent
+    ContractorAgreementDialogComponent,
+    BookingInviteDialogComponent,
+    ApplyWorkDialogComponent,
+    AlertBarComponent,
+    ConfirmDialogComponent,
+    ReadyBookDialogComponent
   ],
   entryComponents: [
     AgencyConnectionDialogComponent,
     ShiftSelectionDialogComponent,
-    ContractorAgreementDialogComponent
+    ContractorAgreementDialogComponent,
+    BookingInviteDialogComponent,
+    ApplyWorkDialogComponent,
+    ConfirmDialogComponent,
+    ReadyBookDialogComponent
   ],
   imports: [
     BrowserModule,

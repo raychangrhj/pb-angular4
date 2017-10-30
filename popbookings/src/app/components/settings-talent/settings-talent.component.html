@@ -1,6 +1,27 @@
 <app-navbar [loggedIn]=true [hasAccount]=true></app-navbar>
 <div class="page-container">
   <div class="page-wrapper" [ngClass]="changesCount ? 'changed' : ''">
+    <app-alert-bar
+        *ngIf="lightBlueAlertVisible"
+        [type]="'lightblue'"
+        [title]="'This is a system notification with a short title line'"
+        [description]="'This is a longer explanation of what this notification is about along with some descriptive text about how to take action.'"
+        (dismissClicked)="onLightBlueAlertDismiss()"
+        (actionClicked)="onLightBlueAlertAction()"></app-alert-bar>
+    <app-alert-bar
+        *ngIf="blueAlertVisible"
+        [type]="'blue'"
+        [title]="'This is a system notification with a short title line'"
+        [description]="'This is a longer explanation of what this notification is about along with some descriptive text about how to take action.'"
+        (dismissClicked)="blueAlertVisible = false"
+        (actionClicked)="blueAlertVisible = false"></app-alert-bar>
+    <app-alert-bar
+        *ngIf="yellowAlertVisible"
+        [type]="'yellow'"
+        [title]="'This is a system notification with a short title line'"
+        [description]="'This is a longer explanation of what this notification is about along with some descriptive text about how to take action.'"
+        (dismissClicked)="yellowAlertVisible = false"
+        (actionClicked)="yellowAlertVisible = false"></app-alert-bar>
     <div class="settings">
       <div class="panel-left">
         <div class="panel-setting-menu">

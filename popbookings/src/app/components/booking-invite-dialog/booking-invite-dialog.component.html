@@ -1,0 +1,41 @@
+<div class="dialog-container">
+  <div class="help-wrapper" (mouseenter)="tooltipVisible = true" (mouseleave)="tooltipVisible = false">
+    <div class="help">?</div>
+    <div class="popup-wrapper">
+      <div class="popup" *ngIf="tooltipVisible">
+        <div class="popup-title">What's a Booking Invite? We're glad you asked!</div>
+        <div class="popup-description">Companies within your preferred range can see your profile and send you Booking Invites when they are interested in paying you to work!</div>
+        <div class="popup-hint">Learn more about Booking Invites in the <a href="javascript:void(0)">PopBookings Help Center</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="title">Booking Invite</div>
+  <div class="content">
+    <div class="main-wrapper">
+      <div class="summary-wrapper">
+        <div class="job-title">{{jobDetail.title}}</div>
+        <div class="job-other">
+          <div>{{jobDetail.date}}</div>
+          <div>{{jobDetail.location}}</div>
+          <div>{{jobDetail.rate}}</div>
+        </div>
+      </div>
+      <div class="message-wrapper">
+        <hr class="date" [attr.date]="messageInfo.date">
+        <div class="message" [innerHTML]="messageInfo.message"></div>
+        <div class="sender">
+          <img [src]="messageInfo.senderPhoto">
+          <span>{{messageInfo.senderName}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="agree-wrapper">
+      <div class="btn-agree" [ngClass]="agreePolicy ? 'checked' : ''" (click)="agreePolicy = !agreePolicy"></div>
+      <span>I have read and agree to the <b>PopBookings Terms and Conditions</b> and the <b>PopBookings Privacy Policy.</b></span>
+    </div>
+  </div>
+  <div class="buttons-wrapper">
+    <button md-button class="btn-cancel" (click)="cancel()">CANCEL</button>
+    <button md-button class="btn-light-red btn-book" [disabled]="!agreePolicy" [md-dialog-close]="'ok'">CONFIRM & BOOK</button>
+  </div>
+</div>

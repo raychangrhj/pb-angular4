@@ -1,0 +1,10 @@
+<div class="bar-container" [ngClass]="type" *ngIf="type">
+  <div class="bar-wrapper">
+    <div class="title">{{title}}</div>
+    <div class="description">{{description}}</div>
+    <div class="buttons-wrapper">
+      <button md-button class="btn-dismiss" (click)="dismissClicked.emit()">DISMISS</button>
+      <button md-button class="btn-action" (click)="actionClicked.emit()">ACTION</button>
+    </div>
+  </div>
+</div>

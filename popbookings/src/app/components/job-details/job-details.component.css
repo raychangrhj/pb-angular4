@@ -18,8 +18,8 @@
     border-radius: 3px;
 }
 .panel-header {
-    padding: 0 20px;
-    line-height: 50px;
+    padding: 15px 20px;
+    line-height: 20px;
     font-family: SFUIText;
     font-size: 13px;
     color: #9B9B9B;
@@ -109,20 +109,15 @@
     border-radius: 2px;
 }
 .client-info .star-rating {
-    position: relative;
     display: inline-block;
+    position: relative;
     font-size: 12px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .client-info .star-rating-top {
     position: absolute;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.client-info .star-rating-botton {
-    z-index: 0;
 }
 .client-info.company:hover,
 .client-info.manager:hover {
@@ -275,6 +270,67 @@
     right: 4px;
     font-family: Material Icons;
     font-size: 24px;
+}
+.panel-review {
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+}
+.panel-review .panel-header {
+    font-family: SFUIDisplay;
+    font-size: 17px;
+    font-weight: 600;
+    color: #484848;
+    background-color: #F9F9F9;
+    text-transform: none;
+}
+.panel-review .panel-header img {
+    margin: -8px 0 -5px;
+    width: 30px;
+    height: 30px;
+}
+.panel-review .description {
+    padding: 15px 0;
+    line-height: 24px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+}
+.panel-review textarea {
+    padding: 10px 20px;
+    width: 100%;
+    height: 100px;
+    line-height: 17px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    resize: none;
+}
+.panel-review textarea::-webkit-input-placeholder {
+    color: #B7B6BC;
+}
+.panel-review .star-rating {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 5px;
+    font-size: 50px;
+    color: #E0E0E0;
+    cursor: pointer;
+}
+.panel-review .star-rating-top {
+    position: absolute;
+    color: #FFC057;
+    overflow: hidden;
+}
+.panel-review .btn-submit {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 17px;
+    letter-spacing: 3px;
 }
 .panel-report {
     text-align: center;

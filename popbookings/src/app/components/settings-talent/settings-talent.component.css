@@ -649,20 +649,16 @@
     margin-right: 50px;
 }
 .agency-item .star-rating {
+    display: inline-block;
     position: relative;
     margin-left: 70px;
     font-size: 20px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .agency-item .star-rating-top {
     position: absolute;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.agency-item .star-rating-bottom {
-    z-index: 0;
 }
 .agency-item .dropdown {
     position: absolute;
@@ -757,20 +753,16 @@
     color: #484848;
 }
 .panel-agency-application .summary .star-rating {
+    display: inline-block;
     position: relative;
     margin-left: 80px;
     font-size: 22px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .panel-agency-application .summary .star-rating-top {
     position: absolute;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.panel-agency-application .summary .star-rating-bottom {
-    z-index: 0;
 }
 .panel-agency-application .content {
     padding: 0 15px;
@@ -1171,20 +1163,16 @@
     color: #484848;
 }
 .panel-summary .star-rating {
+    display: inline-block;
     position: relative;
     margin-left: 90px;
     font-size: 22px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .panel-summary .star-rating-top {
     position: absolute;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.panel-summary .star-rating-bottom {
-    z-index: 0;
 }
 .panel-statistics {
     padding: 15px 0;
@@ -1269,16 +1257,11 @@
     position: relative;
     font-size: 15px;
     color: #E0E0E0;
-    unicode-bidi: bidi-override;
 }
 .booking-item .star-rating-top {
     position: absolute;
     color: #FFC057;
     overflow: hidden;
-    z-index: 1;
-}
-.booking-item .star-rating-bottom {
-    z-index: 0;
 }
 .panel-booking-history .btn-view-all {
     line-height: 50px;

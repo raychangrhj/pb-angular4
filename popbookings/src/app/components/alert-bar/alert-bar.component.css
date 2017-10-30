@@ -1,0 +1,87 @@
+.bar-container {
+    margin: auto;
+    padding: 20px 10px 0;
+    max-width: 1100px;
+    user-select: none;
+}
+.bar-wrapper {
+    position: relative;
+    padding: 15px 15px 60px 15px;
+    border-radius: 3px;
+}
+.lightblue .bar-wrapper {
+    color: #48B8F7;
+    background-color: #CFEEFF;
+    border: 1px solid #48B8F7;
+}
+.blue .bar-wrapper {
+    color: white;
+    background: linear-gradient(320deg, #42D1FF 0%, #48B8F7 100%);
+    border: 1px solid #37ADF0;
+}
+.yellow .bar-wrapper {
+    color: white;
+    background: linear-gradient(320deg, #FFD255 0%, #FAB800 100%);
+    border: 1px solid #E8A400;
+}
+.title {
+    line-height: 21px;
+    font-family: SFUIDisplay;
+    font-size: 19px;
+}
+.description {
+    padding-top: 5px;
+    line-height: 21px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+}
+.buttons-wrapper {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 210px;
+    height: 30px;
+}
+.buttons-wrapper button {
+    width: calc(50% - 5px);
+    height: 100%;
+    line-height: 30px;
+    font-family: SFUIText;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+.btn-action {
+    float: right;
+}
+.lightblue .btn-action {
+    border: 1px solid #48B8F7;
+}
+.blue .btn-action,
+.yellow .btn-action {
+    border: 1px solid white;
+}
+@media (min-width: 512px) {
+    .bar-wrapper {
+        padding: 20px 20px 80px 20px;
+    }
+    .buttons-wrapper {
+        bottom: 20px;
+        width: 290px;
+        height: 40px;
+    }
+    .buttons-wrapper button {
+        line-height: 40px;
+    }
+}
+@media (min-width: 992px) {
+    .bar-wrapper {
+        padding: 20px 320px 20px 20px;
+    }
+    .buttons-wrapper {
+        top: 50%;
+        right: 20px;
+        left: unset;
+        transform: translateY(-50%);
+    }
+}

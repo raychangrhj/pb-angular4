@@ -79,12 +79,11 @@
 }
 .jobboard {
     position: relative;
-    margin-top: 1px;
-    height: calc(100% - 51px);
+    height: calc(100% - 50px);
     user-select: none;
 }
 .jobboard.true {
-    height: calc(100% - 411px);
+    height: calc(100% - 410px);
 }
 .joblist-container {
     float: left;

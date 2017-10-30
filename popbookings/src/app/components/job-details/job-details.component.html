@@ -55,13 +55,13 @@
         </div>
         <div class="panel-invited" *ngIf="jobDetail.jobType == 'invited'">
           <div class="description">You've been invited to work this listing! Are you interested?</div>
-          <button md-button class="btn-light-red btn-book" *ngIf="jobDetail.clientType == 'business'">BOOT IT!</button>
+          <button md-button class="btn-light-red btn-book" *ngIf="jobDetail.clientType == 'business'" (click)="openBookingInviteDialog()">BOOK IT!</button>
           <button md-button class="btn-light-red-inv btn-select-shift" *ngIf="jobDetail.clientType == 'agency'" (click)="openShiftSeletionDialog()">SELECT SHIFTS</button>
           <button md-button class="btn-no">NO, THANKS</button>
         </div>
         <div class="panel-apply" *ngIf="jobDetail.jobType == 'apply'">
           <div class="description">You are qualified to work this listing!<br>Are you interested?</div>
-          <button md-button class="btn-light-blue btn-apply">APPLY NOW</button>
+          <button md-button class="btn-light-blue btn-apply" (click)="openApplyWorkDialog()">APPLY NOW</button>
         </div>
         <div class="panel-pending" *ngIf="jobDetail.jobType == 'pending'">
           <div class="panel-header">Your application is pending</div>
@@ -75,12 +75,30 @@
             <button md-button class="btn-no">REQUEST TO CANCEL</button>
           </div>
         </div>
-        <div class="panel-share">
+        <div class="panel-share" *ngIf="jobDetail.jobType != 'paid'">
           <div class="panel-title">Share this job listing</div>
           <div class="panel-container">
             <button class="btn-text" md-button>Text</button>
             <button class="btn-email" md-button>Email</button>
             <button class="btn-more" md-button>More...</button>
+          </div>
+        </div>
+        <div class="panel-review" *ngIf="jobDetail.jobType == 'paid'">
+          <div class="panel-header">
+            <img src="assets/images/confirmed-icon-no-bg.png">
+            <span>This job listing has ended.</span>
+          </div>
+          <div class="panel-body">
+            <div class="description">
+              <div><b>Stacy W. from Techweek Inc rated you!</b></div>
+              <div>Submit a rating of this job listing to view your rating.</div>
+            </div>
+            <textarea placeholder="Leave a Review..." (keyup)="reviewEdited($event)">{{review}}</textarea>
+            <div class="star-rating" (mousemove)="mouseMoved($event)">
+              <div class="star-rating-top" [style.width]="reviewRating * 20 + '%'">★★★★★</div>
+              <div>★★★★★</div>
+            </div>
+            <button md-button class="btn-light-green btn-submit" [disabled]="!submitValidation.review || !submitValidation.reviewRating">SUBMIT</button>
           </div>
         </div>
         <div class="panel-report">

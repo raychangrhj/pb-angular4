@@ -14,6 +14,9 @@ import { ContractorAgreementDialogComponent } from 'app/components/contractor-ag
   }
 })
 export class SettingsTalentComponent implements OnInit {
+  lightBlueAlertVisible: boolean;
+  blueAlertVisible: boolean;
+  yellowAlertVisible: boolean;
   settingMenuList: any[];
   selectedMenu: string;
   accounts: any[];
@@ -51,6 +54,9 @@ export class SettingsTalentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.lightBlueAlertVisible = true;
+    this.blueAlertVisible = true;
+    this.yellowAlertVisible = true;
     this.settingMenuList = [
       {label: "Accounts", id: "accounts"},
       {label: "Availability", id: "availability"},
@@ -222,7 +228,7 @@ export class SettingsTalentComponent implements OnInit {
       accountNumberConfirm: ""
     };
 
-    this.menuSelected(this.settingMenuList[4].id);
+    this.menuSelected(this.settingMenuList[0].id);
   }
 
   onClick(event) {
@@ -234,6 +240,14 @@ export class SettingsTalentComponent implements OnInit {
         this.agencyItemId = detailButton.attributes.agencyId.value;
       }
     }
+  }
+
+  onLightBlueAlertDismiss() {
+    this.lightBlueAlertVisible = false;
+  }
+
+  onLightBlueAlertAction() {
+    this.lightBlueAlertVisible = false;
   }
 
   menuSelected(menuId) {
