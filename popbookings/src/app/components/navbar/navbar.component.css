@@ -109,8 +109,21 @@
     font-family: Material Icons;
     font-size: 24px;
 }
+.navbar .dropdown-button .circle-notification {
+    position: absolute;
+    top: calc(50% - 16px);
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background-color: #FC5A93;
+    border: 1px solid #FBFBFB;
+    border-radius: 50%;
+}
 .navbar .dropdown-button img {
     margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    background-color: #EEE;
     border-radius: 2px;
 }
 .navbar .dropdown-menu {

@@ -9,22 +9,50 @@ import { Component, OnInit, ElementRef, Input } from '@angular/core';
   }
 })
 export class NavbarComponent implements OnInit {
+  @Input() category: string;
   @Input() loggedIn: boolean = false;
   @Input() hasAccount: boolean = false;
   @Input() activeNavItem: string = "";
-  navItems: [NavItem];
+  navItems: any[];
+  user: any;
+  profileLink: string;
+  settingsLink: string;
   collapsed: boolean;
   dropdownMenuToggle: boolean;
 
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
-    this.navItems = [
-      { path: "jobboard", id: "job_board", title: "Job Board", notification: false },
-      { path: "bookings", id: "bookings", title: "Bookings", notification: false },
-      { path: "messages", id: "messages", title: "Messages", notification: true },
-      { path: "payments", id: "payments", title: "Payments", notification: false }
-    ];
+    if(this.category == "business") {
+      this.navItems = [
+        { path: "business/myjobs", id: "myjobs", title: "My Jobs", notification: false },
+        { path: "business/talentsearch", id: "talentsearch", title: "Talent Search", notification: false },
+        { path: "business/messages", id: "messages", title: "Messages", notification: false },
+        { path: "business/payments", id: "payments", title: "Payments", notification: false }
+      ];
+      this.user = {
+        notification: true,
+        avatar: "assets/images/navbar-mike.png",
+        name: "Mike Howard"
+      }
+      this.profileLink = "profile-business";
+      this.settingsLink = "javascript:void(0)";
+    } else {
+      this.navItems = [
+        { path: "jobboard", id: "job_board", title: "Job Board", notification: false },
+        { path: "bookings", id: "bookings", title: "Bookings", notification: false },
+        { path: "messages", id: "messages", title: "Messages", notification: true },
+        { path: "payments", id: "payments", title: "Payments", notification: false }
+      ];
+      this.user = {
+        notification: false,
+        avatar: "assets/images/navbar-jessica.png",
+        name: "Jessica Davis"
+      };
+      this.profileLink = "profile-talent";
+      this.settingsLink = "settings-talent";
+    }
+    
     this.collapsed = false;
     this.dropdownMenuToggle = false;
   }
@@ -37,11 +65,4 @@ export class NavbarComponent implements OnInit {
       this.dropdownMenuToggle = false;
     }
   }
-}
-
-interface NavItem {
-  path: string;
-  id: string;
-  title: string;
-  notification: boolean;
 }

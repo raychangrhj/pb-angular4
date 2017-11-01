@@ -1,7 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'app/services/common.service';
 import { DataService } from 'app/services/data.service';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { ConversationDetailsDialogComponent } from 'app/components/conversation-details-dialog/conversation-details-dialog.component';
 
 @Component({
   selector: 'app-messages',
@@ -27,7 +29,8 @@ export class MessagesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private commonService: CommonService,
-    private dataService: DataService
+    private dataService: DataService,
+    public dialog: MdDialog
   ) { }
 
   ngOnInit() {
@@ -155,6 +158,14 @@ export class MessagesComponent implements OnInit {
 
   search(event) {
     if(event.key == "Enter") this.update();
+  }
+
+  openConversationDetailsDialog() {
+    let dialogRef = this.dialog.open(ConversationDetailsDialogComponent, {
+      data: {
+        title: this.currentConversation.title
+      }
+    })
   }
 
 }

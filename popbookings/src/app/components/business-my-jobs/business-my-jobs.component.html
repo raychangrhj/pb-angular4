@@ -1,0 +1,70 @@
+<app-navbar [category]="'business'" [loggedIn]=true [hasAccount]=true [activeNavItem]="'myjobs'"></app-navbar>
+<div class="page-container">
+  <div class="page-wrapper">
+    <div class="first-job step-1" *ngIf="currentView == 'step-1'">
+      <a href="javascript:void(0)" class="help">?</a>
+      <div class="padding-wrapper">
+        <div class="step">STEP 1 OF 3</div>
+        <div class="page-title">Welcome to PopBookings, Mike!</div>
+        <div class="page-description">Let's create your first job listing.</div>
+        <div class="content">
+          <md-form-field class="job-title">
+            <input mdInput type="text" [(ngModel)]="firstJob.title" name="title" maxlength="150" placeholder="Job Name">
+            <div class="length">{{150 - firstJob.title.length}}</div>
+          </md-form-field>
+          <div class="label-form listing-visibility">
+            <div class="form-label">Listing Visibility</div>
+            <md-slide-toggle [checked]="firstJob.listingVisibility"></md-slide-toggle>
+          </div>
+          <div class="label-form job-description">
+            <div class="form-label">Short Job Description</div>
+            <div class="form-length">{{500 - firstJob.description.length}}</div>
+            <textarea class="form-value" [(ngModel)]="firstJob.description" maxlength="500" placeholder="Ex: We need 2 brand ambassadors for our product launch event in Central Park. Looking for fun and enthusiastic reps who enjoy talking to strangers!"></textarea>
+          </div>
+        </div>
+        <button md-button class="btn-next" (click)="currentView = 'step-2'">NEXT</button>
+      </div>
+      <div class="bottom">
+        <button md-button class="btn-light-blue btn-browse-talent">BROWSE TALENT</button>
+      </div>
+    </div>
+    <div class="first-job step-2" *ngIf="currentView == 'step-2'">
+      <a href="javascript:void(0)" class="help">?</a>
+      <div class="padding-wrapper">
+        <div class="step">STEP 2 OF 3</div>
+        <div class="page-title">Product Launch Event</div>
+        <div class="page-description">When & Where?</div>
+        <div class="content">
+          <md-form-field class="job-start-date" (click)="startDatePicker.open()">
+            <input mdInput [(ngModel)]="firstJob.startDate" [mdDatepicker]="startDatePicker" readonly placeholder="Job Start Date">
+            <md-datepicker-toggle mdSuffix [for]="startDatePicker"></md-datepicker-toggle>
+            <md-datepicker #startDatePicker></md-datepicker>
+          </md-form-field>
+          <div class="label-form job-duration">
+            <div class="form-label">Job Duration</div>
+            <div class="durations">
+              <div class="duration" [ngClass]="firstJob.duration.activeDay == day ? 'active' : ''" *ngFor="let day of firstJob.duration.days" (click)="firstJob.duration.activeDay = day">
+                <div class="value">{{day}}</div>
+                <div class="title">Day{{day > 1 ? 's' : ''}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="daily-start-end-time">
+            <div class="label-form start-time">
+              <div class="form-label">Daily Start Time</div>
+              <md-select [(ngModel)]="firstJob.startTime.time">
+                <md-option *ngFor="let item of firstJob.startTime.list" [value]="item.key">{{item.value}}</md-option>
+              </md-select>
+            </div>
+            <div class="label-form end-time">
+              <div class="form-label">Daily End Time</div>
+              <md-select [(ngModel)]="firstJob.endTime.time">
+                <md-option *ngFor="let item of firstJob.endTime.list" [value]="item.key">{{item.value}}</md-option>
+              </md-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

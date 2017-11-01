@@ -340,6 +340,7 @@
     padding-right: 30px;
     padding-left: 40px;
     line-height: 20px;
+    background-color: #F9F9F9;
     border: 1px solid #E1E1E3;
     border-radius: 3px;
 }
@@ -366,11 +367,11 @@
 /deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder-wrapper {
     overflow: unset;
 }
-/deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder.mat-form-field-empty {
-    padding-left: 30px;
-}
 /deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder {
     transition: none;
+}
+/deep/.panel-travel-dates .start-end-dates .mat-form-field-placeholder.mat-form-field-empty {
+    padding-left: 30px;
 }
 /deep/.panel-travel-dates .start-end-dates .mat-focused .mat-form-field-placeholder.mat-form-field-float {
     padding-left: 0;

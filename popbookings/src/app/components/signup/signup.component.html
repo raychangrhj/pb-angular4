@@ -101,7 +101,7 @@
               <input mdInput type="password" [(ngModel)]="hireUser.password" name="password" placeholder="Password">
             </md-form-field>
             <div style="height:39px;"></div>
-            <button md-button class="btn-light-red btn-create-account">CREATE ACCOUNT</button>
+            <button md-button class="btn-light-red btn-create-account" (click)="router.navigateByUrl('/business/myjobs')">CREATE ACCOUNT</button>
             <div class="btn-back" (click)="currentView = 'hire-1'">BACK</div>
           </form>
         </md-tab>

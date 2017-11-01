@@ -1,0 +1,120 @@
+/deep/.mat-dialog-container {
+    padding: 0;
+    max-width: 500px;
+    border-radius: 6px;
+    overflow: auto;
+    user-select: none;
+}
+.dialog-header {
+    position: relative;
+    padding: 30px 15px 20px 40px;
+    text-align: center;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.btn-close {
+    position: absolute;
+    top: 30px;
+    left: 5px;
+    color: #727272;
+}
+.title {
+    line-height: 36px;
+    font-family: CircularStd;
+    font-size: 28px;
+    font-weight: bold;
+    color: #484848;
+}
+.job-title {
+    padding-top: 10px;
+    line-height: 25px;
+    font-family: SFUIDisplay;
+    font-size: 21px;
+    color: #484848;
+}
+.dialog-content {
+    max-height: 465px;
+    overflow: auto;
+}
+.detail-table {
+    margin: 15px;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.detail-table-header {
+    padding: 15px;
+    line-height: 20px;
+    font-family: SFUIText;
+    font-size: 13px;
+    color: #9B9B9B;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid #E1E1E3;
+    text-transform: uppercase;
+}
+.detail-table-body {
+    padding-left: 15px;
+}
+.detail-item-wrapper {
+    position: relative;
+    padding: 20px 10px 20px 35px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 600;
+    color: #484848;
+}
+.detail-item:not(:first-child) .detail-item-wrapper {
+    border-top: 1px solid #E1E1E3;
+}
+.detail-item img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+}
+.detail-item.direct .detail-item-wrapper {
+    padding-right: 30px !important;
+}
+.detail-item.direct .detail-item-wrapper::after {
+    content: "\E315";
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    font-family: Material Icons;
+    font-size: 24px;
+    font-weight: normal;
+    color: #929292;
+}
+.detail-item.direct:hover {
+    cursor: pointer;
+}
+.btn-view-all {
+    line-height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #929292;
+    border-top: 1px solid #E1E1E3;
+    text-align: center;
+    transition: all 0.3s;
+}
+.btn-view-all:hover {
+    cursor: pointer;
+    color: #484848;
+}
+@media (min-width: 512px) {
+    .detail-table {
+        margin: 20px;
+    }
+}
+@media (min-width: 768px) {
+    /deep/.mat-dialog-container {
+        width: 500px;
+    }
+    .btn-close {
+        left: 10px;
+    }
+}

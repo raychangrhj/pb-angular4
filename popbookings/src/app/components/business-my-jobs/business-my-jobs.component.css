@@ -1,0 +1,330 @@
+.first-job {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    padding-top: 4px;
+    max-width: 710px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    text-align: center;
+    user-select: none;
+    overflow: auto;
+}
+.first-job::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+}
+.first-job.step-1 {
+    max-height: 672px;
+}
+.first-job.step-1::before {
+    background: linear-gradient(to right, #FFA6C6 0%, #FFA6C6 33.33%, #E1E1E3 33.33%);
+}
+.first-job.step-2::before {
+    background: linear-gradient(to right, #FC5A93 0%, #FC5A93 33.33%, #FFA6C6 33.33%, #FFA6C6 66.66%, #E1E1E3 66.66%);
+}
+.first-job .padding-wrapper {
+    width: 100%;
+}
+.first-job .help {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 24px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #B7B6BC;
+    border: 1px solid #B7B6BC;
+    border-radius: 50%;
+    text-decoration: none;
+}
+.first-job .step {
+    padding-top: 20px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.first-job .page-title {
+    padding: 30px 0 20px;
+    line-height: 36px;
+    font-family: CircularStd;
+    font-size: 28px;
+    font-weight: bold;
+    color: #484848;
+}
+.first-job .page-description {
+    padding-bottom: 15px;
+    line-height: 25px;
+    font-family: SFUIDisplay;
+    font-size: 21px;
+    color: #484848;
+}
+.first-job .content {
+    padding: 30px 20px 15px;
+    border-top: 1px solid #E1E1E3;
+    border-bottom: 1px solid #E1E1E3;
+}
+.first-job .job-title {
+    width: 100%;
+}
+.first-job .job-title input {
+    font-family: SFUIDisplay;
+    font-size: 21px;
+    font-weight: bold;
+    color: #484848;
+}
+.first-job .job-title .length {
+    position: absolute;
+    top: -11px;
+    right: 15px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #B7B6BC;
+}
+.first-job .label-form {
+    position: relative;
+    text-align: left;
+}
+.first-job .form-label,
+.first-job .form-length {
+    line-height: 12px;
+    font-family: SFUIText;
+    font-size: 12px;
+    color: #979797;
+}
+.first-job .form-label {
+    padding: 0 0 8px 15px;
+}
+.first-job .form-length {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+.first-job .form-value {
+    padding: 10px 0;
+    width: 100%;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+}
+.first-job .listing-visibility {
+    margin-top: 15px;
+}
+.first-job .listing-visibility md-slide-toggle {
+    position: relative;
+    margin-left: 115px;
+}
+.first-job .listing-visibility md-slide-toggle::before {
+    content: "Public Listing";
+    position: absolute;
+    left: -100px;
+    line-height: 30px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: bold;
+    color: #484848;
+}
+.first-job .job-description {
+    margin-top: 25px;
+}
+.first-job .job-description textarea {
+    padding: 12px;
+    height: 100px;
+    line-height: 20px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    color: #484848;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+    resize: none;
+}
+.first-job .job-description textarea::-webkit-input-placeholder {
+    color: #979797;
+}
+.first-job .btn-next {
+    margin: 20px 0;
+    width: 280px;
+    height: 50px;
+    font-family: SFUIText;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #484848;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.first-job .bottom {
+    padding: 20px 0;
+    background: linear-gradient(to bottom, #44C7FC 0%, #47B9F7 100%);
+    border: 1px solid #35A6E5;
+    border-radius: 0 0 3px 3px;
+    text-align: center;
+}
+.first-job .btn-browse-talent {
+    width: 200px;
+    height: 40px;
+    font-family: SFUIText;
+    font-size: 13px;
+}
+.first-job .btn-browse-talent::after {
+    content: "\E5C8";
+    position: absolute;
+    font-family: Material Icons;
+    font-size: 16px;
+}
+.first-job .job-start-date {
+    width: 100%;
+}
+/deep/.first-job .job-start-date .mat-form-field-wrapper {
+    padding: 20px 0 10px;
+}
+/deep/.first-job .job-start-date .mat-form-field-infix {
+    padding-right: 30px;
+    padding-left: 40px;
+    line-height: 20px;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+/deep/.first-job .job-start-date .mat-form-field-infix::before,
+/deep/.first-job .job-start-date .mat-form-field-infix::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: Material Icons;
+    font-size: 24px;
+}
+/deep/.first-job .job-start-date .mat-form-field-infix::before {
+    content: "\E878";
+    left: 10px;
+}
+/deep/.first-job .job-start-date .mat-form-field-infix::after {
+    content: "\E313";
+    right: 5px;
+    color: #929292;
+}
+/deep/.first-job .job-start-date .mat-form-field-infix input {
+    padding-left: 0;
+}
+/deep/.first-job .job-start-date .mat-form-field-placeholder-wrapper {
+    overflow: unset;
+}
+/deep/.first-job .job-start-date .mat-form-field-placeholder {
+    transition: none;
+}
+/deep/.first-job .job-start-date .mat-form-field-placeholder.mat-form-field-empty {
+    padding-left: 30px;
+}
+/deep/.first-job .job-start-date .mat-focused .mat-form-field-placeholder.mat-form-field-float {
+    padding-left: 0;
+}
+/deep/.first-job .job-start-date .mat-focused .mat-form-field-placeholder.mat-form-field-float,
+/deep/.first-job .job-start-date .mat-form-field-placeholder.mat-form-field-float:not(.mat-form-field-empty) {
+    transform: translateY(-2em) scale(.86) perspective(100px) translateZ(.001px);
+}
+/deep/.first-job .job-start-date .mat-form-field-suffix {
+    display: none;
+}
+/deep/.first-job .job-start-date .mat-form-field-underline {
+    background-color: transparent;
+}
+/deep/.first-job .job-start-date .mat-form-field-ripple {
+    display: none;
+}
+.job-duration {
+    padding-top: 20px;
+}
+.job-duration .durations {
+    display: flex;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.job-duration .duration {
+    flex: auto;
+    padding: 5px 0;
+    color: #929292;
+    text-align: center;
+    transition: all 0.3s;
+}
+.job-duration .duration:not(:last-child) {
+    border-right: 1px solid #E1E1E3;
+}
+.job-duration .duration:hover {
+    cursor: pointer;
+}
+.job-duration .duration.active {
+    color: white;
+    background: linear-gradient(320deg, #42D1FF 0%, #48B8F7 100%);
+}
+.job-duration .duration .value {
+    line-height: 25px;
+    font-family: CircularStd;
+    font-size: 20px;
+    font-weight: bold;
+}
+.job-duration .duration .title {
+    line-height: 15px;
+    font-family: SFUIDisplay;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+.first-job .daily-start-end-time {
+    padding-top: 30px;
+    text-align: left;
+}
+.first-job .daily-start-end-time > div {
+    display: inline-block;
+    width: calc(50% - 10px);
+}
+.first-job .start-time {
+    margin-right: 16px;
+}
+.first-job .daily-start-end-time .mat-select {
+    position: relative;
+    padding: 0;
+    width: 100%;
+    background-color: #F9F9F9;
+    border: 1px solid #E1E1E3;
+    border-radius: 3px;
+}
+.first-job .daily-start-end-time .mat-select::after {
+    content: "\E313";
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-family: Material Icons;
+    font-size: 24px;
+    color: #979797;
+}
+/deep/.first-job .daily-start-end-time .mat-select-trigger {
+    height: 34px;
+}
+/deep/.first-job .daily-start-end-time .mat-select-value {
+    padding: 0 30px 0 10px;
+    font-family: SFUIDisplay;
+    font-size: 15px;
+    font-weight: 600;
+    color: #484848;
+}
+/deep/.first-job .daily-start-end-time .mat-select-arrow {
+    border: none !important;
+}
+/deep/.first-job .daily-start-end-time .mat-select-underline {
+    display: none !important;
+}
+@media (min-width: 768px) {
+    .first-job .padding-wrapper {
+        margin-right: auto;
+        margin-left: auto;
+        width: 535px;
+    }
+}

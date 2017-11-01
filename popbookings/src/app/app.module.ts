@@ -61,6 +61,11 @@ import { ApplyWorkDialogComponent } from './components/apply-work-dialog/apply-w
 import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ReadyBookDialogComponent } from './components/ready-book-dialog/ready-book-dialog.component';
+import { ConversationDetailsDialogComponent } from './components/conversation-details-dialog/conversation-details-dialog.component';
+import { BusinessMyJobsComponent } from './components/business-my-jobs/business-my-jobs.component';
+import { BusinessTalentSearchComponent } from './components/business-talent-search/business-talent-search.component';
+import { BusinessMessagesComponent } from './components/business-messages/business-messages.component';
+import { BusinessPaymentsComponent } from './components/business-payments/business-payments.component';
 
 var routes = [
   { path: "", component: WelcomeComponent, data: { title: "PopBookings" } },
@@ -83,7 +88,11 @@ var routes = [
   { path: "settings-talent", component: SettingsTalentComponent, data: { title: "Settings" } },
   { path: "jobdetails", component: JobDetailsComponent, data: { title: "Job Details" } },
   { path: "Account/ConfirmAccount/:token", component: AccountComponent, data:{ title: "Confirm Account" } },
-  { path: "Account/SetPhoneNumber/:phoneNumber", component: AccountComponent, data: { title: "Set Phone Number" } }
+  { path: "Account/SetPhoneNumber/:phoneNumber", component: AccountComponent, data: { title: "Set Phone Number" } },
+  { path: "business/myjobs", component: BusinessMyJobsComponent, data: { title: "My Jobs"} },
+  { path: "business/talentsearch", component: BusinessTalentSearchComponent, data: { title: "Talent Search" } },
+  { path: "business/messages", component: BusinessMessagesComponent, data: { title: "Messages" } },
+  { path: "business/payments", component: BusinessPaymentsComponent, data: { title: "Payments" } }
 ];
 
 export class CustomDateAdapter extends NativeDateAdapter {
@@ -141,7 +150,12 @@ const CUSTOM_DATE_FORMATS = {
     ApplyWorkDialogComponent,
     AlertBarComponent,
     ConfirmDialogComponent,
-    ReadyBookDialogComponent
+    ReadyBookDialogComponent,
+    ConversationDetailsDialogComponent,
+    BusinessMyJobsComponent,
+    BusinessTalentSearchComponent,
+    BusinessMessagesComponent,
+    BusinessPaymentsComponent
   ],
   entryComponents: [
     AgencyConnectionDialogComponent,
@@ -150,7 +164,8 @@ const CUSTOM_DATE_FORMATS = {
     BookingInviteDialogComponent,
     ApplyWorkDialogComponent,
     ConfirmDialogComponent,
-    ReadyBookDialogComponent
+    ReadyBookDialogComponent,
+    ConversationDetailsDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -53,7 +53,7 @@
                         <md-icon>forward</md-icon>
                     </button>
                     <div class="title">{{currentConversation.title}}</div>
-                    <div class="btn-detail"></div>
+                    <div class="btn-detail" (click)="openConversationDetailsDialog()"></div>
                     <div class="message-segments-wrapper">
                         <div class="segment" [ngClass]="messageType == 'direct' ? 'active' : ''" (click)="messageType='direct'">DIRECT</div>
                         <div class="segment" [ngClass]="messageType == 'group' ? 'active' : ''" (click)="messageType='group'">GROUP</div>

@@ -17,7 +17,7 @@
           <a href="{{item.path}}">
             <div class="nav-item" id="{{item.id}}" [ngClass]="item.id === activeNavItem ? 'active' : 'k'">
               <span>{{item.title}}</span>
-              <span *ngIf="item.notification" class="circle-notification"></span>
+              <span class="circle-notification" *ngIf="item.notification"></span>
             </div>
           </a>
         </li>
@@ -27,12 +27,13 @@
         <li *ngIf="hasAccount; else elseBlock">
           <div class="dropdown">
             <div class="dropdown-button">
-              <img src="assets/images/navbar-jessica.png">
-              <span>Jessica Davis</span>
+              <div class="circle-notification" *ngIf="user.notification"></div>
+              <img [src]="user.avatar">
+              <span>{{user.name}}</span>
             </div>
             <ul *ngIf="dropdownMenuToggle" class="dropdown-menu">
-              <li><a href="profile-talent">VIEW PROFILE</a></li>
-              <li><a href="settings-talent">ACCOUNT SETTINGS</a></li>
+              <li><a [href]="profileLink">VIEW PROFILE</a></li>
+              <li><a [href]="settingsLink">ACCOUNT SETTINGS</a></li>
               <li><a href="javascript:void(0)">SIGN OUT</a></li>
             </ul>
           </div>

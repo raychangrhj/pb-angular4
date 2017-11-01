@@ -1,0 +1,36 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <button md-icon-button class="btn-close" (click)="dialogRef.close()">
+      <md-icon class="md-24">close</md-icon>
+    </button>
+    <div class="title">Conversation Details</div>
+    <div class="job-title">{{jobTitle}}</div>
+  </div>
+  <div class="dialog-content">
+    <div class="detail-table">
+      <div class="detail-table-header">Direct Contact</div>
+      <div class="detail-table-body">
+        <div class="detail-item direct">
+          <div class="detail-item-wrapper">
+            <img [src]="direct.avatar">
+            <span>{{direct.name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-table">
+      <div class="detail-table-header">Group Participants</div>
+      <div class="detail-table-body">
+        <div class="detail-item" *ngFor="let item of group; let i = index">
+          <div class="detail-item-wrapper" *ngIf="groupAllVisible || i < 3">
+            <img [src]="item.avatar">
+            <span>{{item.name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="btn-view-all" *ngIf="group.length > 3" (click)="groupAllVisible = !groupAllVisible">
+        {{groupAllVisible ? "LESS" : "VIEW ALL"}}
+      </div>
+    </div>
+  </div>
+</div>
