@@ -8,17 +8,18 @@
         <div class="page-title">Ok {{userName}}, let's verify your mobile device.</div>
         <div>
           <div class="field-label">Select a Country</div>
-          <md-select [(ngModel)]="country">
-            <md-option *ngFor="let item of countryList" [value]="item.key">{{item.value}}</md-option>
+          <md-select [(ngModel)]="country.name">
+            <md-option *ngFor="let item of countryList; let i = index" [value]="item.name" (click)="countryChanged(i)">{{item.name}}</md-option>
           </md-select>
         </div>
         <md-form-field>
-          <input mdInput type="text" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number">
-          <div class="btn-send">Send</div>
+          <input mdInput type="text" [(ngModel)]="phoneNumber.value" (keypress)="maskNumber($event)" name="phoneNumber" maxlength="12" placeholder="Enter Phone Number">
+          <span class="form-field-error" *ngIf="!phoneNumber.valid">{{phoneNumber.error}}</span>
+          <div class="btn-send" [ngClass]="working ? 'disabled' : ''" (click)="sendCode()">Send</div>
         </md-form-field>
-        <input type="text" class="verify-code" [(ngModel)]="verifyCode" placeholder="0-0-0-0-0">
+        <input type="text" class="verify-code" [(ngModel)]="verifyCode.input" (keypress)="maskNumber($event)" maxlength="5" placeholder="0-0-0-0-0">
         <div class="hint-message">Enter 5-digit code you receive via SMS.</div>
-        <button md-button class="btn-next" (click)="router.navigateByUrl('/signup-gender-birthday')">NEXT</button>
+        <button md-button class="btn-next" [disabled]="verifyCode.input.length != 5" (click)="verify()">NEXT</button>
         <div class="btn-back" (click)="location.back()">BACK</div>
       </div>
     </div>

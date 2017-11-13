@@ -7,29 +7,29 @@
         <div class="step">STEP 2 OF 6</div>
         <div class="page-title">Great! Select a gender and enter your birthday.</div>
         <div class="gender-segments-wrapper">
-          <div class="gender" [ngClass]="getGenderActive('male')" (click)="onGenderSelected('male')">MALE</div>
-          <div class="gender" [ngClass]="getGenderActive('female')" (click)="onGenderSelected('female')">FEMALE</div>
-          <div class="gender" [ngClass]="getGenderActive('other')" (click)="onGenderSelected('other')">OTHER</div>
+          <div class="gender" [ngClass]="getGenderActive('M')" (click)="genderSelected('M')">MALE</div>
+          <div class="gender" [ngClass]="getGenderActive('F')" (click)="genderSelected('F')">FEMALE</div>
+          <div class="gender" [ngClass]="getGenderActive('O')" (click)="genderSelected('O')">OTHER</div>
         </div>
         <div class="birthday-wrapper">
           <div class="form-field-wrapper" for="month">
-            <input type="number" id="month" [(ngModel)]="birthday.month" (keyup)="validateMonth()" min="1" max="12" placeholder="MM">
-            <span *ngIf="!birthday.monthValid" class="form-field-error">Month</span>
+            <input type="text" id="month" [(ngModel)]="birthday.month.value" (keypress)="maskNumber($event)" maxlength="2" placeholder="MM">
+            <span class="form-field-error" *ngIf="!birthday.month.valid">Month</span>
           </div>
           <div class="form-field-wrapper" for="day">
-            <input type="number" id="day" [(ngModel)]="birthday.day" (keyup)="validateDay()" min="1" max="31" placeholder="DD">
-            <span *ngIf="!birthday.dayValid" class="form-field-error">Day</span>
+            <input type="text" id="day" [(ngModel)]="birthday.day.value" (keypress)="maskNumber($event)" maxlength="2" placeholder="DD">
+            <span class="form-field-error" *ngIf="!birthday.day.valid">Day</span>
           </div>
           <div class="form-field-wrapper" for="year">
-            <input type="number" id="year" [(ngModel)]="birthday.year" (keyup)="validateYear()" min="1900" max="2100" placeholder="YYYY">
-            <span *ngIf="!birthday.yearValid" class="form-field-error">Year</span>
+            <input type="text" id="year" [(ngModel)]="birthday.year.value" (keypress)="maskNumber($event)" maxlength="4" placeholder="YYYY">
+            <span class="form-field-error" *ngIf="!birthday.year.valid">Year</span>
           </div>
         </div>
         <div class="hint-message">
           <div>Your gender and birthday will not be made public.</div>
           <a href="javascript:void(0)"><div>View our Terms & Conditions</div></a>
         </div>
-        <button md-button class="btn-next" (click)="onNextButtonClicked()">NEXT</button>
+        <button md-button class="btn-next" [disabled]="working" (click)="submit()">NEXT</button>
         <div class="btn-back" (click)="location.back()">BACK</div>
       </div>
     </div>

@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-title">I'm looking for work</div>
                     <div class="col-description">Get paid to work temporary<br>jobs & events</div>
-                    <button md-button class="btn-light-blue" (click)="router.navigate(['/signup', {view: 'work-1'}])">WORK</button>
+                    <button md-button class="btn-light-blue" (click)="router.navigateByUrl('/signup/work')">WORK</button>
                 </div>
                 <div class="col">
                     <div class="img-wrapper">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-title">I'm looking for staff</div>
                     <div class="col-description">Hire temporary staff to work<br>your company's jobs & events</div>
-                    <button md-button class="btn-light-red" (click)="router.navigate(['/signup', {view: 'hire-1'}])">HIRE</button>
+                    <button md-button class="btn-light-red" (click)="router.navigateByUrl('/signup/hire')">HIRE</button>
                 </div>
                 <div class="col">
                     <div class="img-wrapper">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-title">I have staff to manage</div>
                     <div class="col-description">Connect with talent, fill temporary<br>job openings & manage your staff</div>
-                    <button md-button class="btn-light-green" (click)="router.navigate(['/signup', {view: 'manage-1'}])">MANAGE</button>
+                    <button md-button class="btn-light-green" (click)="router.navigateByUrl('/signup/manage')">MANAGE</button>
                 </div>
             </div>
         </div>

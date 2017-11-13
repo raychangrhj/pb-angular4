@@ -4,7 +4,7 @@
     <div class="signup">
       <md-tab-group [selectedIndex]="currentTab" (selectChange)="onLinkClick($event)">
         <md-tab label="WORK">
-          <div *ngIf="currentView == 'work-1'" class="tab-view">
+          <div *ngIf="currentView == 'work'" class="tab-view">
             <a href="javascript:void(0)" class="help">?</a>
             <div class="logo-wrapper">
               <img src="assets/images/popbookings-logo.png">
@@ -31,20 +31,24 @@
               <img src="assets/images/popbookings-logo.png">
             </div>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="workUser.firstName" name="firstName" placeholder="First Name">
+              <input mdInput type="text" [(ngModel)]="workUser.firstName.value" name="firstName" placeholder="First Name">
+              <span class="form-field-error" *ngIf="!workUser.firstName.valid">{{workUser.firstName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="workUser.lastName" name="lastName" placeholder="Last Name">
+              <input mdInput type="text" [(ngModel)]="workUser.lastName.value" name="lastName" placeholder="Last Name">
+              <span class="form-field-error" *ngIf="!workUser.lastName.valid">{{workUser.lastName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="email" [(ngModel)]="workUser.email" name="email" placeholder="Email">
+              <input mdInput type="email" [(ngModel)]="workUser.email.value" name="email" placeholder="Email">
+              <span class="form-field-error" *ngIf="!workUser.email.valid">{{workUser.email.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="password" [(ngModel)]="workUser.password" name="password" placeholder="Password">
+              <input mdInput type="password" [(ngModel)]="workUser.password.value" name="password" placeholder="Password">
+              <span class="form-field-error" *ngIf="!workUser.password.valid">{{workUser.password.error}}</span>
             </md-form-field>
             <div style="height:92px;"></div>
-            <button md-button type="submit" class="btn-light-blue btn-create-account">CREATE ACCOUNT</button>
-            <div class="btn-back" (click)="currentView = 'work-1'">BACK</div>
+            <button md-button type="submit" class="btn-light-blue btn-create-account" [disabled]="working">CREATE ACCOUNT</button>
+            <div class="btn-back" (click)="currentView = 'work'">BACK</div>
           </form>
           <div *ngIf="currentView == 'work-3'" class="tab-view">
             <a href="javascript:void(0)" class="help">?</a>
@@ -52,14 +56,14 @@
               <img src="assets/images/popbookings-logo.png">
             </div>
             <img src="assets/images/email-sent-icon.png">
-            <div class="email-sent-message">We sent a verification email to: <b>{{workUser.email}}</b></div>
+            <div class="email-sent-message">We sent a verification email to: <b>{{workUser.email.value}}</b></div>
             <div class="description-small">Click on the verification URL in the email to finalize account creation and start building your PopBookings profile!</div>
-            <button md-button class="btn-resend-email" (click)="router.navigateByUrl('/signup-mobile')">RE-SEND EMAIL</button>
+            <button md-button class="btn-resend-email" (click)="resendEmail()">RE-SEND EMAIL</button>
             <div class="btn-back" (click)="currentView = 'work-2'">BACK</div>
           </div>
         </md-tab>
         <md-tab label="HIRE" [attr.aria-selected-rhj]=true>
-          <div *ngIf="currentView == 'hire-1'" class="tab-view">
+          <div *ngIf="currentView == 'hire'" class="tab-view">
             <a href="javascript:void(0)" class="help">?</a>
             <div class="logo-wrapper">
               <img src="assets/images/popbookings-logo.png">
@@ -80,33 +84,38 @@
             </button>
             <div class="btn-back" (click)="location.back()">BACK</div>
           </div>
-          <form *ngIf="currentView == 'hire-2'" class="tab-view">
+          <form *ngIf="currentView == 'hire-2'" class="tab-view" (submit)="submitHireForm()">
             <a href="javascript:void(0)" class="help">?</a>
             <div class="logo-wrapper">
               <img src="assets/images/popbookings-logo.png">
             </div>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="hireUser.firstName" name="firstName" placeholder="First Name">
+              <input mdInput type="text" [(ngModel)]="hireUser.firstName.value" name="firstName" placeholder="First Name">
+              <span class="form-field-error" *ngIf="!hireUser.firstName.valid">{{hireUser.firstName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="hireUser.lastName" name="lastName" placeholder="Last Name">
+              <input mdInput type="text" [(ngModel)]="hireUser.lastName.value" name="lastName" placeholder="Last Name">
+              <span class="form-field-error" *ngIf="!hireUser.lastName.valid">{{hireUser.lastName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="hireUser.companyName" name="companyName" placeholder="Company Name">
+              <input mdInput type="text" [(ngModel)]="hireUser.companyName.value" name="companyName" placeholder="Company Name">
+              <span class="form-field-error" *ngIf="!hireUser.companyName.valid">{{hireUser.companyName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="email" [(ngModel)]="hireUser.email" name="email" placeholder="Email">
+              <input mdInput type="email" [(ngModel)]="hireUser.email.value" name="email" placeholder="Email">
+              <span class="form-field-error" *ngIf="!hireUser.email.valid">{{hireUser.email.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="password" [(ngModel)]="hireUser.password" name="password" placeholder="Password">
+              <input mdInput type="password" [(ngModel)]="hireUser.password.value" name="password" placeholder="Password">
+              <span class="form-field-error" *ngIf="!hireUser.password.valid">{{hireUser.password.error}}</span>
             </md-form-field>
             <div style="height:39px;"></div>
-            <button md-button class="btn-light-red btn-create-account" (click)="router.navigateByUrl('/business/myjobs')">CREATE ACCOUNT</button>
-            <div class="btn-back" (click)="currentView = 'hire-1'">BACK</div>
+            <button md-button type="submit" class="btn-light-red btn-create-account" [disabled]="working">CREATE ACCOUNT</button>
+            <div class="btn-back" (click)="currentView = 'hire'">BACK</div>
           </form>
         </md-tab>
         <md-tab label="MANAGE">
-          <div *ngIf="currentView == 'manage-1'" class="tab-view">
+          <div *ngIf="currentView == 'manage'" class="tab-view">
             <a href="javascript:void(0)" class="help">?</a>
             <div class="logo-wrapper">
               <img src="assets/images/popbookings-logo.png">
@@ -127,29 +136,34 @@
             </button>
             <div class="btn-back" (click)="location.back()">BACK</div>
           </div>
-          <form *ngIf="currentView == 'manage-2'" class="tab-view">
+          <form *ngIf="currentView == 'manage-2'" class="tab-view" (submit)="submitManageForm()">
             <a href="javascript:void(0)" class="help">?</a>
             <div class="logo-wrapper">
               <img src="assets/images/popbookings-logo.png">
             </div>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="manageUser.firstName" name="firstName" placeholder="First Name">
+              <input mdInput type="text" [(ngModel)]="manageUser.firstName.value" name="firstName" placeholder="First Name">
+              <span class="form-field-error" *ngIf="!manageUser.firstName.valid">{{manageUser.firstName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="manageUser.lastName" name="lastName" placeholder="Last Name">
+              <input mdInput type="text" [(ngModel)]="manageUser.lastName.value" name="lastName" placeholder="Last Name">
+              <span class="form-field-error" *ngIf="!manageUser.lastName.valid">{{manageUser.lastName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="text" [(ngModel)]="manageUser.companyName" name="companyName" placeholder="Company Name">
+              <input mdInput type="text" [(ngModel)]="manageUser.companyName.value" name="companyName" placeholder="Company Name">
+              <span class="form-field-error" *ngIf="!manageUser.companyName.valid">{{manageUser.companyName.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="email" [(ngModel)]="manageUser.email" name="email" placeholder="Email">
+              <input mdInput type="email" [(ngModel)]="manageUser.email.value" name="email" placeholder="Email">
+              <span class="form-field-error" *ngIf="!manageUser.email.valid">{{manageUser.email.error}}</span>
             </md-form-field>
             <md-form-field>
-              <input mdInput type="password" [(ngModel)]="manageUser.password" name="password" placeholder="Password">
+              <input mdInput type="password" [(ngModel)]="manageUser.password.value" name="password" placeholder="Password">
+              <span class="form-field-error" *ngIf="!manageUser.password.valid">{{manageUser.password.error}}</span>
             </md-form-field>
             <div style="height:39px;"></div>
-            <button md-button class="btn-light-green btn-create-account">CREATE ACCOUNT</button>
-            <div class="btn-back" (click)="currentView = 'manage-1'">BACK</div>
+            <button md-button type="submit" class="btn-light-green btn-create-account" [disabled]="working">CREATE ACCOUNT</button>
+            <div class="btn-back" (click)="currentView = 'manage'">BACK</div>
           </form>
         </md-tab>
       </md-tab-group>

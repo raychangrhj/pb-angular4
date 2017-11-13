@@ -1,7 +1,6 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from 'app/services/common.service';
-import { DataService } from 'app/services/data.service';
+import { AccountService } from 'app/services/account.service';
 
 @Component({
   selector: 'app-account',
@@ -9,32 +8,32 @@ import { DataService } from 'app/services/data.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  token: string;
-  phoneNumber: string;
-  success: string;
-  id: string;
+  response: string;
 
   constructor(
-    private elementRef: ElementRef,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private commonService: CommonService,
-    private dataService: DataService
+    private accountService: AccountService
   ) { }
 
   ngOnInit() {
+    var token: string;
+    var hint: string;
     this.activatedRoute.params.subscribe(params => {
-      this.token = params.token;
-      this.phoneNumber = params.phoneNumber;
+      var tokenLength = params.Token.length;
+      var paddingCount = (4 - tokenLength % 4) % 4;
+      token = params.Token + "=".repeat(paddingCount);
+      hint = params.Hint;
     });
-    if(this.token) this.confirmAccount();
+    if(token) this.confirmAccount(token, hint);
   }
 
-  confirmAccount() {
-    this.dataService.getAccountData(this.token).subscribe(res => {
-      console.log(res);
-      this.success = res.success;
-      this.id = res.id;
+  confirmAccount(token, hint) {
+    this.accountService.confirmAccount(token, hint).subscribe(res => {
+      if(res.success && res.id) {
+        this.accountService.token = res.id;
+        this.router.navigateByUrl("signup-rate");
+      }
     });
   }
 

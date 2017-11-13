@@ -108,7 +108,10 @@
     font-size: 15px;
     color: #FC5A93;
 }
-.signup md-form-field .btn-send:hover {
+.signup md-form-field .btn-send.disabled {
+    color: #929292;
+}
+.signup md-form-field .btn-send:not(.disabled):hover {
     cursor: pointer;
     color: red;
 }

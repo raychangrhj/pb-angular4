@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AccountService } from 'app/services/account.service';
 
 @Component({
   selector: 'app-signup-skill',
@@ -11,16 +12,30 @@ import { Location } from '@angular/common';
   }
 })
 export class SignupSkillComponent implements OnInit {
-  allSkills: string[];
-  filteredSkills: string[];
-  selectedSkills: string[];
+  allSkills: any[];
+  filteredSkills: any[];
+  selectedSkills: any[];
   searchSkill: string;
   notMatched: boolean;
+  working: boolean = false;
 
-  constructor(private router: Router, private location: Location, private elementRef: ElementRef) { }
+  constructor(
+    private elementRef: ElementRef,
+    private router: Router,
+    private location: Location,
+    private accountService: AccountService
+  ) { }
 
   ngOnInit() {
-    this.allSkills = ["Angular", "CSS", "CSS3", "JavaScript", "jQuery"];
+    this.allSkills = [];
+    this.accountService.getSkills().subscribe(res => {
+      res.skills.forEach(skill => {
+        this.allSkills.push({
+          id: skill.skillId,
+          description: this.accountService.cryptoService.decrypt(skill.skillDescription)
+        });
+      });
+    });
     this.filteredSkills = [];
     this.selectedSkills = [];
     this.searchSkill = "";
@@ -33,8 +48,8 @@ export class SignupSkillComponent implements OnInit {
     if(!filterSkillPanel.contains(event.target)) this.filteredSkills = [];
   }
 
-  filterSkills(event) {
-    this.filteredSkills = this.allSkills.filter(skill => skill.toLowerCase().indexOf(event.target.value.toLowerCase()) === 0);
+  filterSkill(event) {
+    this.filteredSkills = this.allSkills.filter(skill => skill.description.toLowerCase().indexOf(event.target.value.toLowerCase()) === 0);
     this.notMatched = this.filteredSkills.length === 0;
   }
 
@@ -58,9 +73,25 @@ export class SignupSkillComponent implements OnInit {
 
   findSkill(skill) {
     for(var i = 0; i < this.selectedSkills.length; i++) {
-      if(this.selectedSkills[i] === skill) return i;
+      if(this.selectedSkills[i].id === skill.id) return i;
     }
     return -1;
+  }
+
+  submit() {
+    var skills = [];
+    this.selectedSkills.forEach(skill => {
+      skills.push(skill.id);
+    });
+    this.working = true;
+    this.accountService.addSkills(skills).subscribe(res => {
+      if(res.success) {
+        this.router.navigateByUrl("signup-rate");
+      } else {
+        console.log("failed");
+      }
+      this.working = false;
+    });
   }
 
 }

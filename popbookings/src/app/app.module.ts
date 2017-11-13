@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { PersistenceModule } from 'angular-persistence';
 import {
   DateAdapter,
   MdAutocompleteModule,
@@ -30,6 +31,8 @@ import * as moment from 'moment';
 import { AppComponent } from './app.component';
 import { CommonService } from './services/common.service';
 import { DataService } from './services/data.service';
+import { CryptoService } from './services/crypto.service';
+import { AccountService } from './services/account.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { SigninComponent } from './components/signin/signin.component';
@@ -70,7 +73,7 @@ import { BusinessPaymentsComponent } from './components/business-payments/busine
 var routes = [
   { path: "", component: WelcomeComponent, data: { title: "PopBookings" } },
   { path: "signin", component: SigninComponent, data: { title: "SignIn" } },
-  { path: "signup", component: SignupComponent, data: { title: "SignUp", view: "" } },
+  { path: "signup/:view", component: SignupComponent, data: { title: "SignUp" } },
   { path: "signup-mobile", component: SignupMobileComponent, data: { title: "Verify Mobile" } },
   { path: "signup-gender-birthday", component: SignupGenderBirthdayComponent, data: { title: "Gender & Birthday" } },
   { path: "signup-skill", component: SignupSkillComponent, data: { title: "Skills" } },
@@ -87,8 +90,7 @@ var routes = [
   { path: "profile-business", component: ProfileBusinessComponent, data: { title: "Business Profile" } },
   { path: "settings-talent", component: SettingsTalentComponent, data: { title: "Settings" } },
   { path: "jobdetails", component: JobDetailsComponent, data: { title: "Job Details" } },
-  { path: "Account/ConfirmAccount/:token", component: AccountComponent, data:{ title: "Confirm Account" } },
-  { path: "Account/SetPhoneNumber/:phoneNumber", component: AccountComponent, data: { title: "Set Phone Number" } },
+  { path: "Account/ConfirmAccount/:Token/:Hint", component: AccountComponent, data:{ title: "Confirm Account" } },
   { path: "business/myjobs", component: BusinessMyJobsComponent, data: { title: "My Jobs"} },
   { path: "business/talentsearch", component: BusinessTalentSearchComponent, data: { title: "Talent Search" } },
   { path: "business/messages", component: BusinessMessagesComponent, data: { title: "Messages" } },
@@ -174,6 +176,7 @@ const CUSTOM_DATE_FORMATS = {
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
+    PersistenceModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,
@@ -196,6 +199,8 @@ const CUSTOM_DATE_FORMATS = {
   providers: [
     CommonService,
     DataService,
+    CryptoService,
+    AccountService,
     { provide: DateAdapter, useClass: CustomDateAdapter },
     { provide: MD_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
   ],

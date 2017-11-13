@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import * as moment from 'moment';
+import { AccountService } from 'app/services/account.service';
+import { FormField } from 'app/classes/form-field';
 
 @Component({
   selector: 'app-signup-gender-birthday',
@@ -10,21 +11,21 @@ import * as moment from 'moment';
 })
 export class SignupGenderBirthdayComponent implements OnInit {
   gender: string;
-  birthday: Birthday;
+  birthday: any;
+  working: boolean = false;
 
-
-  constructor(private router: Router, private location: Location) { }
+  constructor(
+    private router: Router,
+    private location: Location,
+    private accountService: AccountService
+  ) { }
 
   ngOnInit() {
-    this.gender = "male";
-    var now = moment();
+    this.gender = "M";
     this.birthday = {
-      month: parseInt(now.format("MM")),
-      day: parseInt(now.format("DD")),
-      year: parseInt(now.format("YYYY")),
-      monthValid: true,
-      dayValid: true,
-      yearValid: true,
+      month: new FormField(),
+      day: new FormField(),
+      year: new FormField(),
       valid: false
     }
   }
@@ -33,42 +34,29 @@ export class SignupGenderBirthdayComponent implements OnInit {
     return this.gender == gender ? "active" : "";
   }
 
-  onGenderSelected(gender) {
+  genderSelected(gender) {
     this.gender = gender;
   }
 
-  validateMonth() {
-    this.birthday.monthValid = this.birthday.month >= 1 && this.birthday.month <= 12;
+  maskNumber(event) {
+    if(event.key < '0' || event.key > '9') event.preventDefault();
   }
 
-  validateDay() {
-    this.birthday.dayValid = this.birthday.day >= 1 && this.birthday.day <= 31;
+  submit() {
+    this.birthday.valid = this.birthday.month.validate({ type: "month" });
+    this.birthday.valid &= this.birthday.day.validate({ type: "day" });
+    this.birthday.valid &= this.birthday.year.validate({ type: "year" });
+    if(!this.birthday.valid) return;
+    this.working = true;
+    var birthday = this.birthday.month.value + "/" + this.birthday.day.value + "/" + this.birthday.year.value;
+    this.accountService.updateTalentGenderAndBirthday(this.gender, birthday).subscribe(res => {
+      if(res.success) {
+        if(this.birthday.valid) this.router.navigateByUrl('/signup-skill');
+      } else {
+        console.log("failed");
+      }
+      this.working = false;
+    });
   }
 
-  validateYear() {
-    this.birthday.yearValid = this.birthday.year >= 1900 && this.birthday.year <= 2100;
-  }
-
-  validateBirthday() {
-    this.validateMonth();
-    this.validateDay();
-    this.validateYear();
-    this.birthday.valid = this.birthday.monthValid && this.birthday.dayValid && this.birthday.yearValid;
-  }
-
-  onNextButtonClicked() {
-    this.validateBirthday();
-    if(this.birthday.valid) this.router.navigateByUrl('/signup-skill');
-  }
-
-}
-
-interface Birthday {
-  month: number;
-  day: number;
-  year: number;
-  monthValid: boolean;
-  dayValid: boolean;
-  yearValid: boolean;
-  valid: boolean;
 }

@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
-  endpoint: string;
 
-  constructor(private http: Http) {
-    this.endpoint = "https://pb-dev-api-eastus.azurewebsites.net/api/v1"
-  }
+  constructor() { }
 
   getJobBoardData() {
     return [
@@ -365,12 +360,6 @@ export class DataService {
         rating: 5
       }
     ];
-  }
-
-  getAccountData(token) {
-    var apiUrl = this.endpoint + "/Account/ConfirmToken";
-    var body = { token: token };
-    return this.http.post(apiUrl, body).map(res => res.json());
   }
 
 }

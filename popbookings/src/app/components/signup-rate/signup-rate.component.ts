@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AccountService } from 'app/services/account.service';
+import { FormField } from 'app/classes/form-field';
 
 @Component({
   selector: 'app-signup-rate',
@@ -8,29 +10,34 @@ import { Location } from '@angular/common';
   styleUrls: ['./signup-rate.component.css']
 })
 export class SignupRateComponent implements OnInit {
-  rate: number;
-  rateValid: boolean;
-  rateError: string;
+  rate: any;
+  working: boolean = false;
 
-  constructor(private router: Router, private location: Location) { }
+  constructor(
+    private router: Router,
+    private location: Location,
+    private accountService: AccountService
+  ) { }
 
   ngOnInit() {
-    this.rateValid = false;
-    this.rateError = "";
+    this.rate = new FormField();
   }
 
   validateRate() {
-    this.rateValid = false;
-    if(this.rate) {
-      if(this.rate >= 3 && this.rate <= 999) {
-        this.rateValid = true;
-        this.rateError = "";
+    return this.rate.validate({ type: "rate" });
+  }
+
+  submit() {
+    if(!this.validateRate()) return;
+    this.working = true;
+    this.accountService.updateTalentRate(this.rate.value).subscribe(res => {
+      if(res.success) {
+        this.router.navigateByUrl("/signup-photo");
       } else {
-        this.rateError = "Enter in 3 to 999";
+        console.log("failed");
       }
-    } else {
-      this.rateError = "This is required";
-    }
+      this.working = false;
+    });
   }
 
 }

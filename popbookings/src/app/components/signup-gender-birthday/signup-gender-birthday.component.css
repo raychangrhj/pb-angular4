@@ -114,10 +114,6 @@
 .signup input#year {
     width: 105px;
 }
-.signup .birthday-wrapper input::-webkit-inner-spin-button,
-.signup .birthday-wrapper input::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-}
 .signup .birthday-wrapper input::-webkit-input-placeholder {
     color: #B7B6BC;
 }

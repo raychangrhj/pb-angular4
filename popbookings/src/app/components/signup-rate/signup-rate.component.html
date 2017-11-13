@@ -8,8 +8,8 @@
       <div class="set-rate-wrapper">
         <span>$</span>
         <div class="form-field-wrapper">
-          <input type="number" id="rate" [(ngModel)]="rate" (keyup)="validateRate()" min="3" max="999" placeholder="20.00">
-          <span *ngIf="!rateValid" class="form-field-error">{{rateError}}</span>
+          <input type="number" id="rate" [(ngModel)]="rate.value" (keyup)="validateRate()" min="3" max="999" placeholder="20.00">
+          <span class="form-field-error" *ngIf="!rate.valid">{{rate.error}}</span>
         </div>
         <span>per hour</span>
       </div>
@@ -17,7 +17,7 @@
         <div>Your prefered hourly rate will be made public.</div>
         <a href="javascript:void(0)"><div>View Important Rate & Payment Information</div></a>
       </div>
-      <button md-button class="btn-next" [disabled]="!rateValid" (click)="router.navigateByUrl('/signup-photo')">NEXT</button>
+      <button md-button class="btn-next" [disabled]="working || !rate.valid" (click)="submit()">NEXT</button>
       <div class="btn-back" (click)="location.back()">BACK</div>
     </div>
   </div>
