@@ -87,8 +87,6 @@ export class SignupSkillComponent implements OnInit {
     this.accountService.addSkills(skills).subscribe(res => {
       if(res.success) {
         this.router.navigateByUrl("signup-rate");
-      } else {
-        console.log("failed");
       }
       this.working = false;
     });

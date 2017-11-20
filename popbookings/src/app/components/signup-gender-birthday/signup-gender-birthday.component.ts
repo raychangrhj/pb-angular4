@@ -52,8 +52,6 @@ export class SignupGenderBirthdayComponent implements OnInit {
     this.accountService.updateTalentGenderAndBirthday(this.gender, birthday).subscribe(res => {
       if(res.success) {
         if(this.birthday.valid) this.router.navigateByUrl('/signup-skill');
-      } else {
-        console.log("failed");
       }
       this.working = false;
     });

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -10,7 +10,10 @@ import { Location } from '@angular/common';
 export class SignupPhotoComponent implements OnInit {
   photoCount: number;
 
-  constructor(private router: Router, private location: Location) { }
+  constructor(
+    private router: Router,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.photoCount = 0;

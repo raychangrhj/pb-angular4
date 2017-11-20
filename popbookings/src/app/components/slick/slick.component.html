@@ -20,4 +20,18 @@
     <label class="btn-add-image-small" for="upload_image" *ngIf="inputImageCount < 6">Add New Photo...</label>
   </ng-template>
 </div>
-<input type="file" accept="image/*" id="upload_image" (change)="changeLister($event)">
+<input type="file" accept="image/*" id="upload_image" (change)="fileChangeListener($event)">
+<div class="cropper-backdrop" *ngIf="cropping">
+  <div class="cropper-container">
+    <div class="cropper-wrapper">
+      <img-cropper #cropper [image]=data [settings]="cropperSettings"></img-cropper>
+      <div class="preview" *ngIf="data.image">
+        <img [src]="data.image" [width]="croppedWidth" [height]="croppedHeight">
+      </div>
+      <div class="buttons-wrapper">
+        <button md-button class="btn-light-green btn-save" [disabled]="working" (click)="save()">SAVE</button>
+        <button md-button class="btn-cancel" [disabled]="working" (click)="cropping = false">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

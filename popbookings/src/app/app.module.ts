@@ -44,6 +44,7 @@ import { SignupRateComponent } from './components/signup-rate/signup-rate.compon
 import { SignupPhotoComponent } from './components/signup-photo/signup-photo.component';
 import { SignupAreaComponent } from './components/signup-area/signup-area.component';
 import { SlickComponent } from './components/slick/slick.component';
+import { ImageCropperComponent } from 'ng2-img-cropper/src/imageCropperComponent';
 import { JobBoardComponent } from './components/job-board/job-board.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { BookingCalendarComponent } from './components/booking-calendar/booking-calendar.component';
@@ -133,6 +134,7 @@ const CUSTOM_DATE_FORMATS = {
     SignupPhotoComponent,
     SignupAreaComponent,
     SlickComponent,
+    ImageCropperComponent,
     JobBoardComponent,
     BookingsComponent,
     BookingCalendarComponent,

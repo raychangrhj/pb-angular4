@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { DataService } from '../../services/data.service';
+import { AccountService } from 'app/services/account.service';
 
 @Component({
   selector: 'app-job-board',
@@ -31,7 +32,8 @@ export class JobBoardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private commonService: CommonService,
-    private dataService: DataService
+    private dataService: DataService,
+    private accountService: AccountService
   ) { }
 
   ngOnInit() {

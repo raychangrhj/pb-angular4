@@ -80,8 +80,6 @@ export class SignupComponent implements OnInit {
     this.accountService.registerTalent(this.workUser).subscribe(res => {
       if(res.success) {
         this.currentView = 'work-3';
-      } else {
-        console.log("failed");
       }
       this.working = false;
     });

@@ -1,7 +1,8 @@
 // npm install angular-persistence --save
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { CommonService } from 'app/services/common.service';
 import { PersistenceService, StorageType } from 'angular-persistence';
 import { CryptoService } from 'app/services/crypto.service';
 import { AppSettings } from 'app/classes/app-settings';
@@ -10,9 +11,10 @@ import { AppSettings } from 'app/classes/app-settings';
 export class AccountService {
 
   constructor(
+    private http: Http,
+    private commonService: CommonService,
     private persistenceService: PersistenceService,
-    public cryptoService: CryptoService,
-    private http: Http
+    public cryptoService: CryptoService
   ) { }
 
   registerTalent(user) {
@@ -38,12 +40,13 @@ export class AccountService {
     return this.http.post(apiUrl, body).map(res => res.json());
   }
 
-  set token(token) {
-    this.persistenceService.set("token", token, { type: StorageType.SESSION });
+  get token() {
+    return this.persistenceService.get("token", StorageType.LOCAL);
   }
 
-  get token() {
-    return this.persistenceService.get("token", StorageType.SESSION);
+  set token(token) {
+    this.persistenceService.remove("token");
+    this.persistenceService.set("token", token, { type: StorageType.LOCAL, timeout: 3600000 });
   }
 
   createAuthorizationHeader(headers: Headers) {
@@ -103,6 +106,42 @@ export class AccountService {
       Rate: rate
     };
     return this.http.post(apiUrl, body, { headers: headers }).map(res => res.json());
+  }
+
+  saveTalentPicture(image, number) {
+    var apiUrl = AppSettings.API_ENDPOINT + "/Account/SaveTalentPicture";
+    var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    var formData = new FormData();
+    var blob = this.commonService.dataUriToBlob(image);
+    var fileName = number + "_" + (number == 1 ? 1 : 0) + "_profile.jpg";
+    formData.append("file", blob, fileName);
+    return this.http.post(apiUrl, formData, { headers: headers }).map(res => res.json());
+  }
+
+  updateTalentLocation(location) {
+    var apiUrl = AppSettings.API_ENDPOINT + "/Account/UpdateTalentLocation";
+    var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    var body = {
+      Address: this.cryptoService.encrypt(location.address),
+      City: this.cryptoService.encrypt(location.city),
+      State: this.cryptoService.encrypt(location.state),
+      Country: this.cryptoService.encrypt(location.country),
+      PostalCode: this.cryptoService.encrypt(location.postalcode),
+      Latitude: location.latitude,
+      Longitude: location.longitude
+    };
+    return this.http.post(apiUrl, body, { headers: headers }).map(res => res.json());
+  }
+
+  getIdentityTokenLayer(nonce) {
+    var apiUrl = AppSettings.API_ENDPOINT + "/Account/IdentityToken";
+    var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    var search = new URLSearchParams();
+    search.append("nonce", nonce);
+    return this.http.get(apiUrl, { headers: headers, search: search }).map(res => res.json());
   }
 
 }

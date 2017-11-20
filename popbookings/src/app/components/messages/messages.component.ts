@@ -1,9 +1,14 @@
+// npm install layer-websdk --save
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'app/services/common.service';
 import { DataService } from 'app/services/data.service';
+import { AccountService } from 'app/services/account.service';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { ConversationDetailsDialogComponent } from 'app/components/conversation-details-dialog/conversation-details-dialog.component';
+import { AppSettings } from 'app/classes/app-settings';
+import * as layer from 'layer-websdk';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-messages',
@@ -19,6 +24,7 @@ export class MessagesComponent implements OnInit {
   filterBooking: string;
   filterOther: string;
   searchString: string;
+  user: any;
   conversations: any[];
   currentConversation: any;
   messageType: string;
@@ -30,6 +36,7 @@ export class MessagesComponent implements OnInit {
     private router: Router,
     private commonService: CommonService,
     private dataService: DataService,
+    private accountService: AccountService,
     public dialog: MdDialog
   ) { }
 
@@ -46,76 +53,6 @@ export class MessagesComponent implements OnInit {
       { key: "paid", value: "Paid" }
     ];
     this.filterOtherList = [ "A", "B", "C" ];
-    this.conversations = [
-      {
-        id: "1",
-        type: "direct",
-        title: "Wait Staff - Charity Luncheon",
-        date: "4:32 PM",
-        members: 0,
-        name: "Sheila R.",
-        company: "Unbound",
-        avatar: "https://cdn.okccdn.com/media/img/emojis/apple/1F600.png",
-        lastMessage: "Welcome to the team! Be on the lookout for news and update",
-        live: true,
-      }, {
-        id: "2",
-        type: "direct",
-        title: "Bartender - Big Xll Fan Fest",
-        date: "11:39 AM",
-        members: 0,
-        name: "Mike H.",
-        company: "Worldwide Promotions, Inc.",
-        avatar: "https://cdn.okccdn.com/media/img/emojis/apple/1F601.png",
-        lastMessage: "Congrats! You've been invited to join our team at the 2017",
-        live: false
-      }, {
-        id: "3",
-        type: "direct",
-        title: "Your Password Reset",
-        date: "Yesterday",
-        members: 0,
-        name: "Sarah T.",
-        company: "PopBookings Support",
-        avatar: "https://cdn.okccdn.com/media/img/emojis/apple/1F602.png",
-        lastMessage: "All Set! We've updated your login credentials and sent a",
-        live: true
-      }, {
-        id: "4",
-        type: "group",
-        title: "Group Chat - Big Xll Fan Fest",
-        date: "12/30/16",
-        members: 12,
-        name: "Mike H.",
-        company: "",
-        avatar: "https://cdn.okccdn.com/media/img/emojis/apple/1F603.png",
-        lastMessage: "Hey all, just a reminder that the training conference call is",
-        live: false
-      }, {
-        id: "5",
-        type: "direct",
-        title: "Support Staff - Techweek KC",
-        date: "11/23/16",
-        members: 0,
-        name: "Stacy W.",
-        company: "Techweek, Inc",
-        avatar: "https://cdn.okccdn.com/media/img/emojis/apple/1F604.png",
-        lastMessage: "Thank you! You did a fantastic job on our event and look for",
-        live: false
-      }, {
-        id: "6",
-        type: "group",
-        title: "Worldwide Promotions",
-        date: "11/23/16",
-        members: 346,
-        name: "Mike H.",
-        company: "",
-        avatar: "https://cdn.okccdn.com/media/img/emojis/apple/1F605.png",
-        lastMessage: "Yes, we will need a few documents signed and returned a",
-        live: false
-      }
-    ];
-    this.currentConversation = this.conversations[0];
     this.messageType = "direct";
     this.messages = [
       {
@@ -141,8 +78,93 @@ export class MessagesComponent implements OnInit {
         message: "Thank you! I am looking forward to it."
       }
     ];
+    this.messages = [];
+
+    var that = this;
+    var client = new layer.Client({
+      // appId: AppSettings.LAYER_APP_ID
+      appId: AppSettings.LAYER_APP_ID_OTHER
+    });
+    client.on("challenge", function(event) {
+      // that.accountService.getIdentityTokenLayer(event.nonce).subscribe(res => {
+      //   event.callback(res.identity_token);
+      // });
+      layer.xhr({
+        url: AppSettings.LAYER_IDENTITY_PROVIDER_URL,
+        headers: {
+          "Content-type": "application/json",
+          "Accept": "application/json"
+        },
+        method: "POST",
+        data: {
+          nonce: event.nonce,
+          email: AppSettings.LAYER_EMAIL,
+          password: AppSettings.LAYER_PASSWORD
+        }
+      }, function(res) {
+        if(res.success && res.data.identity_token) {
+          event.callback(res.data.identity_token);
+        } else {
+          alert("layer login failed");
+        }
+      });
+    });
+    client.on("ready", function() {
+      that.user = client.user;
+      console.log(that.user);
+      var conversationQuery = client.createQuery({
+        model: layer.Query.Conversation,
+        paginationWindow: 500
+      });
+      conversationQuery.on("change:data", function(event) {
+        console.log(conversationQuery.data);
+        if(conversationQuery.data) {
+          that.conversations = conversationQuery.data;
+          that.currentConversation = that.conversations[0];
+        }
+      });
+    });
+    client.connect();
 
     this.reset();
+  }
+
+  formatDateForConversationList(date) {
+    var momentForNow = moment(new Date);
+    var today = momentForNow.clone().startOf("day");
+    var yesterday = momentForNow.clone().subtract(1, "days").startOf("days");
+    var convertingDate = moment(date);
+    if(convertingDate.isSame(today, "d")) return convertingDate.format("h:mm A");
+    if(convertingDate.isSame(yesterday, "d")) return "Yesterday";
+    return convertingDate.format("M/D/YY");
+  }
+
+  getParticipant(conversation) {
+    var participant: any;
+    if(conversation) {
+      conversation.participants.forEach(e => {
+        if(e.id != this.user.id) {
+          participant = e;
+          return;
+        }
+      });
+    }
+    return participant;
+  }
+
+  participantStatus(conversation) {
+    var participant = this.getParticipant(conversation);
+    return participant ? participant.status : "";
+  }
+
+  participantName(conversation) {
+    var participant = this.getParticipant(conversation);
+    return participant ? participant.displayName : false;
+  }
+
+  participantAvatar(conversation) {
+    var participant = this.getParticipant(conversation);
+    return participant ? participant.avatarUrl : "assets/images/no-avatar.png";
   }
 
   reset() {

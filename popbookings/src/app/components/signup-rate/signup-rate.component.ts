@@ -33,8 +33,6 @@ export class SignupRateComponent implements OnInit {
     this.accountService.updateTalentRate(this.rate.value).subscribe(res => {
       if(res.success) {
         this.router.navigateByUrl("/signup-photo");
-      } else {
-        console.log("failed");
       }
       this.working = false;
     });

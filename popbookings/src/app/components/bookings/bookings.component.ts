@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'app/services/common.service';
 import { DataService } from 'app/services/data.service';
+import { AccountService } from 'app/services/account.service';
 
 @Component({
   selector: 'app-bookings',
@@ -25,7 +26,8 @@ export class BookingsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private commonService: CommonService,
-    private dataService: DataService
+    private dataService: DataService,
+    private accountService: AccountService
   ) { }
 
   ngOnInit() {

@@ -32,7 +32,7 @@ export class AccountComponent implements OnInit {
     this.accountService.confirmAccount(token, hint).subscribe(res => {
       if(res.success && res.id) {
         this.accountService.token = res.id;
-        this.router.navigateByUrl("signup-rate");
+        this.router.navigateByUrl("signup-mobile");
       }
     });
   }

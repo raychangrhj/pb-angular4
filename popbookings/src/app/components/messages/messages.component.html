@@ -28,19 +28,19 @@
         <div class="messages">
             <div class="panel-left" [ngClass]="conversationsVisible ? 'collapsed' : ''">
                 <div class="panel-conversations-list">
-                    <div class="conversation-item" [ngClass]="item.id == currentConversation.id ? 'selected' : ''" *ngFor="let item of conversations" (click)="currentConversation = item; conversationsVisible = false">
+                    <div class="conversation-item" *ngFor="let item of conversations" (click)="currentConversation = item; conversationsVisible = false">
                         <div class="conversation-item-container">
                             <div class="conversation-item-wrapper">
-                                <div class="live" *ngIf="item.live"></div>
-                                <div class="title">{{item.title}}</div>
-                                <div class="date">{{item.date}}</div>
+                                <div class="live" *ngIf="participantStatus(item) == 'available'"></div>
+                                <div class="title">{{item.metadata.conversationName}}</div>
+                                <div class="date">{{formatDateForConversationList(item.lastMessage.sentAt)}}</div>
                                 <div class="name">
-                                    <span *ngIf="item.type == 'direct'">{{item.name}} - {{item.company}}</span>
-                                    <span *ngIf="item.type == 'group'">{{item.members}} Members</span>
+                                    <span *ngIf="item.participants.length > 2; else elseBlock">{{item.participants.length}} Members</span>
+                                    <ng-template #elseBlock>{{participantName(item)}}</ng-template>
                                 </div>
                                 <div class="last-message">
-                                    <img class="avatar" [src]="item.avatar">
-                                    <span>{{item.lastMessage}}</span>
+                                    <img class="avatar" [src]="participantAvatar(item)">
+                                    <span>{{item.lastMessage.parts[0].body}}</span>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                     <button md-icon-button class="btn-collapse-conversations" (click)="conversationsVisible = !conversationsVisible">
                         <md-icon>forward</md-icon>
                     </button>
-                    <div class="title">{{currentConversation.title}}</div>
+                    <div class="title">{{currentConversation?.metadata.conversationName}}</div>
                     <div class="btn-detail" (click)="openConversationDetailsDialog()"></div>
                     <div class="message-segments-wrapper">
                         <div class="segment" [ngClass]="messageType == 'direct' ? 'active' : ''" (click)="messageType='direct'">DIRECT</div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="panel-footer">
                     <div class="receiver">
-                        <div class="live" *ngIf="currentConversation.live"></div>
+                        <div class="live" *ngIf="participantStatus(currentConversation) == 'available'"></div>
                     </div>
                     <input class="message" placeholder="Send a message...">
                     <div class="btn-send"></div>

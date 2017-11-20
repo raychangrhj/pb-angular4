@@ -6,13 +6,13 @@
       <div class="step">STEP 6 OF 6</div>
       <div class="page-title">Help us find your jobs in your area.</div>
       <md-form-field>
-        <input mdInput [(ngModel)]="myLocation" (keyup)="searchLocation()" placeholder="My Location" #search [formControl]="searchControl">
+        <input mdInput (keyup)="searchLocation()" placeholder="My Location" #search [formControl]="searchControl">
         <span class="btn-search" (click)="searchLocation()"></span>
       </md-form-field>
-      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      <agm-map [latitude]="locationInfo.latitude" [longitude]="locationInfo.longitude" [zoom]="zoom">
+        <agm-marker [latitude]="locationInfo.latitude" [longitude]="locationInfo.longitude"></agm-marker>
       </agm-map>
-      <button md-button class="btn-light-red btn-work" [disabled]="!myLocation" (click)="router.navigate(['/jobboard', {pageHeaderVisible: true}])">LET'S GET TO WORK</button>
+      <button md-button class="btn-light-red btn-work" [disabled]="working || !locationInfo.valid" (click)="submit()">LET'S GET TO WORK</button>
       <div class="btn-back" (click)="location.back()">BACK</div>
     </div>
   </div>
